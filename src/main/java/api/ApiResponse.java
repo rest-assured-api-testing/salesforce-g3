@@ -27,6 +27,11 @@ public class ApiResponse {
     public <T> List getBodyList(Class<T> cls) {
         return response.getBody().jsonPath().getList("",cls);
     }
+
+    public String getPath(String path) {
+        return response.getBody().jsonPath().getJsonObject(path);
+    }
+
     public void validateBodySchema(String schema) {
       response.then().log().body().assertThat().body(matchesJsonSchemaInClasspath(schema));
     }

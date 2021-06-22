@@ -12,8 +12,8 @@ public class ApiManager {
         return given().headers(apiRequest.getHeaders())
                 .queryParams(apiRequest.getQueryParams())
                 .pathParams(apiRequest.getPathParams())
+                .params(apiRequest.getParams())
                 .baseUri(apiRequest.getBaseUri())
-                .contentType(ContentType.JSON)
                 .log().all();
     }
 

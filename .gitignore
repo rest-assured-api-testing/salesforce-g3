@@ -3,7 +3,7 @@
 .idea/
 /target/
 target/
-.env
+properties.properties
 Maven.iml
 # Ignore Gradle GUI config
 gradle-app.setting

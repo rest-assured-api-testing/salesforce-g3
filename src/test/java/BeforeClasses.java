@@ -3,33 +3,40 @@ import api.ApiMethod;
 import api.ApiRequest;
 import api.ApiResponse;
 import io.github.cdimascio.dotenv.Dotenv;
-import org.testng.annotations.BeforeMethod;
+import org.apache.http.HttpStatus;
+import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 
+import static configuration.env.CONFIG;
+
 public class BeforeClasses {
-    public static Dotenv dotenv = Dotenv.configure().ignoreIfMalformed().ignoreIfMissing().load();
     public ApiRequest apiRequest;
+    public String token;
+    public String instance_url;
 
     @BeforeSuite
     public void login() {
-        apiRequest = new ApiRequest()
-                .baseUri(dotenv.get("LOGIN"))
+        ApiRequest localApiRequest = new ApiRequest()
+                .baseUri(CONFIG.getProperty("LOGIN"))
                 .endpoint("/token")
-                .addParam("password", dotenv.get("PASSWORD"))
-                .addParam("username", dotenv.get("USERNAME"))
-                .addParam("client_id", dotenv.get("CLIENT_ID"))
-                .addParam("client_secret", dotenv.get("CLIENT_SECRET"))
+                .addParam("password", CONFIG.getProperty("PASSWORD"))
+                .addParam("username", CONFIG.getProperty("USER"))
+                .addParam("client_id", CONFIG.getProperty("CLIENT_ID"))
+                .addParam("client_secret", CONFIG.getProperty("CLIENT_SECRET"))
                 .addParam("grant_type", "password")
                 .addHeader("Accept", "application/json")
                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .method(ApiMethod.POST);
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
-    }
+        ApiResponse apiResponse = ApiManager.execute(localApiRequest);
+        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
 
-    @BeforeMethod(onlyForGroups = "Accounts")
-    public void AccountsSettings() {
-        apiRequest.baseUri(dotenv.get("URI"))
-                .method(ApiMethod.GET);
+        token = apiResponse.getPath("token_type") + " " + apiResponse.getPath("access_token");
+        instance_url = apiResponse.getPath("instance_url");
+
+        apiRequest = new ApiRequest()
+                .baseUri(instance_url + CONFIG.getProperty("SERVICE") + CONFIG.getProperty("VERSION"))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", token);
     }
 
 }
