@@ -17,11 +17,13 @@ public class ApiRequest {
     private List<Header> headers;
     private Map<String, String> queryParams;
     private Map<String, String> pathParams;
+    private Map<String, String> params;
 
     public ApiRequest() {
         headers = new ArrayList<>();
         queryParams = new HashMap<>();
         pathParams = new HashMap<>();
+        params = new HashMap<>();
     }
 
     public String getBaseUri() {
@@ -84,6 +86,14 @@ public class ApiRequest {
         pathParams.put(param, value);
     }
 
+    public void clearParam(){
+        params.clear();
+    }
+
+    public void setParam(final String param, final String value) {
+        params.put(param, value);
+    }
+
     public Headers getHeaders() {
         return new Headers(headers);
     }
@@ -94,6 +104,10 @@ public class ApiRequest {
 
     public Map<String, String> getPathParams() {
         return pathParams;
+    }
+
+    public Map<String, String> getParams() {
+        return params;
     }
 
     public ApiRequest baseUri(String baseUri) {
@@ -133,6 +147,11 @@ public class ApiRequest {
 
     public ApiRequest addPathParam(final String param, final String value) {
         this.setPathParam(param, value);
+        return this;
+    }
+
+    public ApiRequest addParam(final String param, final String value) {
+        this.setParam(param, value);
         return this;
     }
 }
