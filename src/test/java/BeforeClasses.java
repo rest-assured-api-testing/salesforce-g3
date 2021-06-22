@@ -1,8 +1,4 @@
-import api.ApiManager;
-import api.ApiMethod;
-import api.ApiRequest;
-import api.ApiResponse;
-import io.github.cdimascio.dotenv.Dotenv;
+import api.*;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
@@ -18,7 +14,7 @@ public class BeforeClasses {
     public void login() {
         ApiRequest localApiRequest = new ApiRequest()
                 .baseUri(CONFIG.getProperty("LOGIN"))
-                .endpoint("/token")
+                .endpoint(ApiFeature.TOKEN)
                 .addParam("password", CONFIG.getProperty("PASSWORD"))
                 .addParam("username", CONFIG.getProperty("USER"))
                 .addParam("client_id", CONFIG.getProperty("CLIENT_ID"))

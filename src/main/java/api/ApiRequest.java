@@ -38,8 +38,8 @@ public class ApiRequest {
         return endpoint;
     }
 
-    public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
+    public void setEndpoint(ApiFeature endpoint) {
+        this.endpoint = endpoint.toEndpoint();
     }
 
     public String getBody() {
@@ -115,7 +115,7 @@ public class ApiRequest {
         return this;
     }
 
-    public ApiRequest endpoint(String endpoint) {
+    public ApiRequest endpoint(ApiFeature endpoint) {
         this.setEndpoint(endpoint);
         return this;
     }
