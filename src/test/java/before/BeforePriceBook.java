@@ -1,5 +1,5 @@
 package before;
 
-public class BeforePriceBook extends  BeforeClasses{
+public class BeforePriceBook extends  SuitTestBefore{
 
 }

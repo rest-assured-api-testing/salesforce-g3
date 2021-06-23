@@ -1,4 +1,4 @@
 package before;
 
-public class BeforeCampaign extends BeforeClasses{
+public class BeforeCampaign extends SuitTestBefore{
 }
