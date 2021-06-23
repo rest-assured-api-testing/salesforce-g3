@@ -1,8 +1,12 @@
+package Tests;
+
 import api.ApiManager;
 import api.ApiMethod;
 import api.ApiResponse;
+import before.BeforeClasses;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import configuration.ApiFeature;
 import entities.Account;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -15,7 +19,7 @@ public class AccountTest extends BeforeClasses {
         Account account = new Account();
         account.setName("ObjectTest5");
         apiRequest.method(ApiMethod.POST)
-                .endpoint("/sobjects/Account")
+                .endpoint(ApiFeature.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
 
         ApiResponse apiResponse = ApiManager.executeWithBody(apiRequest);

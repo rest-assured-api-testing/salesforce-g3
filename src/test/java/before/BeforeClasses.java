@@ -1,8 +1,11 @@
+package before;
+
 import api.ApiManager;
 import api.ApiMethod;
 import api.ApiRequest;
 import api.ApiResponse;
-import io.github.cdimascio.dotenv.Dotenv;
+import configuration.ApiFeature;
+import entities.CreatedObject;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
@@ -10,6 +13,7 @@ import org.testng.annotations.BeforeSuite;
 import static configuration.env.CONFIG;
 
 public class BeforeClasses {
+    public CreatedObject createdObject;
     public ApiRequest apiRequest;
     public String token;
     public String instance_url;
@@ -18,7 +22,7 @@ public class BeforeClasses {
     public void login() {
         ApiRequest localApiRequest = new ApiRequest()
                 .baseUri(CONFIG.getProperty("LOGIN"))
-                .endpoint("/token")
+                .endpoint(ApiFeature.token)
                 .addParam("password", CONFIG.getProperty("PASSWORD"))
                 .addParam("username", CONFIG.getProperty("USER"))
                 .addParam("client_id", CONFIG.getProperty("CLIENT_ID"))
