@@ -25,31 +25,30 @@ public class CampaignTest extends BeforeCampaign {
     }
 
     @Test
-    public void UpdateACampaign() {
+    public void shouldReturnNotFoundForUpdateWithInvalidCampaignID() {
         apiRequest.setEndpoint(ApiFeature.CAMPAIGN_ID);
-        apiRequest.addPathParam("campaignId", "7015e000000cngAAAQ");
+        apiRequest.addPathParam("campaignId", "7015e000000cngKAAQ");
         apiRequest.setBody("{\"Name\":\"UpdatedName\"}");
         apiRequest.setMethod(ApiMethod.PATCH);
         ApiResponse apiResponse = ApiManager.executeWithBody(apiRequest);
-        int expected = HttpStatus.SC_NO_CONTENT;
+        int expected = HttpStatus.SC_NOT_FOUND;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void getACampaign() {
+    public void shouldReturnNotFoundForGetWithInvalidCampaignID() {
         apiRequest.setEndpoint(ApiFeature.CAMPAIGN_ID);
-        apiRequest.addPathParam("campaignId", "7015e000000cngAAAQ");
+        apiRequest.addPathParam("campaignId", "7015e000000cngKAAQ");
         apiRequest.setMethod(ApiMethod.GET);
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
-        apiResponse.validateBodySchema("schemas/campaign.json");
-        int expected = HttpStatus.SC_OK;
+        int expected = HttpStatus.SC_NOT_FOUND;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void deleteAnUnexistingCampaign() {
+    public void shouldReturnNotFoundForDeleteWithInvalidCampaignID() {
         apiRequest.setEndpoint(ApiFeature.CAMPAIGN_ID);
         apiRequest.addPathParam("campaignId", "7015e000000cngKAAQ");
         apiRequest.setMethod(ApiMethod.DELETE);

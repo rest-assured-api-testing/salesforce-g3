@@ -25,31 +25,30 @@ public class PriceBookTest extends BeforePriceBook {
     }
 
     @Test
-    public void UpdateAPriceBook() {
+    public void shouldReturnBadForUpdateWithInvalidPriceBookID() {
         apiRequest.setEndpoint(ApiFeature.PRICE_BOOK_ID);
-        apiRequest.addPathParam("priceId", "01s5e000007oCMCAA2");
+        apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
         apiRequest.setBody("{\"Name\":\"UpdatedName\"}");
         apiRequest.setMethod(ApiMethod.PATCH);
         ApiResponse apiResponse = ApiManager.executeWithBody(apiRequest);
-        int expected = HttpStatus.SC_NO_CONTENT;
+        int expected = HttpStatus.SC_BAD_REQUEST;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void getAPriceBook() {
+    public void shouldReturnNotFoundForGetWithInvalidPriceBookID() {
         apiRequest.setEndpoint(ApiFeature.PRICE_BOOK_ID);
-        apiRequest.addPathParam("priceId", "01s5e000007oCM7AAM");
+        apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
         apiRequest.setMethod(ApiMethod.GET);
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
-        apiResponse.validateBodySchema("schemas/pricebook2.json");
-        int expected = HttpStatus.SC_OK;
+        int expected = HttpStatus.SC_NOT_FOUND;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void deleteAnUnexistingPriceBook() {
+    public void shouldReturnNotFoundForDeleteInvalidPriceBookID() {
         apiRequest.setEndpoint(ApiFeature.PRICE_BOOK_ID);
         apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
         apiRequest.setMethod(ApiMethod.DELETE);
