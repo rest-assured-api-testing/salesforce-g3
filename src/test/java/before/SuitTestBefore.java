@@ -4,12 +4,11 @@ import api.ApiManager;
 import api.ApiMethod;
 import api.ApiRequest;
 import api.ApiResponse;
-import configuration.ApiFeature;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 
 import static configuration.env.CONFIG;
 
@@ -19,7 +18,7 @@ public class SuitTestBefore {
     public String instance_url;
     public ApiResponse apiResponse;
 
-    @BeforeSuite
+    @BeforeClass
     public void login() {
         ApiRequest localApiRequest = new ApiRequest()
                 .baseUri(CONFIG.getProperty("LOGIN"))

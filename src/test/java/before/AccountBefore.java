@@ -16,9 +16,9 @@ import org.testng.annotations.BeforeMethod;
 public class AccountBefore extends SuitTestBefore {
 
     @BeforeMethod(onlyForGroups = "CreateAccount")
-    public void JustCreateAAccount() throws JsonProcessingException {
+    public void JustCreateAccount() throws JsonProcessingException {
         Account account = new Account();
-        account.setName("Before ObjectTest7");
+        account.setName("Before Account Test");
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiFeature.ACCOUNT.toEndpoint())
                 .body(new ObjectMapper().writeValueAsString(account));
@@ -31,7 +31,7 @@ public class AccountBefore extends SuitTestBefore {
     @BeforeMethod(onlyForGroups = "CreateDeleteAccount")
     public void beforeCreateAccount() throws JsonProcessingException {
         Account account = new Account();
-        account.setName("Before ObjectTest7");
+        account.setName("Before Account Test");
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiFeature.ACCOUNT.toEndpoint())
                 .body(new ObjectMapper().writeValueAsString(account));
