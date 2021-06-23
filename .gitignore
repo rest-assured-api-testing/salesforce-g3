@@ -5,6 +5,7 @@
 target/
 properties.properties
 Maven.iml
+salesforce-g3.iml
 # Ignore Gradle GUI config
 gradle-app.setting
 
