@@ -39,7 +39,7 @@
       "type": "null"
     },
     "BillingCity": {
-      "type": "null"
+      "type": "string"
     },
     "BillingState": {
       "type": "null"
@@ -60,7 +60,43 @@
       "type": "null"
     },
     "BillingAddress": {
-      "type": "null"
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "null"
+        },
+        "geocodeAccuracy": {
+          "type": "null"
+        },
+        "latitude": {
+          "type": "null"
+        },
+        "longitude": {
+          "type": "null"
+        },
+        "postalCode": {
+          "type": "null"
+        },
+        "state": {
+          "type": "null"
+        },
+        "street": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "city",
+        "country",
+        "geocodeAccuracy",
+        "latitude",
+        "longitude",
+        "postalCode",
+        "state",
+        "street"
+      ]
     },
     "ShippingStreet": {
       "type": "null"
