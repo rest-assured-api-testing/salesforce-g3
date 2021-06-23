@@ -18,7 +18,7 @@ public class AccountTest extends AccountBefore {
     @Test
     public void getAllAccount() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.ACCOUNT.toEndpoint());
+                .endpoint(ApiFeature.ACCOUNT);
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
@@ -28,7 +28,7 @@ public class AccountTest extends AccountBefore {
     @Test(groups = {"CreateDeleteAccount"})
     public void getAccount() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.ACCOUNT_ID.toEndpoint())
+                .endpoint(ApiFeature.ACCOUNT_ID)
                 .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
@@ -41,7 +41,7 @@ public class AccountTest extends AccountBefore {
         Account account = new Account();
         account.setName("Object Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.ACCOUNT.toEndpoint())
+                .endpoint(ApiFeature.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
 
         apiResponse = ApiManager.executeWithBody(apiRequest);
@@ -52,7 +52,7 @@ public class AccountTest extends AccountBefore {
     @Test(groups = {"CreateAccount"})
     public void deleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.ACCOUNT_ID.toEndpoint())
+                .endpoint(ApiFeature.ACCOUNT_ID)
                 .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
@@ -65,7 +65,7 @@ public class AccountTest extends AccountBefore {
         Account account = new Account();
         account.setName("Object Updated");
         apiRequest.method(ApiMethod.PATCH)
-                .endpoint(ApiFeature.ACCOUNT_ID.toEndpoint())
+                .endpoint(ApiFeature.ACCOUNT_ID)
                 .addPathParam("accountId", apiResponse.getBody(Response.class).getId())
                 .body(new ObjectMapper().writeValueAsString(account));
 

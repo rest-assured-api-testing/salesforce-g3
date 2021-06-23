@@ -5,8 +5,10 @@ import api.ApiMethod;
 import api.ApiRequest;
 import api.ApiResponse;
 import api.*;
+import configuration.ApiFeature;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -48,7 +50,7 @@ public class SuitTestBefore {
         apiRequest.clearPathParam();
     }
 
-    @AfterMethod
+    @AfterClass
     public void AfterRequest() {
         apiRequest = new ApiRequest();
     }

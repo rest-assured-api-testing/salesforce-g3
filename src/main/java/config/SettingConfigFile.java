@@ -11,7 +11,7 @@ public class SettingConfigFile {
         Properties properties = new Properties();
         InputStream input = null;
         try {
-            input = new FileInputStream("config.properties");
+            input = new FileInputStream("properties.properties");
             properties.load(input);
             return properties;
         } catch (IOException exception) {

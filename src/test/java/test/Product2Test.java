@@ -18,7 +18,7 @@ public class Product2Test extends Product2Before {
     @Test
     public void getAllProduct2() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.PRODUCT2.toEndpoint());
+                .endpoint(ApiFeature.PRODUCT2);
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
@@ -28,7 +28,7 @@ public class Product2Test extends Product2Before {
     @Test(groups = {"CreateDeleteProduct2"})
     public void getProduct2() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.PRODUCT2_ID.toEndpoint())
+                .endpoint(ApiFeature.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
@@ -41,7 +41,7 @@ public class Product2Test extends Product2Before {
         Product2 product2 = new Product2();
         product2.setName("Object Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.PRODUCT2.toEndpoint())
+                .endpoint(ApiFeature.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(product2));
 
         apiResponse = ApiManager.executeWithBody(apiRequest);
@@ -52,7 +52,7 @@ public class Product2Test extends Product2Before {
     @Test(groups = {"CreateProduct2"})
     public void deleteProduct2() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.PRODUCT2_ID.toEndpoint())
+                .endpoint(ApiFeature.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
@@ -65,7 +65,7 @@ public class Product2Test extends Product2Before {
         Product2 product2 = new Product2();
         product2.setName("Product2 Updated");
         apiRequest.method(ApiMethod.PATCH)
-                .endpoint(ApiFeature.PRODUCT2_ID.toEndpoint())
+                .endpoint(ApiFeature.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId())
                 .body(new ObjectMapper().writeValueAsString(product2));
 

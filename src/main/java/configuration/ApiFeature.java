@@ -2,7 +2,7 @@ package configuration;
 
 public enum ApiFeature {
 
-    TOKEN(""),
+    TOKEN("/token"),
     CASES("/sobjects/Case"),
     CASES_ID("/sobjects/Case/{caseId}"),
     CONTACT("/sobjects/Contact"),
@@ -10,7 +10,11 @@ public enum ApiFeature {
     ACCOUNT("/sobjects/Account"),
     ACCOUNT_ID("/sobjects/Account/{accountId}"),
     PRODUCT2("/sobjects/Product2"),
-    PRODUCT2_ID("/sobjects/Product2/{product2Id}");
+    PRODUCT2_ID("/sobjects/Product2/{product2Id}"),
+    CAMPAIGN("/sobjects/Campaign"),
+    CAMPAIGN_ID("/sobjects/Campaign/{campaignId}"),
+    PRICE_BOOK("/sobjects/PriceBook"),
+    PRICE_BOOK_ID("/sobjects/PriceBook/{priceId}");
 
     private String endpoint;
 

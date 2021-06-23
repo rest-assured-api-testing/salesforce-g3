@@ -20,7 +20,7 @@ public class AccountBefore extends SuitTestBefore {
         Account account = new Account();
         account.setName("Before Account Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.ACCOUNT.toEndpoint())
+                .endpoint(ApiFeature.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
 
         apiResponse = ApiManager.executeWithBody(apiRequest);
@@ -33,7 +33,7 @@ public class AccountBefore extends SuitTestBefore {
         Account account = new Account();
         account.setName("Before Account Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.ACCOUNT.toEndpoint())
+                .endpoint(ApiFeature.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
 
         apiResponse = ApiManager.executeWithBody(apiRequest);
@@ -44,7 +44,7 @@ public class AccountBefore extends SuitTestBefore {
     @AfterMethod(onlyForGroups = {"CreateDeleteAccount"})
     public void afterDeleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.ACCOUNT_ID.toEndpoint())
+                .endpoint(ApiFeature.ACCOUNT_ID)
                 .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
@@ -55,7 +55,7 @@ public class AccountBefore extends SuitTestBefore {
     @AfterMethod(onlyForGroups = {"DeleteAccount"})
     public void JustDeleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.ACCOUNT_ID.toEndpoint())
+                .endpoint(ApiFeature.ACCOUNT_ID)
                 .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);

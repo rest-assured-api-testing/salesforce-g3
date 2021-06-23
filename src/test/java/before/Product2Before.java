@@ -19,7 +19,7 @@ public class Product2Before extends SuitTestBefore {
         Product2 product2 = new Product2();
         product2.setName("Before Product Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.PRODUCT2.toEndpoint())
+                .endpoint(ApiFeature.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(product2));
 
         apiResponse = ApiManager.executeWithBody(apiRequest);
@@ -32,7 +32,7 @@ public class Product2Before extends SuitTestBefore {
         Product2 product2 = new Product2();
         product2.setName("Before Product Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.PRODUCT2.toEndpoint())
+                .endpoint(ApiFeature.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(product2));
 
         apiResponse = ApiManager.executeWithBody(apiRequest);
@@ -43,7 +43,7 @@ public class Product2Before extends SuitTestBefore {
     @AfterMethod(onlyForGroups = {"CreateDeleteProduct2"})
     public void afterDeleteProduct2() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.PRODUCT2_ID.toEndpoint())
+                .endpoint(ApiFeature.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
@@ -54,7 +54,7 @@ public class Product2Before extends SuitTestBefore {
     @AfterMethod(onlyForGroups = {"DeleteProduct2"})
     public void JustDeleteProduct2() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.PRODUCT2_ID.toEndpoint())
+                .endpoint(ApiFeature.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = ApiManager.execute(apiRequest);

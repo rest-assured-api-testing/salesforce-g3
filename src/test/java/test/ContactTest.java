@@ -1,16 +1,19 @@
-import api.ApiFeature;
+package test;
+
 import api.ApiManager;
 import api.ApiMethod;
 import api.ApiResponse;
+import before.SuitTestBefore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import configuration.ApiFeature;
 import entities.Contact;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-public class ContactTest extends BeforeClasses{
+public class ContactTest extends SuitTestBefore {
     String contactCreated;
     @Test
     public void shouldAddNewContact() throws JsonProcessingException {
@@ -33,7 +36,7 @@ public class ContactTest extends BeforeClasses{
                 .endpoint(ApiFeature.CONTACT);
         ApiResponse response = ApiManager.execute(apiRequest);
         response.getResponse().then().log().body();
-        Assert.assertEquals(response.getStatusCode(), STATUS_OK);
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
     }
 
     @Test
@@ -43,7 +46,7 @@ public class ContactTest extends BeforeClasses{
                 .addPathParam("contactId", contactCreated);
         ApiResponse response = ApiManager.execute(apiRequest);
         response.getResponse().then().log().body();
-        Assert.assertEquals(response.getStatusCode(), STATUS_OK);
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
     }
 
     @Test
@@ -54,7 +57,7 @@ public class ContactTest extends BeforeClasses{
         ApiResponse response = ApiManager.execute(apiRequest);
         response.getResponse().then().log().body();
         response.validateBodySchema("schemas/contact.json");
-        Assert.assertEquals(response.getStatusCode(), STATUS_OK);
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
     }
 
     @Test
@@ -68,7 +71,7 @@ public class ContactTest extends BeforeClasses{
                 .setBody(new ObjectMapper().writeValueAsString(contact));
         ApiResponse response = ApiManager.executeWithBody(apiRequest);
         response.getResponse().then().log().body();
-        Assert.assertEquals(response.getStatusCode(), STATUS_NO_CONTENT);
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 
     @AfterClass
@@ -76,8 +79,8 @@ public class ContactTest extends BeforeClasses{
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.CONTACT_ID)
                 .addPathParam("contactId", contactCreated);
-        ApiResponse response = ApiManager.executeWithBody(apiRequest);
+        ApiResponse response = ApiManager.execute(apiRequest);
         response.getResponse().then().log().body();
-        Assert.assertEquals(response.getStatusCode(), STATUS_NO_CONTENT);
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }
