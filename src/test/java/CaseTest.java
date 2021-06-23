@@ -4,78 +4,77 @@ import api.ApiMethod;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.Contact;
+import entities.Case;
+import entities.CaseEnum;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-public class ContactTest extends BeforeClasses{
-    String contactCreated;
+public class CaseTest extends BeforeClasses{
+    String caseIdCreated;
     @Test
-    public void shouldAddNewContact() throws JsonProcessingException {
-        Contact newContact = new Contact();
-        newContact.setLastName("Perez Pinto");
+    public void shouldAddNewCase() throws JsonProcessingException {
+        Case newCase = new Case();
+        newCase.setStatus(CaseEnum.WORKING.toStatus());
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.CONTACT)
-                .body(new ObjectMapper().writeValueAsString(newContact));
+                .endpoint(ApiFeature.CASES)
+                .body(new ObjectMapper().writeValueAsString(newCase));
         ApiResponse response = ApiManager.executeWithBody(apiRequest);
-        contactCreated = response.getPath("id");
+        caseIdCreated = response.getPath("id");
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
         response.getResponse().then().log().body();
-        System.out.println(contactCreated);
     }
 
     @Test
-    public void shouldGetAllContacts() {
+    public void shouldGetAllCases() {
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.CONTACT);
+                .endpoint(ApiFeature.CASES);
         ApiResponse response = ApiManager.execute(apiRequest);
         response.getResponse().then().log().body();
         Assert.assertEquals(response.getStatusCode(), STATUS_OK);
     }
 
     @Test
-    public void shouldGetAContactById() {
+    public void shouldGetACaseById() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.CONTACT_ID)
-                .addPathParam("contactId", contactCreated);
+                .endpoint(ApiFeature.CASES_ID)
+                .addPathParam("caseId", caseIdCreated);
         ApiResponse response = ApiManager.execute(apiRequest);
         response.getResponse().then().log().body();
         Assert.assertEquals(response.getStatusCode(), STATUS_OK);
     }
 
     @Test
-    public void shouldValidateSchemaOfContactById() {
+    public void shouldValidateSchemaOfCaseById() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.CONTACT_ID)
-                .addPathParam("contactId", contactCreated);
+                .endpoint(ApiFeature.CASES_ID)
+                .addPathParam("caseId", caseIdCreated);
         ApiResponse response = ApiManager.execute(apiRequest);
         response.getResponse().then().log().body();
-        response.validateBodySchema("schemas/contact.json");
+        response.validateBodySchema("schemas/case.json");
         Assert.assertEquals(response.getStatusCode(), STATUS_OK);
     }
 
     @Test
-    public void shouldUpdateAContactById() throws JsonProcessingException {
-        Contact contact = new Contact();
-        contact.setLastName("Updated LastName");
-        contact.setEmail("UpdatedEmail@gmail.com");
+    public void shouldUpdateACaseById() throws JsonProcessingException {
+        Case updateCase = new Case();
+        updateCase.setStatus(CaseEnum.NEW.toStatus());
         apiRequest.method(ApiMethod.PATCH)
-                .endpoint(ApiFeature.CONTACT_ID)
-                .addPathParam("contactId", contactCreated)
-                .setBody(new ObjectMapper().writeValueAsString(contact));
+                .endpoint(ApiFeature.CASES_ID)
+                .addPathParam("caseId", caseIdCreated)
+                .setBody(new ObjectMapper().writeValueAsString(updateCase));
         ApiResponse response = ApiManager.executeWithBody(apiRequest);
         response.getResponse().then().log().body();
         Assert.assertEquals(response.getStatusCode(), STATUS_NO_CONTENT);
     }
 
     @AfterClass
-    public void shouldDeleteAContactById() {
+    public void shouldDeleteACaseById() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.CONTACT_ID)
-                .addPathParam("contactId", contactCreated);
+                .endpoint(ApiFeature.CASES_ID)
+                .addPathParam("caseId", caseIdCreated);
         ApiResponse response = ApiManager.executeWithBody(apiRequest);
         response.getResponse().then().log().body();
         Assert.assertEquals(response.getStatusCode(), STATUS_NO_CONTENT);

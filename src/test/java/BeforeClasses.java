@@ -9,6 +9,9 @@ public class BeforeClasses {
     public ApiRequest apiRequest;
     public String token;
     public String instance_url;
+    protected static final int STATUS_OK = 200;
+    protected static final int STATUS_BAD_REQUEST = 400;
+    protected static final int STATUS_NO_CONTENT = 204;
 
     @BeforeSuite
     public void login() {
@@ -33,6 +36,7 @@ public class BeforeClasses {
                 .baseUri(instance_url + CONFIG.getProperty("SERVICE") + CONFIG.getProperty("VERSION"))
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", token);
+        apiRequest.clearPathParam();
     }
 
 }
