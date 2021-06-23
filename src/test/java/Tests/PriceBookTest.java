@@ -39,9 +39,10 @@ public class PriceBookTest extends BeforePriceBook {
     @Test
     public void getAPriceBook() {
         apiRequest.setEndpoint(ApiFeature.PRICEBOOK_ID);
-        apiRequest.addPathParam("priceBookId", "01s5e000007oCh5AAE");
+        apiRequest.addPathParam("priceBookId", "01s5e000007oCM7AAM");
         apiRequest.setMethod(ApiMethod.GET);
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        apiResponse.validateBodySchema("schemas/pricebook2.json");
         int expected = HttpStatus.SC_OK;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);

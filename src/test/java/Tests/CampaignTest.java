@@ -39,9 +39,10 @@ public class CampaignTest extends BeforeCampaign {
     @Test
     public void getAPriceBook() {
         apiRequest.setEndpoint(ApiFeature.CAMPAIGN_ID);
-        apiRequest.addPathParam("campaignId", "7015e000000cngKAAQ");
+        apiRequest.addPathParam("campaignId", "7015e000000cng5AAA");
         apiRequest.setMethod(ApiMethod.GET);
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        apiResponse.validateBodySchema("schemas/campaign.json");
         int expected = HttpStatus.SC_OK;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);

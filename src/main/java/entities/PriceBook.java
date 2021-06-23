@@ -1,14 +1,13 @@
 package entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PriceBook {
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private Attributes attributes;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonIgnore
-    private String id;
+    private String Id;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String IsDeleted;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -45,11 +44,11 @@ public class PriceBook {
     }
 
     public String getId() {
-        return id;
+        return Id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getIsDeleted() {

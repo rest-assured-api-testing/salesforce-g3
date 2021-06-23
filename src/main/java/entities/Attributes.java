@@ -2,6 +2,7 @@ package entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Attributes {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
