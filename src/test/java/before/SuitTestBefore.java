@@ -1,18 +1,23 @@
+package before;
+
 import api.ApiManager;
 import api.ApiMethod;
 import api.ApiRequest;
 import api.ApiResponse;
-import io.github.cdimascio.dotenv.Dotenv;
+import configuration.ApiFeature;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import static configuration.env.CONFIG;
 
-public class BeforeClasses {
+public class SuitTestBefore {
     public ApiRequest apiRequest;
     public String token;
     public String instance_url;
+    public ApiResponse apiResponse;
 
     @BeforeSuite
     public void login() {
@@ -32,11 +37,18 @@ public class BeforeClasses {
 
         token = apiResponse.getPath("token_type") + " " + apiResponse.getPath("access_token");
         instance_url = apiResponse.getPath("instance_url");
+    }
 
+    @BeforeMethod
+    public void BeforeRequest() {
         apiRequest = new ApiRequest()
                 .baseUri(instance_url + CONFIG.getProperty("SERVICE") + CONFIG.getProperty("VERSION"))
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", token);
     }
 
+    @AfterMethod
+    public void AfterRequest() {
+        apiRequest = new ApiRequest();
+    }
 }
