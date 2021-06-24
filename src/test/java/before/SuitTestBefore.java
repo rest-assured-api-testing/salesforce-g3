@@ -6,6 +6,7 @@ import api.ApiRequest;
 import api.ApiResponse;
 import api.*;
 import configuration.ApiFeature;
+import entities.CreatedObject;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -16,6 +17,7 @@ import org.testng.annotations.BeforeMethod;
 import static configuration.env.CONFIG;
 
 public class SuitTestBefore {
+    public CreatedObject createdObject;
     public ApiRequest apiRequest;
     public String token;
     public String instance_url;

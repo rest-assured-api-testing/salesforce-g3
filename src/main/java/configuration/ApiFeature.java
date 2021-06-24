@@ -13,8 +13,8 @@ public enum ApiFeature {
     PRODUCT2_ID("/sobjects/Product2/{product2Id}"),
     CAMPAIGN("/sobjects/Campaign"),
     CAMPAIGN_ID("/sobjects/Campaign/{campaignId}"),
-    PRICE_BOOK("/sobjects/PriceBook"),
-    PRICE_BOOK_ID("/sobjects/PriceBook/{priceId}");
+    PRICE_BOOK("/sobjects/PriceBook2"),
+    PRICE_BOOK_ID("/sobjects/PriceBook2/{priceId}");
 
     private String endpoint;
 
