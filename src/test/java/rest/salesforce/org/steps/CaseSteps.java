@@ -63,6 +63,7 @@ public class CaseSteps {
                 .endpoint(ApiFeature.CASES)
                 .body(new ObjectMapper().writeValueAsString(newCase));
         apiResponse = ApiManager.executeWithBody(apiRequest);
+        caseIdCreated = apiResponse.getPath("id");
     }
 
     @Given("I build {string} request")
@@ -72,7 +73,6 @@ public class CaseSteps {
 
     @When("I execute {string} request")
     public void iExecuteRequest(String endpoint) {
-        caseIdCreated = apiResponse.getPath("id");
         apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
         apiRequest.addPathParam("caseId", caseIdCreated);
         apiResponse = ApiManager.execute(apiRequest);
@@ -82,7 +82,6 @@ public class CaseSteps {
     public void iExecuteRequestWithBody(String endpoint) throws JsonProcessingException {
         Case updateCase = new Case();
         updateCase.setStatus(CaseEnum.NEW.toStatus());
-        caseIdCreated = apiResponse.getPath("id");
         apiRequest.endpoint(ApiFeature.valueOf(endpoint))
                 .addPathParam("caseId", caseIdCreated)
                 .setBody(new ObjectMapper().writeValueAsString(updateCase));
