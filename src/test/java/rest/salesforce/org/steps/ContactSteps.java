@@ -62,6 +62,7 @@ public class ContactSteps {
                 .endpoint(ApiFeature.CONTACT)
                 .body(new ObjectMapper().writeValueAsString(newContact));
         apiResponse = ApiManager.executeWithBody(apiRequest);
+        contactIdCreated = apiResponse.getPath("id");
     }
 
     @Given("I build a {string} request")
@@ -71,7 +72,6 @@ public class ContactSteps {
 
     @When("I execute for contact {string} request")
     public void iExecuteRequest(String endpoint) {
-        contactIdCreated = apiResponse.getPath("id");
         apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
         apiRequest.addPathParam("contactId", contactIdCreated);
         apiResponse = ApiManager.execute(apiRequest);
@@ -81,7 +81,6 @@ public class ContactSteps {
     public void iExecuteRequestWithBody(String endpoint) throws JsonProcessingException {
         Contact updateContact = new Contact();
         updateContact.setLastName("New LastName");
-        contactIdCreated = apiResponse.getPath("id");
         apiRequest.endpoint(ApiFeature.valueOf(endpoint))
                 .addPathParam("contactId", contactIdCreated)
                 .setBody(new ObjectMapper().writeValueAsString(updateContact));
