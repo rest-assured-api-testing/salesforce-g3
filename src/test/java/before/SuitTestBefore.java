@@ -1,19 +1,27 @@
+package before;
+
+import api.ApiManager;
+import api.ApiMethod;
+import api.ApiRequest;
+import api.ApiResponse;
 import api.*;
+import configuration.ApiFeature;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 import static configuration.env.CONFIG;
 
-public class BeforeClasses {
+public class SuitTestBefore {
     public ApiRequest apiRequest;
     public String token;
     public String instance_url;
-    protected static final int STATUS_OK = 200;
-    protected static final int STATUS_BAD_REQUEST = 400;
-    protected static final int STATUS_NO_CONTENT = 204;
+    public ApiResponse apiResponse;
 
-    @BeforeSuite
+    @BeforeClass
     public void login() {
         ApiRequest localApiRequest = new ApiRequest()
                 .baseUri(CONFIG.getProperty("LOGIN"))
@@ -31,7 +39,10 @@ public class BeforeClasses {
 
         token = apiResponse.getPath("token_type") + " " + apiResponse.getPath("access_token");
         instance_url = apiResponse.getPath("instance_url");
+    }
 
+    @BeforeMethod
+    public void BeforeRequest() {
         apiRequest = new ApiRequest()
                 .baseUri(instance_url + CONFIG.getProperty("SERVICE") + CONFIG.getProperty("VERSION"))
                 .addHeader("Content-Type", "application/json")
@@ -39,4 +50,8 @@ public class BeforeClasses {
         apiRequest.clearPathParam();
     }
 
+    @AfterClass
+    public void AfterRequest() {
+        apiRequest = new ApiRequest();
+    }
 }

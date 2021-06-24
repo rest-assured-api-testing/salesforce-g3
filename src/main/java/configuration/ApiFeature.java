@@ -1,6 +1,7 @@
-package api;
+package configuration;
 
 public enum ApiFeature {
+
     TOKEN("/token"),
     CASES("/sobjects/Case"),
     CASES_ID("/sobjects/Case/{caseId}"),
@@ -8,8 +9,8 @@ public enum ApiFeature {
     CONTACT_ID("/sobjects/Contact/{contactId}"),
     ACCOUNT("/sobjects/Account"),
     ACCOUNT_ID("/sobjects/Account/{accountId}"),
-    PRODUCTS("/sobjects/Products2"),
-    PRODUCTS_ID("/sobjects/Products2/{productId}"),
+    PRODUCT2("/sobjects/Product2"),
+    PRODUCT2_ID("/sobjects/Product2/{product2Id}"),
     CAMPAIGN("/sobjects/Campaign"),
     CAMPAIGN_ID("/sobjects/Campaign/{campaignId}"),
     PRICE_BOOK("/sobjects/PriceBook"),
