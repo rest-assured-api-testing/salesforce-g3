@@ -1,8 +1,4 @@
-import api.ApiManager;
-import api.ApiMethod;
-import api.ApiRequest;
-import api.ApiResponse;
-import io.github.cdimascio.dotenv.Dotenv;
+import api.*;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
@@ -13,12 +9,15 @@ public class BeforeClasses {
     public ApiRequest apiRequest;
     public String token;
     public String instance_url;
+    protected static final int STATUS_OK = 200;
+    protected static final int STATUS_BAD_REQUEST = 400;
+    protected static final int STATUS_NO_CONTENT = 204;
 
     @BeforeSuite
     public void login() {
         ApiRequest localApiRequest = new ApiRequest()
                 .baseUri(CONFIG.getProperty("LOGIN"))
-                .endpoint("/token")
+                .endpoint(ApiFeature.TOKEN)
                 .addParam("password", CONFIG.getProperty("PASSWORD"))
                 .addParam("username", CONFIG.getProperty("USER"))
                 .addParam("client_id", CONFIG.getProperty("CLIENT_ID"))
@@ -37,6 +36,7 @@ public class BeforeClasses {
                 .baseUri(instance_url + CONFIG.getProperty("SERVICE") + CONFIG.getProperty("VERSION"))
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", token);
+        apiRequest.clearPathParam();
     }
 
 }

@@ -1,0 +1,168 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string"
+    },
+    "IsDeleted": {
+      "type": "boolean"
+    },
+    "MasterRecordId": {
+      "type": "null"
+    },
+    "CaseNumber": {
+      "type": "string"
+    },
+    "ContactId": {
+      "type": "null"
+    },
+    "AccountId": {
+      "type": "null"
+    },
+    "AssetId": {
+      "type": "null"
+    },
+    "SourceId": {
+      "type": "null"
+    },
+    "ParentId": {
+      "type": "null"
+    },
+    "SuppliedName": {
+      "type": "null"
+    },
+    "SuppliedEmail": {
+      "type": "null"
+    },
+    "SuppliedPhone": {
+      "type": "null"
+    },
+    "SuppliedCompany": {
+      "type": "null"
+    },
+    "Type": {
+      "type": "null"
+    },
+    "Status": {
+      "type": "string"
+    },
+    "Reason": {
+      "type": "null"
+    },
+    "Origin": {
+      "type": "null"
+    },
+    "Subject": {
+      "type": "null"
+    },
+    "Priority": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "null"
+    },
+    "IsClosed": {
+      "type": "boolean"
+    },
+    "ClosedDate": {
+      "type": "null"
+    },
+    "IsEscalated": {
+      "type": "boolean"
+    },
+    "OwnerId": {
+      "type": "string"
+    },
+    "CreatedDate": {
+      "type": "string"
+    },
+    "CreatedById": {
+      "type": "string"
+    },
+    "LastModifiedDate": {
+      "type": "string"
+    },
+    "LastModifiedById": {
+      "type": "string"
+    },
+    "SystemModstamp": {
+      "type": "string"
+    },
+    "ContactPhone": {
+      "type": "null"
+    },
+    "ContactMobile": {
+      "type": "null"
+    },
+    "ContactEmail": {
+      "type": "null"
+    },
+    "ContactFax": {
+      "type": "null"
+    },
+    "Comments": {
+      "type": "null"
+    },
+    "LastViewedDate": {
+      "type": "string"
+    },
+    "LastReferencedDate": {
+      "type": "string"
+    },
+    "EngineeringReqNumber__c": {
+      "type": "null"
+    },
+    "SLAViolation__c": {
+      "type": "null"
+    },
+    "Product__c": {
+      "type": "null"
+    },
+    "PotentialLiability__c": {
+      "type": "null"
+    }
+  },
+  "required": [
+    "Id",
+    "IsDeleted",
+    "MasterRecordId",
+    "CaseNumber",
+    "ContactId",
+    "AccountId",
+    "AssetId",
+    "SourceId",
+    "ParentId",
+    "SuppliedName",
+    "SuppliedEmail",
+    "SuppliedPhone",
+    "SuppliedCompany",
+    "Type",
+    "Status",
+    "Reason",
+    "Origin",
+    "Subject",
+    "Priority",
+    "Description",
+    "IsClosed",
+    "ClosedDate",
+    "IsEscalated",
+    "OwnerId",
+    "CreatedDate",
+    "CreatedById",
+    "LastModifiedDate",
+    "LastModifiedById",
+    "SystemModstamp",
+    "ContactPhone",
+    "ContactMobile",
+    "ContactEmail",
+    "ContactFax",
+    "Comments",
+    "LastViewedDate",
+    "LastReferencedDate",
+    "EngineeringReqNumber__c",
+    "SLAViolation__c",
+    "Product__c",
+    "PotentialLiability__c"
+  ]
+}
