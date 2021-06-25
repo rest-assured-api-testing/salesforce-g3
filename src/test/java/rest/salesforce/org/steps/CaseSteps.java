@@ -16,6 +16,7 @@ import io.cucumber.java.en.When;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import io.cucumber.java.en.Given;
+import rest.salesforce.org.hooks.ScenariosHooks;
 
 public class CaseSteps {
     ApiRequest apiRequest;
@@ -76,7 +77,7 @@ public class CaseSteps {
 
     @When("I execute {string} request")
     public void iExecuteRequest(String endpoint) {
-        caseIdCreated = apiResponse.getPath("id");
+        caseIdCreated = "34553453";//apiResponse.getPath("id");
         apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
         apiRequest.addPathParam("caseId", caseIdCreated);
         ApiManager.execute(apiRequest, apiResponse);
