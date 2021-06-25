@@ -1,4 +1,4 @@
-Feature: Request for case feature
+Feature: Request for account feature
   All request for the endpoint case
 
   @ShowAllAccount

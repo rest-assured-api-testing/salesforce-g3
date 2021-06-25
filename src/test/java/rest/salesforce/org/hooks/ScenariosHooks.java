@@ -11,8 +11,10 @@ import entities.Case;
 import entities.CaseEnum;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import org.apache.log4j.Logger;
 
 public class ScenariosHooks {
+    private Logger LOGGER = Logger.getLogger(getClass());
     private ApiRequest apiRequest;
     private ApiResponse apiResponse;
 
@@ -21,15 +23,16 @@ public class ScenariosHooks {
         this.apiResponse = apiResponse;
     }
 
-    @Before
+    @Before(order = 0)
     public void createToken() {
-        apiRequest = new ApiRequest()
-                .addHeader("Content-Type", "application/json");
+        LOGGER.info("--> login scenarios");
+        apiRequest.addHeader("Content-Type", "application/json");
         apiRequest.clearPathParam();
     }
 
-    @Before(value =  "@ShowCaseWithId")
+    @Before(value = "@ShowCaseWithId")
     public void createCase() throws JsonProcessingException {
+        LOGGER.info("--> before create case");
         Case newCase = new Case();
         newCase.setStatus(CaseEnum.WORKING.toStatus());
         apiRequest.method(ApiMethod.POST)
@@ -38,8 +41,9 @@ public class ScenariosHooks {
         ApiManager.execute(apiRequest, apiResponse);
     }
 
-    @After(value =  "@ShowCaseWithId")
+    @After(value = "@ShowCaseWithId")
     public void deleteCreatedCase() {
+        LOGGER.info("--> after delete case");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.CASES_ID)

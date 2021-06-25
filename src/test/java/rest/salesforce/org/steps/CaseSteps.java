@@ -69,7 +69,7 @@ public class CaseSteps {
         caseIdCreated = apiResponse.getPath("id");
     }
      */
-
+/*
     @Given("I build {string} request")
     public void iBuildRequest(String method) {
         apiRequest.setMethod(ApiMethod.valueOf(method));
@@ -103,5 +103,5 @@ public class CaseSteps {
     public void theResponseStatusShouldBe(String statusCode) {
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
-    }
+    }*/
 }
