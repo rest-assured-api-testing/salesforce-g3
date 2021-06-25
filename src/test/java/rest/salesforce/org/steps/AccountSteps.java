@@ -30,13 +30,9 @@ public class AccountSteps {
     String instance_url;
 
     @Before(order = 0)
-    public void createToken() {
+    public void loginAndSetup() {
         LOGGER.info("init token");
         authentication.getAuth();
-    }
-
-    @Before(order = 1)
-    public void setUp() {
         apiRequest = new ApiRequest()
                 .addHeader("Content-Type", "application/json");
     }
