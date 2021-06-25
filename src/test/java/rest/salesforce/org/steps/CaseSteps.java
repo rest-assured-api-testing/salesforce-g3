@@ -65,7 +65,7 @@ public class CaseSteps {
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiFeature.CASES)
                 .body(new ObjectMapper().writeValueAsString(newCase));
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        apiResponse = ApiManager.execute(apiRequest);
         caseIdCreated = apiResponse.getPath("id");
     }
      */
@@ -90,7 +90,7 @@ public class CaseSteps {
         apiRequest.endpoint(ApiFeature.valueOf(endpoint))
                 .addPathParam("caseId", caseIdCreated)
                 .setBody(new ObjectMapper().writeValueAsString(updateCase));
-        ApiManager.executeWithBody(apiRequest, apiResponse);
+        ApiManager.execute(apiRequest, apiResponse);
     }
 
     @Then("Status response of request should be added {string}")

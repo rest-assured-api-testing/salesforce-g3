@@ -1,13 +1,6 @@
 package configuration;
 
-import api.ApiManager;
-import api.ApiMethod;
-import api.ApiRequest;
-import api.ApiResponse;
 import entities.Token;
-import org.apache.http.HttpHeaders;
-import org.apache.http.HttpStatus;
-import org.testng.Assert;
 
 import static configuration.env.CONFIG;
 import static io.restassured.RestAssured.given;

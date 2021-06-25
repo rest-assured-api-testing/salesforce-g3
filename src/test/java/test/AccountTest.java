@@ -13,7 +13,7 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AccountTest extends AccountBefore {/*
+public class AccountTest extends AccountBefore {
 
     @Test
     public void getAllAccount() {
@@ -76,5 +76,5 @@ public class AccountTest extends AccountBefore {/*
         ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
-    }*/
+    }
 }

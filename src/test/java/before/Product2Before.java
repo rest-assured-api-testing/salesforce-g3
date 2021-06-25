@@ -13,7 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public class Product2Before extends SuitTestBefore { /*
+public class Product2Before extends SuitTestBefore {
     @BeforeMethod(onlyForGroups = "CreateProduct2")
     public void JustCreateProduct2() throws JsonProcessingException {
         Product2 product2 = new Product2();
@@ -64,5 +64,5 @@ public class Product2Before extends SuitTestBefore { /*
         ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
-    }*/
+    }
 }

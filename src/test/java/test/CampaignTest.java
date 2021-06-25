@@ -10,7 +10,7 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CampaignTest extends BeforeCampaign {/*
+public class CampaignTest extends BeforeCampaign {
     @Test
     public void createACampaign() {
         apiRequest.setEndpoint(ApiFeature.CAMPAIGN);
@@ -60,5 +60,5 @@ public class CampaignTest extends BeforeCampaign {/*
         int expected = HttpStatus.SC_NOT_FOUND;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);
-    }*/
+    }
 }

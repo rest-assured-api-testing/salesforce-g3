@@ -14,7 +14,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-public class CaseTest extends SuitTestBefore{/*
+public class CaseTest extends SuitTestBefore{
     String caseIdCreated;
 
     @Test
@@ -84,8 +84,9 @@ public class CaseTest extends SuitTestBefore{/*
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.CASES_ID)
                 .addPathParam("caseId", caseIdCreated);
-        ApiResponse response = ApiManager.execute(apiRequest);
-        response.getResponse().then().log().body();
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_NO_CONTENT);
-    }*/
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
+        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
+    }
 }
