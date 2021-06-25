@@ -7,8 +7,8 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import configuration.ApiFeature;
-import entities.Case;
-import entities.CaseEnum;
+import configuration.Authentication;
+import entities.Contact;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.log4j.Logger;
@@ -23,31 +23,32 @@ public class ScenariosHooks {
         this.apiResponse = apiResponse;
     }
 
-    @Before(order = 0)
-    public void createToken() {
-        LOGGER.info("--> login scenarios");
-        apiRequest.addHeader("Content-Type", "application/json");
-        apiRequest.clearPathParam();
+    @Before(value = "@ShowContactWithId", order = 1)
+    public void loginAndSetup() {
+        System.out.println("****************** Getting Auth and Token ******************");
+        authentication.getAuth();
+        apiRequest = new ApiRequest()
+                .addHeader("Content-Type", "application/json");
     }
 
-    @Before(value = "@ShowCaseWithId")
-    public void createCase() throws JsonProcessingException {
-        LOGGER.info("--> before create case");
-        Case newCase = new Case();
-        newCase.setStatus(CaseEnum.WORKING.toStatus());
+    @Before(value =  "@ShowContactWithId")
+    public void createContact() throws JsonProcessingException {
+        System.out.println("****************** Creating a new Contact ******************");
+        Contact newContact = new Contact();
+        newContact.setLastName("New LastName");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.CASES)
-                .body(new ObjectMapper().writeValueAsString(newCase));
+                .endpoint(ApiFeature.CONTACT)
+                .body(new ObjectMapper().writeValueAsString(newContact));
         ApiManager.execute(apiRequest, apiResponse);
     }
 
-    @After(value = "@ShowCaseWithId")
-    public void deleteCreatedCase() {
-        LOGGER.info("--> after delete case");
+    @After(value =  "@ShowContactWithId")
+    public void deleteCreatedContact() {
+        System.out.println("****************** Deleting created Contact ******************");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.CASES_ID)
-                .addPathParam("caseId", apiResponse.getPath("id"));
+                .endpoint(ApiFeature.CONTACT_ID)
+                .addPathParam("contactId", apiResponse.getPath("id"));
         ApiManager.execute(apiRequest, apiResponse);
     }
 }
