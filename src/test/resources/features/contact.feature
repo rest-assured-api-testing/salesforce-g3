@@ -7,8 +7,8 @@ Feature: Request for contact feature
     When I execute for contact "CONTACT_ID" request
     Then Status response of request should be "OK"
 
-  @UpdateCaseWithId
-  Scenario: Update a Contact
-    Given I build a "PATCH" request
-    When I update body "CONTACT_ID" request
-    Then Status response of request should be like "NO_CONTENT"
+  #@UpdateCaseWithId
+  #Scenario: Update a Contact
+  #  Given I build a "PATCH" request
+  #  When I update body "CONTACT_ID" request
+  #  Then Status response of request should be like "NO_CONTENT"
