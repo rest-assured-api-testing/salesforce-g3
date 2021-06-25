@@ -46,7 +46,7 @@ public class AccountBefore extends SuitTestBefore {
     public void afterDeleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -58,7 +58,7 @@ public class AccountBefore extends SuitTestBefore {
     public void JustDeleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);

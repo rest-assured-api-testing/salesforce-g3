@@ -56,7 +56,4 @@ public class ContactSteps {
                 .setBody(new ObjectMapper().writeValueAsString(updateContact));
         ApiManager.execute(apiRequest, apiResponse);
     }
-
-
-
 }

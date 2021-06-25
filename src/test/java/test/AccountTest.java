@@ -30,7 +30,7 @@ public class AccountTest extends AccountBefore {
     public void getAccount() {
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -55,7 +55,7 @@ public class AccountTest extends AccountBefore {
     public void deleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -69,7 +69,7 @@ public class AccountTest extends AccountBefore {
         account.setName("Object Updated");
         apiRequest.method(ApiMethod.PATCH)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId())
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId())
                 .body(new ObjectMapper().writeValueAsString(account));
 
         ApiResponse apiResponse = new ApiResponse();

@@ -10,7 +10,7 @@ Feature: Request for account feature
   @CreateDeleteAccount
   Scenario: Get a Account
     Given I build "GET" request
-    When I execute for "ACCOUNT_ID" request
+    When I execute for "ACCOUNT_ID" request with param
     Then Status response of request should be "OK"
 
   @DeleteAccount

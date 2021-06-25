@@ -3,6 +3,7 @@ package api;
 public enum ResponseEnum {
 
     OK(200),
+    OKS(201),
     CREATED(201),
     UPDATED(201),
     NO_CONTENT(204),
