@@ -23,13 +23,8 @@ public class UpdateSteps {
     String createdId;
     public Authentication authentication = new Authentication();
 
-    @Before(order = 1)
-    public void loginAndSetup() {
-        authentication.getAuth();
-        apiRequest = new ApiRequest()
-                .addHeader("Content-Type", "application/json");
-    }
 
+/*
     @Before(value = "@UpdateCase")
     public void createCase() throws JsonProcessingException {
         Case newCase = new Case();
@@ -159,5 +154,5 @@ public class UpdateSteps {
     public void theResponseStatusShouldBe(String statusCode) {
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
-    }
+    }*/
 }

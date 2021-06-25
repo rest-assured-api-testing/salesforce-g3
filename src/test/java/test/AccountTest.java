@@ -45,7 +45,7 @@ public class AccountTest extends AccountBefore {
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiFeature.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
-
+        apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
         apiResponse.getResponse().then().log().body();

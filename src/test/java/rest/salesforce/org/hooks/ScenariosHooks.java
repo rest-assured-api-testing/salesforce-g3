@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 
 public class ScenariosHooks {
     private Logger LOGGER = Logger.getLogger(getClass());
+    public Authentication authentication = new Authentication();
     private ApiRequest apiRequest;
     private ApiResponse apiResponse;
 
@@ -23,12 +24,11 @@ public class ScenariosHooks {
         this.apiResponse = apiResponse;
     }
 
-    @Before(value = "@ShowContactWithId", order = 1)
+    @Before(order = 0)
     public void loginAndSetup() {
-        System.out.println("****************** Getting Auth and Token ******************");
+        LOGGER.info("--> Login Scenarios hook");
         authentication.getAuth();
-        apiRequest = new ApiRequest()
-                .addHeader("Content-Type", "application/json");
+        apiRequest.addHeader("Content-Type", "application/json");
     }
 
     @Before(value =  "@ShowContactWithId")
