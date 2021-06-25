@@ -40,25 +40,23 @@ public class AccountSteps {
         ApiManager.execute(apiRequest, apiResponse);
     }
 
-    // Get One
+    // Get One or Delete
     @When("I execute for {string} request with param")
     public void iExecuteRequestWithParam(String endpoint) {
-        LOGGER.info("--> When contact with param");
-        apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
-        apiRequest.addPathParam(endpoint, apiResponse.getPath("id"));
-//        ApiResponse apiResponse = new ApiResponse();
-        ApiManager.execute(apiRequest, apiResponse);
-//        response.setId(apiResponse.getBody(Response.class).getId());
-    }
-
-    // Delete
-    @When("I execute for {string} request")
-    public void iExecuteRequestWithParamForDelete(String endpoint) {
         LOGGER.info("--> When contact with param");
         apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
         apiRequest.addPathParam(endpoint, response.getId());
         ApiManager.execute(apiRequest, apiResponse);
     }
+
+//    // Delete
+//    @When("I execute for {string} request")
+//    public void iExecuteRequestWithParamForDelete(String endpoint) {
+//        LOGGER.info("--> When contact with param");
+//        apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
+//        apiRequest.addPathParam(endpoint, response.getId());
+//        ApiManager.execute(apiRequest, apiResponse);
+//    }
 
     // Create
     @When("I execute for {string} request with name {string}")
@@ -83,6 +81,5 @@ public class AccountSteps {
                 .body(new ObjectMapper().writeValueAsString(account));
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
-//        response.setId(apiResponse.getBody(Response.class).getId());
     }
 }

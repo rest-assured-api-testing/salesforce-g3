@@ -22,7 +22,7 @@ Feature: Request for account feature
   @CreateAccount
   Scenario: Delete a Account
     Given I build "DELETE" request
-    When I execute for "ACCOUNT_ID" request
+    When I execute for "ACCOUNT_ID" request with param
     Then Status response of request should be "NO_CONTENT"
 
   @CreateDeleteAccount
