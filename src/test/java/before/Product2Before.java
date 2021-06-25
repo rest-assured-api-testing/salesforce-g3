@@ -22,7 +22,8 @@ public class Product2Before extends SuitTestBefore { /*
                 .endpoint(ApiFeature.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(product2));
 
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
         apiResponse.getResponse().then().log().body();
     }
@@ -35,7 +36,8 @@ public class Product2Before extends SuitTestBefore { /*
                 .endpoint(ApiFeature.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(product2));
 
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
         apiResponse.getResponse().then().log().body();
     }
@@ -46,7 +48,8 @@ public class Product2Before extends SuitTestBefore { /*
                 .endpoint(ApiFeature.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }
@@ -57,7 +60,8 @@ public class Product2Before extends SuitTestBefore { /*
                 .endpoint(ApiFeature.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }*/

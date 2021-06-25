@@ -20,7 +20,8 @@ public class Product2Test extends Product2Before { /*
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiFeature.PRODUCT2);
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
         apiResponse.getResponse().then().log().body();
     }
@@ -31,7 +32,8 @@ public class Product2Test extends Product2Before { /*
                 .endpoint(ApiFeature.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
         apiResponse.getResponse().then().log().body();
     }
@@ -44,7 +46,8 @@ public class Product2Test extends Product2Before { /*
                 .endpoint(ApiFeature.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(product2));
 
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
         apiResponse.getResponse().then().log().body();
     }
@@ -55,7 +58,8 @@ public class Product2Test extends Product2Before { /*
                 .endpoint(ApiFeature.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }
@@ -69,7 +73,8 @@ public class Product2Test extends Product2Before { /*
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId())
                 .body(new ObjectMapper().writeValueAsString(product2));
 
-        ApiResponse apiResponse = ApiManager.executeWithBody(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }*/

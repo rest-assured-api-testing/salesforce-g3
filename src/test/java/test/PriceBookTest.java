@@ -16,7 +16,8 @@ public class PriceBookTest extends BeforePriceBook {/*
         apiRequest.setEndpoint(ApiFeature.PRICE_BOOK);
         apiRequest.setBody("{\"Name\":\"Test pricebook4\"}");
         apiRequest.setMethod(ApiMethod.POST);
-        ApiResponse apiResponse = ApiManager.executeWithBody(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         createdObject = apiResponse.getBody(CreatedObject.class);
         apiResponse.validateBodySchema("schemas/createdobject.json");
         int expected = HttpStatus.SC_CREATED;
@@ -30,8 +31,9 @@ public class PriceBookTest extends BeforePriceBook {/*
         apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
         apiRequest.setBody("{\"Name\":\"UpdatedName\"}");
         apiRequest.setMethod(ApiMethod.PATCH);
-        ApiResponse apiResponse = ApiManager.executeWithBody(apiRequest);
-        int expected = HttpStatus.SC_BAD_REQUEST;
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        int expected = HttpStatus.SC_INTERNAL_SERVER_ERROR;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);
     }
@@ -41,7 +43,8 @@ public class PriceBookTest extends BeforePriceBook {/*
         apiRequest.setEndpoint(ApiFeature.PRICE_BOOK_ID);
         apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
         apiRequest.setMethod(ApiMethod.GET);
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         int expected = HttpStatus.SC_NOT_FOUND;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);
@@ -52,8 +55,9 @@ public class PriceBookTest extends BeforePriceBook {/*
         apiRequest.setEndpoint(ApiFeature.PRICE_BOOK_ID);
         apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
         apiRequest.setMethod(ApiMethod.DELETE);
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
-        int expected = HttpStatus.SC_NOT_FOUND;
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        int expected = HttpStatus.SC_INTERNAL_SERVER_ERROR;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);
     }*/
