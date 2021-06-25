@@ -23,16 +23,9 @@ public class AccountSteps {
     ApiRequest apiRequest;
     ApiResponse apiResponse;
 
-
     public AccountSteps(ApiRequest apiRequest, ApiResponse apiResponse) {
         this.apiResponse = apiResponse;
         this.apiRequest = apiRequest;
-    }
-
-    @Given("I build {string} request")
-    public void iBuildRequest(String method) {
-        LOGGER.info("--> Given account");
-        apiRequest.setMethod(ApiMethod.valueOf(method));
     }
 
     @When("I execute {string} request")

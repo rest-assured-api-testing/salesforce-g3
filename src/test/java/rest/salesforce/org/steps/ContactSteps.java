@@ -57,25 +57,6 @@ public class ContactSteps {
         ApiManager.execute(apiRequest, apiResponse);
     }
 
-    @Then("Status response of request should be {string}")
-    public void theResponseStatusShouldBeOK(String statusCode) {
-        LOGGER.info("--> Then account 200 ok");
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
-        apiResponse.getResponse().then().log().body();
-    }
 
-    @Then("Status response of request should be created {string}")
-    public void theResponseStatusShouldBeCreated(String statusCode) {
-        LOGGER.info("--> Then account 201 created");
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
-        apiResponse.getResponse().then().log().body();
-    }
-
-    @Then("Status response of request should be like {string}")
-    public void theResponseStatusShouldBe(String statusCode) {
-        LOGGER.info("--> Then contact Status 204 SC_NO_CONTENT request");
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
-        apiResponse.getResponse().then().log().body();
-    }
 
 }
