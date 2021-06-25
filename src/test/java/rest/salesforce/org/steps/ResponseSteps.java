@@ -3,7 +3,6 @@ package rest.salesforce.org.steps;
 import api.ApiRequest;
 import api.ApiResponse;
 import configuration.ResponseEnum;
-import entities.Response;
 import io.cucumber.java.en.Then;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -12,13 +11,11 @@ public class ResponseSteps {
     private Logger LOGGER = Logger.getLogger(getClass());
     ApiRequest apiRequest;
     ApiResponse apiResponse;
-    private Response response;
 
-    public ResponseSteps(ApiRequest apiRequest, ApiResponse apiResponse, Response response) {
+    public ResponseSteps(ApiRequest apiRequest, ApiResponse apiResponse) {
         LOGGER.info("--> scenario hook constructor");
         this.apiRequest = apiRequest;
         this.apiResponse = apiResponse;
-        this.response = response;
     }
 
     @Then("Status response of request should be {string}")

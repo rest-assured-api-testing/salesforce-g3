@@ -16,7 +16,8 @@ Feature: Request for account feature
   @DeleteAccount
   Scenario: Create a Account
     Given I build "POST" request
-    When I execute for "ACCOUNT" request with name "account cucumber"
+    When I execute for "ACCOUNT" request with params
+      | name | account cucumber |
     Then Status response of request should be "CREATED"
 
   @CreateAccount
@@ -28,5 +29,6 @@ Feature: Request for account feature
   @CreateDeleteAccount
   Scenario: Update a Account
     Given I build "PATCH" request
-    When I execute for "ACCOUNT_ID" request with updated name "account cucumber updated"
+    When I execute for "ACCOUNT_ID" request with updated name
+      | name | account cucumber updated |
     Then Status response of request should be "UPDATED"

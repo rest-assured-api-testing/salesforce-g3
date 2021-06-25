@@ -16,7 +16,7 @@ public class BuildSteps {
 
     @Given("I build {string} request")
     public void iBuildRequest(String method) {
-        LOGGER.info("--> Given build step request");
+        LOGGER.info("--> Given build request");
         apiRequest.setMethod(ApiMethod.valueOf(method));
     }
 }

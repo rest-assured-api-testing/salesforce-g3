@@ -22,7 +22,6 @@ public class ScenariosHooks {
     private Response response;
 
     public ScenariosHooks(ApiRequest apiRequest, ApiResponse apiResponse, Response response) {
-        LOGGER.info("--> scenario hook constructor");
         this.apiRequest = apiRequest;
         this.apiResponse = apiResponse;
         this.response = response;
@@ -30,7 +29,7 @@ public class ScenariosHooks {
 
     @Before(order = 0)
     public void loginAndSetup() {
-        LOGGER.info("--> Login Scenarios hook");
+        LOGGER.info("Login Scenarios hook");
         authentication.getAuth();
         apiRequest.addHeader("Content-Type", "application/json");
     }
