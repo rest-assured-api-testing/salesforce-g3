@@ -14,7 +14,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-public class CaseTest extends SuitTestBefore{
+public class CaseTest extends SuitTestBefore{/*
     String caseIdCreated;
     @Test
     public void shouldAddNewCase() throws JsonProcessingException {
@@ -81,5 +81,5 @@ public class CaseTest extends SuitTestBefore{
         ApiResponse response = ApiManager.execute(apiRequest);
         response.getResponse().then().log().body();
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_NO_CONTENT);
-    }
+    }*/
 }

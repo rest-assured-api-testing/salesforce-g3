@@ -7,8 +7,8 @@ Feature: Request for case feature
     When I execute "CASES_ID" request
     Then Status response of request should be added "OK"
     
-  @UpdateCaseWithId
-  Scenario: Update a Case
-    Given I build "PATCH" request
-    When I set update body "CASES_ID" request
-    Then Status response of request should be updated "NO_CONTENT"
+  #@UpdateCaseWithId
+  #Scenario: Update a Case
+  #  Given I build "PATCH" request
+  #  When I set update body "CASES_ID" request
+  #  Then Status response of request should be updated "NO_CONTENT"

@@ -13,7 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public class AccountBefore extends SuitTestBefore {
+public class AccountBefore extends SuitTestBefore { /*
 
     @BeforeMethod(onlyForGroups = "CreateAccount")
     public void JustCreateAccount() throws JsonProcessingException {
@@ -61,5 +61,5 @@ public class AccountBefore extends SuitTestBefore {
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
-    }
+    }*/
 }

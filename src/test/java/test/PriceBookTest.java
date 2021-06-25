@@ -10,7 +10,7 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PriceBookTest extends BeforePriceBook {
+public class PriceBookTest extends BeforePriceBook {/*
     @Test
     public void createAPriceBook() {
         apiRequest.setEndpoint(ApiFeature.PRICE_BOOK);
@@ -56,5 +56,5 @@ public class PriceBookTest extends BeforePriceBook {
         int expected = HttpStatus.SC_NOT_FOUND;
         int actual = apiResponse.getStatusCode();
         Assert.assertEquals(actual, expected);
-    }
+    }*/
 }

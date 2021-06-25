@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="First Test Case">
         <classes>
-            <class name="MavenTest"/>
+            <class name="rest.salesforce.org.runner.RunTests"/>
         </classes>
     </test>
 </suite>

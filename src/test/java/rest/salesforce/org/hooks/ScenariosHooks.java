@@ -9,27 +9,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import configuration.ApiFeature;
 import entities.Case;
 import entities.CaseEnum;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
-import org.junit.Before;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
 import static configuration.env.CONFIG;
 
 public class ScenariosHooks {
-    ApiRequest apiRequest;
-    ApiResponse apiResponse;
-    String token;
-    String instance_url;
+    private static final Logger LOGGER = LogManager.getLogger();
+    private ApiRequest apiRequest;
+    private ApiResponse apiResponse;
+    private String token;
+    private String instance_url;
 
     public ScenariosHooks(ApiRequest apiRequest, ApiResponse apiResponse) {
+        LOGGER.info("Testing ScenarioHooks constructor");
         this.apiRequest = apiRequest;
         this.apiResponse = apiResponse;
     }
 
-    //@BeforeClass
+    @Before
     public void createToken() {
+        LOGGER.info("**************** Generating Token ****************");
         ApiRequest localApiRequest = new ApiRequest()
                 .baseUri(CONFIG.getProperty("LOGIN"))
                 .endpoint(ApiFeature.TOKEN)
@@ -41,15 +46,17 @@ public class ScenariosHooks {
                 .addHeader("Accept", "application/json")
                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .method(ApiMethod.POST);
-        ApiResponse apiResponse = ApiManager.execute(localApiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(localApiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
 
         token = apiResponse.getPath("token_type") + " " + apiResponse.getPath("access_token");
         instance_url = apiResponse.getPath("instance_url");
     }
 
-    //@Before
+    @Before
     public void setUp() {
+        LOGGER.info("**************** Setting Token ****************");
         apiRequest = new ApiRequest()
                 .baseUri(instance_url + CONFIG.getProperty("SERVICE") + CONFIG.getProperty("VERSION"))
                 .addHeader("Content-Type", "application/json")
@@ -57,15 +64,23 @@ public class ScenariosHooks {
         apiRequest.clearPathParam();
     }
 
-    //@io.cucumber.java.Before(value = "@CreateCase")
+    @Before(value =  "@ShowCaseWithId")
     public void createCase() throws JsonProcessingException {
+        LOGGER.info("**************** Creating Case ****************");
         Case newCase = new Case();
         newCase.setStatus(CaseEnum.WORKING.toStatus());
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiFeature.CASES)
                 .body(new ObjectMapper().writeValueAsString(newCase));
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        ApiManager.executeWithBody(apiRequest, apiResponse);
     }
 
-
+    @After(value =  "@ShowCaseWithId")
+    public void deleteCreatedCase() {
+        apiRequest.clearPathParam();
+        apiRequest.method(ApiMethod.DELETE)
+                .endpoint(ApiFeature.CASES_ID)
+                .addPathParam("caseId", apiResponse.getPath("id"));
+        ApiManager.executeWithBody(apiRequest, apiResponse);
+    }
 }

@@ -36,7 +36,8 @@ public class SuitTestBefore {
                 .addHeader("Accept", "application/json")
                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .method(ApiMethod.POST);
-        ApiResponse apiResponse = ApiManager.execute(localApiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(localApiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
 
         token = apiResponse.getPath("token_type") + " " + apiResponse.getPath("access_token");

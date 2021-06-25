@@ -17,15 +17,17 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import io.cucumber.java.en.Given;
 
-import static configuration.env.CONFIG;
-
 public class CaseSteps {
     ApiRequest apiRequest;
     ApiResponse apiResponse;
-    String token;
-    String instance_url;
     String caseIdCreated;
 
+    public CaseSteps(ApiRequest apiRequest, ApiResponse apiResponse) {
+        this.apiRequest = apiRequest;
+        this.apiResponse = apiResponse;
+    }
+
+    /*
     @Before
     public void createToken() {
         ApiRequest localApiRequest = new ApiRequest()
@@ -65,6 +67,7 @@ public class CaseSteps {
         apiResponse = ApiManager.executeWithBody(apiRequest);
         caseIdCreated = apiResponse.getPath("id");
     }
+     */
 
     @Given("I build {string} request")
     public void iBuildRequest(String method) {
@@ -73,9 +76,10 @@ public class CaseSteps {
 
     @When("I execute {string} request")
     public void iExecuteRequest(String endpoint) {
+        caseIdCreated = apiResponse.getPath("id");
         apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
         apiRequest.addPathParam("caseId", caseIdCreated);
-        apiResponse = ApiManager.execute(apiRequest);
+        ApiManager.execute(apiRequest, apiResponse);
     }
 
     @When("I set update body {string} request")
@@ -85,7 +89,7 @@ public class CaseSteps {
         apiRequest.endpoint(ApiFeature.valueOf(endpoint))
                 .addPathParam("caseId", caseIdCreated)
                 .setBody(new ObjectMapper().writeValueAsString(updateCase));
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        ApiManager.executeWithBody(apiRequest, apiResponse);
     }
 
     @Then("Status response of request should be added {string}")
@@ -98,13 +102,5 @@ public class CaseSteps {
     public void theResponseStatusShouldBe(String statusCode) {
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
-    }
-
-    @After
-    public void deleteCreatedCase() {
-        apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.CASES_ID)
-                .addPathParam("caseId", caseIdCreated);
-        ApiManager.execute(apiRequest);
     }
 }

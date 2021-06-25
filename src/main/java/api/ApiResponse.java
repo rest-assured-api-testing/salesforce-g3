@@ -8,7 +8,13 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 public class ApiResponse {
     private Response response;
+    public ApiResponse() {}
+
     public ApiResponse(Response response) {
+        this.response = response;
+    }
+
+    public void setResponse(Response response) {
         this.response = response;
     }
 

@@ -13,7 +13,7 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Product2Test extends Product2Before {
+public class Product2Test extends Product2Before { /*
 
     @Test
     public void getAllProduct2() {
@@ -72,5 +72,5 @@ public class Product2Test extends Product2Before {
         ApiResponse apiResponse = ApiManager.executeWithBody(apiRequest);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
-    }
+    }*/
 }
