@@ -5,7 +5,7 @@ import api.ApiMethod;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import configuration.ApiFeature;
+import api.ApiFeature;
 import entities.Product2;
 import entities.Response;
 import org.apache.http.HttpStatus;

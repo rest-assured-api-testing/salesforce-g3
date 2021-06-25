@@ -2,10 +2,9 @@ package rest.salesforce.org.steps;
 
 import api.ApiRequest;
 import api.ApiResponse;
-import api.ResponseEnum;
+import configuration.ResponseEnum;
 import entities.Response;
 import io.cucumber.java.en.Then;
-import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 

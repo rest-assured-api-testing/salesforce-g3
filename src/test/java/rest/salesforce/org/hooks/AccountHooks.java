@@ -6,7 +6,7 @@ import api.ApiRequest;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import configuration.ApiFeature;
+import api.ApiFeature;
 import entities.Account;
 import entities.Response;
 import io.cucumber.java.After;

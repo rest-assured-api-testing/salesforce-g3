@@ -4,7 +4,7 @@ import api.ApiManager;
 import api.ApiMethod;
 import api.ApiResponse;
 import before.BeforeCampaign;
-import configuration.ApiFeature;
+import api.ApiFeature;
 import entities.CreatedObject;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;

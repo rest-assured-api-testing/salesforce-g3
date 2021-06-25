@@ -6,7 +6,7 @@ import api.ApiResponse;
 import before.SuitTestBefore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import configuration.ApiFeature;
+import api.ApiFeature;
 import entities.Contact;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;

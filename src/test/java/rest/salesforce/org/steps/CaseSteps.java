@@ -1,22 +1,7 @@
 package rest.salesforce.org.steps;
 
-import api.ApiManager;
-import api.ApiMethod;
 import api.ApiRequest;
 import api.ApiResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import configuration.ApiFeature;
-import entities.Case;
-import entities.CaseEnum;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.apache.http.HttpStatus;
-import org.testng.Assert;
-import io.cucumber.java.en.Given;
-import rest.salesforce.org.hooks.ScenariosHooks;
 
 public class CaseSteps {
     ApiRequest apiRequest;

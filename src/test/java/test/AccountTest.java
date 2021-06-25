@@ -1,6 +1,6 @@
 package test;
 
-import configuration.ApiFeature;
+import api.ApiFeature;
 import api.ApiManager;
 import api.ApiMethod;
 import api.ApiResponse;

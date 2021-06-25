@@ -1,4 +1,4 @@
-package api;
+package configuration;
 
 public enum ResponseEnum {
 

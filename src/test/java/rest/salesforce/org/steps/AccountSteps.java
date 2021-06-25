@@ -1,23 +1,15 @@
 package rest.salesforce.org.steps;
 
 import api.ApiManager;
-import api.ApiMethod;
 import api.ApiRequest;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import configuration.ApiFeature;
-import configuration.Authentication;
+import api.ApiFeature;
 import entities.Account;
-import entities.Contact;
 import entities.Response;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
-import io.cucumber.java.en.Given;
 
 public class AccountSteps {
     private Logger LOGGER = Logger.getLogger(getClass());
