@@ -14,8 +14,9 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-public class CaseTest extends SuitTestBefore{
+public class CaseTest extends SuitTestBefore {
     String caseIdCreated;
+
     @Test
     public void shouldAddNewCase() throws JsonProcessingException {
         Case newCase = new Case();
@@ -23,10 +24,11 @@ public class CaseTest extends SuitTestBefore{
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiFeature.CASES)
                 .body(new ObjectMapper().writeValueAsString(newCase));
-        ApiResponse response = ApiManager.executeWithBody(apiRequest);
-        caseIdCreated = response.getPath("id");
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-        response.getResponse().then().log().body();
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        caseIdCreated = apiResponse.getPath("id");
+        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
+        apiResponse.getResponse().then().log().body();
     }
 
     @Test
@@ -34,9 +36,10 @@ public class CaseTest extends SuitTestBefore{
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiFeature.CASES);
-        ApiResponse response = ApiManager.execute(apiRequest);
-        response.getResponse().then().log().body();
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
+        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
     }
 
     @Test
@@ -44,9 +47,10 @@ public class CaseTest extends SuitTestBefore{
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiFeature.CASES_ID)
                 .addPathParam("caseId", caseIdCreated);
-        ApiResponse response = ApiManager.execute(apiRequest);
-        response.getResponse().then().log().body();
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
+        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
     }
 
     @Test
@@ -54,10 +58,11 @@ public class CaseTest extends SuitTestBefore{
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiFeature.CASES_ID)
                 .addPathParam("caseId", caseIdCreated);
-        ApiResponse response = ApiManager.execute(apiRequest);
-        response.getResponse().then().log().body();
-        response.validateBodySchema("schemas/case.json");
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
+        apiResponse.validateBodySchema("schemas/case.json");
+        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
     }
 
     @Test
@@ -68,9 +73,10 @@ public class CaseTest extends SuitTestBefore{
                 .endpoint(ApiFeature.CASES_ID)
                 .addPathParam("caseId", caseIdCreated)
                 .setBody(new ObjectMapper().writeValueAsString(updateCase));
-        ApiResponse response = ApiManager.executeWithBody(apiRequest);
-        response.getResponse().then().log().body();
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_NO_CONTENT);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
+        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 
     @AfterClass
@@ -78,8 +84,9 @@ public class CaseTest extends SuitTestBefore{
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.CASES_ID)
                 .addPathParam("caseId", caseIdCreated);
-        ApiResponse response = ApiManager.execute(apiRequest);
-        response.getResponse().then().log().body();
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_NO_CONTENT);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
+        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }

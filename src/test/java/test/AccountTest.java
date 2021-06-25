@@ -20,7 +20,8 @@ public class AccountTest extends AccountBefore {
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiFeature.ACCOUNT);
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
         apiResponse.getResponse().then().log().body();
     }
@@ -31,7 +32,8 @@ public class AccountTest extends AccountBefore {
                 .endpoint(ApiFeature.ACCOUNT_ID)
                 .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
         apiResponse.getResponse().then().log().body();
     }
@@ -44,7 +46,7 @@ public class AccountTest extends AccountBefore {
                 .endpoint(ApiFeature.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
 
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
         apiResponse.getResponse().then().log().body();
     }
@@ -55,7 +57,8 @@ public class AccountTest extends AccountBefore {
                 .endpoint(ApiFeature.ACCOUNT_ID)
                 .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }
@@ -69,7 +72,8 @@ public class AccountTest extends AccountBefore {
                 .addPathParam("accountId", apiResponse.getBody(Response.class).getId())
                 .body(new ObjectMapper().writeValueAsString(account));
 
-        ApiResponse apiResponse = ApiManager.executeWithBody(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }
