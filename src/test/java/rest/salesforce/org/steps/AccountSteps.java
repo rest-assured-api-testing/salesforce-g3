@@ -84,18 +84,18 @@ public class AccountSteps {
         apiResponse.getResponse().then().log().body();
     }
 
-    @Then("The response body name of the attribute is the same as the wait and request must be {string}")
+    @Then("The account response body name of the attribute is the same as the wait and request must be {string}")
     public void theBodyResponseIsSameNameExpected(String statusCode) {
-        LOGGER.info("Then response status");
+        LOGGER.info("Then account response status");
         Assert.assertEquals(apiResponse.getStatusCode(), ResponseEnum.valueOf(statusCode).value());
         Account account = apiResponse.getBody(Account.class);
         Assert.assertEquals(account.getName(), "Before create account cucumber");
         apiResponse.getResponse().then().log().body();
     }
 
-    @Then("The response body kind of the attribute is the same as the wait and request must be {string}")
+    @Then("The account response body kind of the attribute is the same as the wait and request must be {string}")
     public void theBodyResponseIsKindAccount(String statusCode) {
-        LOGGER.info("Then response status");
+        LOGGER.info("Then account response status");
         Assert.assertEquals(apiResponse.getStatusCode(), ResponseEnum.valueOf(statusCode).value());
         Account account = apiResponse.getBody(Account.class);
         Assert.assertEquals(account.getAttributes().getType(), "Account");

@@ -30,25 +30,25 @@ public class Product2 {
     @JsonProperty("SystemModstamp")
     public Date systemModstamp;
     @JsonProperty("Family")
-    public Object family;
+    public String family;
     @JsonProperty("ExternalDataSourceId")
-    public Object externalDataSourceId;
+    public String externalDataSourceId;
     @JsonProperty("ExternalId")
-    public Object externalId;
+    public String externalId;
     @JsonProperty("DisplayUrl")
-    public Object displayUrl;
+    public String displayUrl;
     @JsonProperty("QuantityUnitOfMeasure")
-    public Object quantityUnitOfMeasure;
+    public String quantityUnitOfMeasure;
     @JsonProperty("IsDeleted")
     public Boolean isDeleted;
     @JsonProperty("IsArchived")
     public Boolean isArchived;
     @JsonProperty("LastViewedDate")
-    public Date lastViewedDate;
+    public String lastViewedDate;
     @JsonProperty("LastReferencedDate")
-    public Date lastReferencedDate;
+    public String lastReferencedDate;
     @JsonProperty("StockKeepingUnit")
-    public Object stockKeepingUnit;
+    public String stockKeepingUnit;
 
     public Attributes getAttributes() {
         return attributes;
@@ -138,43 +138,43 @@ public class Product2 {
         this.systemModstamp = systemModstamp;
     }
 
-    public Object getFamily() {
+    public String getFamily() {
         return family;
     }
 
-    public void setFamily(Object family) {
+    public void setFamily(String family) {
         this.family = family;
     }
 
-    public Object getExternalDataSourceId() {
+    public String getExternalDataSourceId() {
         return externalDataSourceId;
     }
 
-    public void setExternalDataSourceId(Object externalDataSourceId) {
+    public void setExternalDataSourceId(String externalDataSourceId) {
         this.externalDataSourceId = externalDataSourceId;
     }
 
-    public Object getExternalId() {
+    public String getExternalId() {
         return externalId;
     }
 
-    public void setExternalId(Object externalId) {
+    public void setExternalId(String externalId) {
         this.externalId = externalId;
     }
 
-    public Object getDisplayUrl() {
+    public String getDisplayUrl() {
         return displayUrl;
     }
 
-    public void setDisplayUrl(Object displayUrl) {
+    public void setDisplayUrl(String displayUrl) {
         this.displayUrl = displayUrl;
     }
 
-    public Object getQuantityUnitOfMeasure() {
+    public String getQuantityUnitOfMeasure() {
         return quantityUnitOfMeasure;
     }
 
-    public void setQuantityUnitOfMeasure(Object quantityUnitOfMeasure) {
+    public void setQuantityUnitOfMeasure(String quantityUnitOfMeasure) {
         this.quantityUnitOfMeasure = quantityUnitOfMeasure;
     }
 
@@ -194,27 +194,27 @@ public class Product2 {
         isArchived = archived;
     }
 
-    public Date getLastViewedDate() {
+    public String getLastViewedDate() {
         return lastViewedDate;
     }
 
-    public void setLastViewedDate(Date lastViewedDate) {
+    public void setLastViewedDate(String lastViewedDate) {
         this.lastViewedDate = lastViewedDate;
     }
 
-    public Date getLastReferencedDate() {
+    public String getLastReferencedDate() {
         return lastReferencedDate;
     }
 
-    public void setLastReferencedDate(Date lastReferencedDate) {
+    public void setLastReferencedDate(String lastReferencedDate) {
         this.lastReferencedDate = lastReferencedDate;
     }
 
-    public Object getStockKeepingUnit() {
+    public String getStockKeepingUnit() {
         return stockKeepingUnit;
     }
 
-    public void setStockKeepingUnit(Object stockKeepingUnit) {
+    public void setStockKeepingUnit(String stockKeepingUnit) {
         this.stockKeepingUnit = stockKeepingUnit;
     }
 }

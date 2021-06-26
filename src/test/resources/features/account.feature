@@ -120,10 +120,10 @@ Feature: Request for account feature
   Scenario: Response body is the same name for A Account Created
     Given I build "GET" request
     When I execute for "ACCOUNT_ID" request with param
-    Then The response body name of the attribute is the same as the wait and request must be "OK"
+    Then The account response body name of the attribute is the same as the wait and request must be "OK"
 
   @CreateDeleteAccount
   Scenario: Attribute response body is kind account for A Account Created
     Given I build "GET" request
     When I execute for "ACCOUNT_ID" request with param
-    Then The response body kind of the attribute is the same as the wait and request must be "OK"
+    Then The account response body kind of the attribute is the same as the wait and request must be "OK"
