@@ -26,7 +26,7 @@ public class PriceBookHooks {
         this.response = response;
     }
 
-    @Before(value = "@UpdatePriceBook")
+    @Before(value = "@UpdatePriceBook or @DeleteAPriceBook")
     public void createPriceBook() throws JsonProcessingException {
         LOGGER.info("------ Create a price book ------");
         PriceBook newPriceBook = new PriceBook();

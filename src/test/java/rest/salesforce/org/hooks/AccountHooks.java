@@ -26,7 +26,7 @@ public class AccountHooks {
         this.response = response;
     }
 
-    @Before(value = "@CreateDeleteAccount or @CreateAccount")
+    @Before(value = "@CreateDeleteAccount or @CreateAccount or @DeleteAnAccount")
     public void create() throws JsonProcessingException {
         LOGGER.info("--> Before hook Create a account");
         Account account = new Account();

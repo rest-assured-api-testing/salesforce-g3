@@ -26,7 +26,7 @@ public class CaseHooks {
         this.apiResponse = apiResponse;
         this.response = response;
     }
-    @Before(value = "@UpdateCase")
+    @Before(value = "@UpdateCase or @DeleteACase")
     public void createCase() throws JsonProcessingException {
         LOGGER.info("------ Create a case ------");
         Case newCase = new Case();

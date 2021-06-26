@@ -25,7 +25,7 @@ public class CampaignHooks {
         this.apiResponse = apiResponse;
         this.response = response;
     }
-    @Before(value = "@UpdateCampaign")
+    @Before(value = "@UpdateCampaign or @DeleteACampaign")
     public void createCampaign() throws JsonProcessingException {
         LOGGER.info("------ Create a campaign ------");
         Campaign newCampaign = new Campaign();

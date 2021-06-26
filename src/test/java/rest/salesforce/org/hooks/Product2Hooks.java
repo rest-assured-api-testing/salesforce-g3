@@ -32,7 +32,7 @@ public class Product2Hooks {
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
     }
-    @Before(value = "@CreateDeleteProduct2 or @CreateProduct2")
+    @Before(value = "@CreateDeleteProduct2 or @CreateProduct2 or @DeleteAProduct2")
     public void create() throws JsonProcessingException {
         LOGGER.info("--> Before hook Create a product2");
         Product2 product2 = new Product2();
