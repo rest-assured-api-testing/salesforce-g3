@@ -7,6 +7,7 @@ public enum ResponseEnum {
     CREATED(201),
     UPDATED(201),
     NO_CONTENT(204),
+    BAD_REQUEST(400),
     SERVER_ERROR(500);
 
     private int responseCode;

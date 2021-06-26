@@ -6,10 +6,14 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import api.ApiFeature;
+import configuration.ResponseEnum;
+import entities.Account;
 import entities.Response;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 
 public class AccountSteps {
     private Logger LOGGER = Logger.getLogger(getClass());
@@ -61,5 +65,40 @@ public class AccountSteps {
                 .body(body);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
+    }
+
+    @Then("{string} schema status response of request should be {string}")
+    public void theSchemaShouldBeOK(String schema, String statusCode) {
+        LOGGER.info("Then response status");
+        Assert.assertEquals(apiResponse.getStatusCode(), ResponseEnum.valueOf(statusCode).value());
+        apiResponse.validateBodySchema("schemas/" + schema + ".json");
+        apiResponse.getResponse().then().log().body();
+    }
+
+    @Then("Response body status request should be {string}")
+    public void theBodyResponseIsTrue(String statusCode) {
+        LOGGER.info("Then response status");
+        Assert.assertEquals(apiResponse.getStatusCode(), ResponseEnum.valueOf(statusCode).value());
+        Response response = apiResponse.getBody(Response.class);
+        Assert.assertEquals(response.isSuccess(), true);
+        apiResponse.getResponse().then().log().body();
+    }
+
+    @Then("The response body name of the attribute is the same as the wait and request must be {string}")
+    public void theBodyResponseIsSameNameExpected(String statusCode) {
+        LOGGER.info("Then response status");
+        Assert.assertEquals(apiResponse.getStatusCode(), ResponseEnum.valueOf(statusCode).value());
+        Account account = apiResponse.getBody(Account.class);
+        Assert.assertEquals(account.getName(), "Before create account cucumber");
+        apiResponse.getResponse().then().log().body();
+    }
+
+    @Then("The response body kind of the attribute is the same as the wait and request must be {string}")
+    public void theBodyResponseIsKindAccount(String statusCode) {
+        LOGGER.info("Then response status");
+        Assert.assertEquals(apiResponse.getStatusCode(), ResponseEnum.valueOf(statusCode).value());
+        Account account = apiResponse.getBody(Account.class);
+        Assert.assertEquals(account.getAttributes().getType(), "Account");
+        apiResponse.getResponse().then().log().body();
     }
 }

@@ -18,6 +18,7 @@ public class ResponseSteps {
         this.apiResponse = apiResponse;
     }
 
+    // Generic response
     @Then("Status response of request should be {string}")
     public void theResponseStatusShouldBeOK(String statusCode) {
         LOGGER.info("Then response status");

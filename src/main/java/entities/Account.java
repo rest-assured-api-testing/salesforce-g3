@@ -15,7 +15,7 @@ public class Account {
     public Boolean isDeleted;
     @JsonProperty("MasterRecordId")
     public String masterRecordId;
-    @JsonProperty("name")
+    @JsonProperty("Name")
     public String name;
     @JsonProperty("Type")
     public String type;
@@ -158,7 +158,7 @@ public class Account {
         this.id = id;
     }
 
-    public Boolean isDeleted() {
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
