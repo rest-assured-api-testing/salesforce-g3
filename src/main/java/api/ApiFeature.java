@@ -1,20 +1,20 @@
-package configuration;
+package api;
 
 public enum ApiFeature {
 
     TOKEN("/token"),
     CASES("/sobjects/Case"),
-    CASES_ID("/sobjects/Case/{caseId}"),
+    CASES_ID("/sobjects/Case/{CASE_ID}"),
     CONTACT("/sobjects/Contact"),
-    CONTACT_ID("/sobjects/Contact/{contactId}"),
+    CONTACT_ID("/sobjects/Contact/{CONTACT_ID}"),
     ACCOUNT("/sobjects/Account"),
-    ACCOUNT_ID("/sobjects/Account/{accountId}"),
+    ACCOUNT_ID("/sobjects/Account/{ACCOUNT_ID}"),
     PRODUCT2("/sobjects/Product2"),
-    PRODUCT2_ID("/sobjects/Product2/{product2Id}"),
+    PRODUCT2_ID("/sobjects/Product2/{PRODUCT2_ID}"),
     CAMPAIGN("/sobjects/Campaign"),
-    CAMPAIGN_ID("/sobjects/Campaign/{campaignId}"),
+    CAMPAIGN_ID("/sobjects/Campaign/{CAMPAIGN_ID}"),
     PRICE_BOOK("/sobjects/PriceBook2"),
-    PRICE_BOOK_ID("/sobjects/PriceBook2/{priceId}");
+    PRICE_BOOK_ID("/sobjects/PriceBook2/{PRICE_ID}");
 
     private String endpoint;
 

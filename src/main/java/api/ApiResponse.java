@@ -8,12 +8,20 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 public class ApiResponse {
     private Response response;
+
     public ApiResponse(Response response) {
         this.response = response;
     }
 
+    public ApiResponse() {
+    }
+
     public Response getResponse() {
         return response;
+    }
+
+    public void setResponse(Response response) {
+        this.response = response;
     }
 
     public int getStatusCode() {
@@ -25,7 +33,7 @@ public class ApiResponse {
     }
 
     public <T> List getBodyList(Class<T> cls) {
-        return response.getBody().jsonPath().getList("",cls);
+        return response.getBody().jsonPath().getList("", cls);
     }
 
     public String getPath(String path) {
@@ -33,6 +41,6 @@ public class ApiResponse {
     }
 
     public void validateBodySchema(String schema) {
-      response.then().log().body().assertThat().body(matchesJsonSchemaInClasspath(schema));
+        response.then().log().body().assertThat().body(matchesJsonSchemaInClasspath(schema));
     }
 }

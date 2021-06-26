@@ -5,7 +5,7 @@ import api.ApiMethod;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import configuration.ApiFeature;
+import api.ApiFeature;
 import entities.Account;
 import entities.Response;
 import org.apache.http.HttpStatus;
@@ -23,7 +23,7 @@ public class AccountBefore extends SuitTestBefore {
                 .endpoint(ApiFeature.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
 
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
         apiResponse.getResponse().then().log().body();
     }
@@ -36,7 +36,8 @@ public class AccountBefore extends SuitTestBefore {
                 .endpoint(ApiFeature.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
 
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
         apiResponse.getResponse().then().log().body();
     }
@@ -45,9 +46,10 @@ public class AccountBefore extends SuitTestBefore {
     public void afterDeleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }
@@ -56,9 +58,10 @@ public class AccountBefore extends SuitTestBefore {
     public void JustDeleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }

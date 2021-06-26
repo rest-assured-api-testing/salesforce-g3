@@ -4,7 +4,7 @@
 /target/
 target/
 .settings/
-properties.properties
+config.properties
 Maven.iml
 salesforce-g3.iml
 .classpath

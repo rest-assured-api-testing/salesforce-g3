@@ -1,6 +1,5 @@
 package api;
 
-import configuration.ApiFeature;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 

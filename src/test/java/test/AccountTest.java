@@ -1,6 +1,6 @@
 package test;
 
-import configuration.ApiFeature;
+import api.ApiFeature;
 import api.ApiManager;
 import api.ApiMethod;
 import api.ApiResponse;
@@ -20,7 +20,8 @@ public class AccountTest extends AccountBefore {
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiFeature.ACCOUNT);
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
         apiResponse.getResponse().then().log().body();
     }
@@ -29,9 +30,10 @@ public class AccountTest extends AccountBefore {
     public void getAccount() {
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
         apiResponse.getResponse().then().log().body();
     }
@@ -43,8 +45,8 @@ public class AccountTest extends AccountBefore {
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiFeature.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
-
-        apiResponse = ApiManager.executeWithBody(apiRequest);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
         apiResponse.getResponse().then().log().body();
     }
@@ -53,9 +55,10 @@ public class AccountTest extends AccountBefore {
     public void deleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId());
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
-        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }
@@ -66,10 +69,11 @@ public class AccountTest extends AccountBefore {
         account.setName("Object Updated");
         apiRequest.method(ApiMethod.PATCH)
                 .endpoint(ApiFeature.ACCOUNT_ID)
-                .addPathParam("accountId", apiResponse.getBody(Response.class).getId())
+                .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId())
                 .body(new ObjectMapper().writeValueAsString(account));
 
-        ApiResponse apiResponse = ApiManager.executeWithBody(apiRequest);
+        ApiResponse apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }

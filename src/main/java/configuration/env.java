@@ -6,10 +6,11 @@ import java.util.Properties;
 
 public class env {
     public static final Properties CONFIG = read();
-    private static final String CONFIG_PATH = "properties.properties";
+    private static final String CONFIG_PATH = "config.properties";
+
     public static Properties read() {
         Properties properties = new Properties();
-        try(InputStream reading = new FileInputStream(CONFIG_PATH)) {
+        try (InputStream reading = new FileInputStream(CONFIG_PATH)) {
             properties.load(reading);
         } catch (Exception e) {
             e.printStackTrace();
