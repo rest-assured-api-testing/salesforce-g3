@@ -22,7 +22,7 @@ public class CaseTest extends SuitTestBefore{
         Case newCase = new Case();
         newCase.setStatus(CaseEnum.WORKING.toStatus());
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.CASES)
+                .endpoint(ApiFeature.CASE)
                 .body(new ObjectMapper().writeValueAsString(newCase));
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -35,7 +35,7 @@ public class CaseTest extends SuitTestBefore{
     public void shouldGetAllCases() {
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.CASES);
+                .endpoint(ApiFeature.CASE);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
@@ -45,7 +45,7 @@ public class CaseTest extends SuitTestBefore{
     @Test
     public void shouldGetACaseById() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.CASES_ID)
+                .endpoint(ApiFeature.CASE_ID)
                 .addPathParam("caseId", caseIdCreated);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -56,7 +56,7 @@ public class CaseTest extends SuitTestBefore{
     @Test
     public void shouldValidateSchemaOfCaseById() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.CASES_ID)
+                .endpoint(ApiFeature.CASE_ID)
                 .addPathParam("caseId", caseIdCreated);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -70,7 +70,7 @@ public class CaseTest extends SuitTestBefore{
         Case updateCase = new Case();
         updateCase.setStatus(CaseEnum.NEW.toStatus());
         apiRequest.method(ApiMethod.PATCH)
-                .endpoint(ApiFeature.CASES_ID)
+                .endpoint(ApiFeature.CASE_ID)
                 .addPathParam("caseId", caseIdCreated)
                 .setBody(new ObjectMapper().writeValueAsString(updateCase));
         ApiResponse apiResponse = new ApiResponse();
@@ -82,7 +82,7 @@ public class CaseTest extends SuitTestBefore{
     @AfterClass
     public void shouldDeleteACaseById() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.CASES_ID)
+                .endpoint(ApiFeature.CASE_ID)
                 .addPathParam("caseId", caseIdCreated);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
