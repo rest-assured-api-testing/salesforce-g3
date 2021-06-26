@@ -27,13 +27,13 @@ public class PriceBook {
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String LastReferencedDate;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private boolean IsActive;
+    private String IsActive;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private boolean IsArchived;
+    private String IsArchived;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String Description;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private boolean IsStandard;
+    private String IsStandard;
 
     public Attributes getAttributes() {
         return attributes;
@@ -123,19 +123,19 @@ public class PriceBook {
         LastReferencedDate = lastReferencedDate;
     }
 
-    public boolean isActive() {
+    public String isActive() {
         return IsActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(String active) {
         IsActive = active;
     }
 
-    public boolean isArchived() {
+    public String isArchived() {
         return IsArchived;
     }
 
-    public void setArchived(boolean archived) {
+    public void setArchived(String archived) {
         IsArchived = archived;
     }
 
@@ -147,11 +147,11 @@ public class PriceBook {
         Description = description;
     }
 
-    public boolean isStandard() {
+    public String isStandard() {
         return IsStandard;
     }
 
-    public void setStandard(boolean standard) {
+    public void setStandard(String standard) {
         IsStandard = standard;
     }
 }

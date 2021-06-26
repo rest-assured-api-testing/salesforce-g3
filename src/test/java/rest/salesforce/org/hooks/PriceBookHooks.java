@@ -25,6 +25,7 @@ public class PriceBookHooks {
         this.apiResponse = apiResponse;
         this.response = response;
     }
+
     @Before(value = "@UpdatePriceBook")
     public void createPriceBook() throws JsonProcessingException {
         LOGGER.info("------ Create a price book ------");
