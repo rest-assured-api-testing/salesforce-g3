@@ -14,7 +14,13 @@ public enum ApiFeature {
     CAMPAIGN("/sobjects/Campaign"),
     CAMPAIGN_ID("/sobjects/Campaign/{CAMPAIGN_ID}"),
     PRICE_BOOK("/sobjects/PriceBook2"),
-    PRICE_BOOK_ID("/sobjects/PriceBook2/{PRICE_BOOK_ID}");
+    PRICE_BOOK_ID("/sobjects/PriceBook2/{PRICE_BOOK_ID}"),
+    INVALID_CASE("/sobjects/invalidCase"),
+    INVALID_CONTACT("/sobjects/invalidContact"),
+    INVALID_ACCOUNT("/sobjects/invalidAccount"),
+    INVALID_PRODUCT2("/sobjects/invalidProduct2"),
+    INVALID_CAMPAIGN("/sobjects/invalidCampaign"),
+    INVALID_PRICE_BOOK("/sobjects/invalidPriceBook2");
 
     private String endpoint;
 
