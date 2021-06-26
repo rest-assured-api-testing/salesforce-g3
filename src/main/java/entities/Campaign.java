@@ -9,7 +9,7 @@ public class Campaign {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String Id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private boolean IsDeleted;
+    private String IsDeleted;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String Name;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -29,29 +29,29 @@ public class Campaign {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String ActualCost;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int ExpectedResponse;
+    private String ExpectedResponse;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int NumberSent;
+    private String NumberSent;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private boolean IsActive;
+    private String IsActive;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String Description;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int NumberOfLeads;
+    private String NumberOfLeads;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int NumberOfConvertedLeads;
+    private String NumberOfConvertedLeads;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int NumberOfContacts;
+    private String NumberOfContacts;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int NumberOfResponses;
+    private String NumberOfResponses;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int NumberOfOpportunities;
+    private String NumberOfOpportunities;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int NumberOfWonOpportunities;
+    private String NumberOfWonOpportunities;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int AmountAllOpportunities;
+    private String AmountAllOpportunities;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int AmountWonOpportunities;
+    private String AmountWonOpportunities;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String OwnerId;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -89,11 +89,11 @@ public class Campaign {
         Id = id;
     }
 
-    public boolean isDeleted() {
+    public String isDeleted() {
         return IsDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(String deleted) {
         IsDeleted = deleted;
     }
 
@@ -169,27 +169,27 @@ public class Campaign {
         ActualCost = actualCost;
     }
 
-    public int getExpectedResponse() {
+    public String getExpectedResponse() {
         return ExpectedResponse;
     }
 
-    public void setExpectedResponse(int expectedResponse) {
+    public void setExpectedResponse(String expectedResponse) {
         ExpectedResponse = expectedResponse;
     }
 
-    public int getNumberSent() {
+    public String getNumberSent() {
         return NumberSent;
     }
 
-    public void setNumberSent(int numberSent) {
+    public void setNumberSent(String numberSent) {
         NumberSent = numberSent;
     }
 
-    public boolean isActive() {
+    public String isActive() {
         return IsActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(String active) {
         IsActive = active;
     }
 
@@ -201,67 +201,67 @@ public class Campaign {
         Description = description;
     }
 
-    public int getNumberOfLeads() {
+    public String getNumberOfLeads() {
         return NumberOfLeads;
     }
 
-    public void setNumberOfLeads(int numberOfLeads) {
+    public void setNumberOfLeads(String numberOfLeads) {
         NumberOfLeads = numberOfLeads;
     }
 
-    public int getNumberOfConvertedLeads() {
+    public String getNumberOfConvertedLeads() {
         return NumberOfConvertedLeads;
     }
 
-    public void setNumberOfConvertedLeads(int numberOfConvertedLeads) {
+    public void setNumberOfConvertedLeads(String numberOfConvertedLeads) {
         NumberOfConvertedLeads = numberOfConvertedLeads;
     }
 
-    public int getNumberOfContacts() {
+    public String getNumberOfContacts() {
         return NumberOfContacts;
     }
 
-    public void setNumberOfContacts(int numberOfContacts) {
+    public void setNumberOfContacts(String numberOfContacts) {
         NumberOfContacts = numberOfContacts;
     }
 
-    public int getNumberOfResponses() {
+    public String getNumberOfResponses() {
         return NumberOfResponses;
     }
 
-    public void setNumberOfResponses(int numberOfResponses) {
+    public void setNumberOfResponses(String numberOfResponses) {
         NumberOfResponses = numberOfResponses;
     }
 
-    public int getNumberOfOpportunities() {
+    public String getNumberOfOpportunities() {
         return NumberOfOpportunities;
     }
 
-    public void setNumberOfOpportunities(int numberOfOpportunities) {
+    public void setNumberOfOpportunities(String numberOfOpportunities) {
         NumberOfOpportunities = numberOfOpportunities;
     }
 
-    public int getNumberOfWonOpportunities() {
+    public String getNumberOfWonOpportunities() {
         return NumberOfWonOpportunities;
     }
 
-    public void setNumberOfWonOpportunities(int numberOfWonOpportunities) {
+    public void setNumberOfWonOpportunities(String numberOfWonOpportunities) {
         NumberOfWonOpportunities = numberOfWonOpportunities;
     }
 
-    public int getAmountAllOpportunities() {
+    public String getAmountAllOpportunities() {
         return AmountAllOpportunities;
     }
 
-    public void setAmountAllOpportunities(int amountAllOpportunities) {
+    public void setAmountAllOpportunities(String amountAllOpportunities) {
         AmountAllOpportunities = amountAllOpportunities;
     }
 
-    public int getAmountWonOpportunities() {
+    public String getAmountWonOpportunities() {
         return AmountWonOpportunities;
     }
 
-    public void setAmountWonOpportunities(int amountWonOpportunities) {
+    public void setAmountWonOpportunities(String amountWonOpportunities) {
         AmountWonOpportunities = amountWonOpportunities;
     }
 
