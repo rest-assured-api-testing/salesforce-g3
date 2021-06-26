@@ -3,8 +3,8 @@ package api;
 public enum ApiFeature {
 
     TOKEN("/token"),
-    CASES("/sobjects/Case"),
-    CASES_ID("/sobjects/Case/{CASE_ID}"),
+    CASE("/sobjects/Case"),
+    CASE_ID("/sobjects/Case/{CASE_ID}"),
     CONTACT("/sobjects/Contact"),
     CONTACT_ID("/sobjects/Contact/{CONTACT_ID}"),
     ACCOUNT("/sobjects/Account"),
@@ -14,7 +14,7 @@ public enum ApiFeature {
     CAMPAIGN("/sobjects/Campaign"),
     CAMPAIGN_ID("/sobjects/Campaign/{CAMPAIGN_ID}"),
     PRICE_BOOK("/sobjects/PriceBook2"),
-    PRICE_BOOK_ID("/sobjects/PriceBook2/{PRICE_ID}");
+    PRICE_BOOK_ID("/sobjects/PriceBook2/{PRICE_BOOK_ID}");
 
     private String endpoint;
 
