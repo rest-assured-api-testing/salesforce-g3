@@ -38,7 +38,7 @@ public class PriceBookHooks {
         response.setId(apiResponse.getBody(Response.class).getId());
     }
 
-    @After(value = "@UpdatePriceBook")
+    @After(value = "@UpdatePriceBook or @CreateAPriceBook")
     public void deletePriceBook() {
         LOGGER.info("------ After delete created price book ------");
         apiRequest.clearPathParam();

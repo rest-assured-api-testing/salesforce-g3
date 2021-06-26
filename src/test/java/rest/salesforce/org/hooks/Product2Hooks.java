@@ -44,7 +44,7 @@ public class Product2Hooks {
         response.setId(apiResponse.getBody(Response.class).getId());
 
     }
-    @After(value = "@UpdateProduct2")
+    @After(value = "@UpdateProduct2 or @CreateAProduct2")
     public void deleteProduct2() {
         LOGGER.info("------ After delete created product ------");
         apiRequest.clearPathParam();

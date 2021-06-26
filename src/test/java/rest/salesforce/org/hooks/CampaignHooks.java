@@ -37,7 +37,7 @@ public class CampaignHooks {
         response.setId(apiResponse.getBody(Response.class).getId());
     }
 
-    @After(value = "@UpdateCampaign")
+    @After(value = "@UpdateCampaign or @CreateACampaign")
     public void deleteCampaign() {
         LOGGER.info("------ After delete created campaign ------");
         apiRequest.clearPathParam();

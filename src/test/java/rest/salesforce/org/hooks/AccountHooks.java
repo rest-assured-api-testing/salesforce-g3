@@ -39,7 +39,7 @@ public class AccountHooks {
 
     }
 
-    @After(value = "@CreateDeleteAccount or @DeleteAccount")
+    @After(value = "@CreateDeleteAccount or @DeleteAccount or @CreateAnAccount")
     public void delete() {
         LOGGER.info("--> After delete account cucumber");
         apiRequest.clearPathParam();

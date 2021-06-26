@@ -38,7 +38,7 @@ public class CaseHooks {
         response.setId(apiResponse.getBody(Response.class).getId());
     }
 
-    @After(value = "@UpdateCase")
+    @After(value = "@UpdateCase or @CreateACase")
     public void deleteCase() {
         LOGGER.info("------ After delete created case ------");
         apiRequest.clearPathParam();

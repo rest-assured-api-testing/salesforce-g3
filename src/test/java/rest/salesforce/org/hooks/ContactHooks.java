@@ -37,7 +37,7 @@ public class ContactHooks {
         response.setId(apiResponse.getBody(Response.class).getId());
     }
 
-    @After(value = "@UpdateContact")
+    @After(value = "@UpdateContact or @CreateAContact")
     public void deleteContact() {
         LOGGER.info("------ After delete created case ------");
         apiRequest.clearPathParam();
