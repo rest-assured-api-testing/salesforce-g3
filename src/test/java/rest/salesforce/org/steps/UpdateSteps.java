@@ -30,8 +30,16 @@ public class UpdateSteps {
         apiRequest.endpoint(ApiFeature.valueOf(endpoint))
                 .addPathParam(endpoint, response.getId())
                 .body(body);
-        ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
     }
 
+    @When("I execute update {string} request with specific id {string}")
+    public void iExecuteRequestWithBodyAndParam(String endpoint, String specificID, DataTable jsonData) throws JsonProcessingException {
+        LOGGER.info("------ Execute update with body ------");
+        String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
+        apiRequest.endpoint(ApiFeature.valueOf(endpoint))
+                .addPathParam(endpoint, specificID)
+                .body(body);
+        ApiManager.execute(apiRequest, apiResponse);
+    }
 }

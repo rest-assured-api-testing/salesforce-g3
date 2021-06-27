@@ -1,23 +1,37 @@
 package rest.salesforce.org.steps;
 
 import api.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.Contact;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
+import entities.Response;
 import io.cucumber.java.en.When;
-import org.apache.http.HttpStatus;
-import org.testng.Assert;
+import org.apache.log4j.Logger;
 
 public class CaseSteps {
-    ApiRequest apiRequest;
-    ApiResponse apiResponse;
-    String createdId;
+    private final Logger LOGGER = Logger.getLogger(getClass());
+    private ApiRequest apiRequest;
+    private ApiResponse apiResponse;
+    private Response response;
 
-    public CaseSteps(ApiRequest apiRequest, ApiResponse apiResponse) {
-        this.apiResponse = apiResponse;
+    public CaseSteps(ApiRequest apiRequest, ApiResponse apiResponse, Response response) {
         this.apiRequest = apiRequest;
-        createdId = apiResponse.getPath("id");
+        this.apiResponse = apiResponse;
+        this.response = response;
+    }
+
+    @When("I execute {string} with correct request")
+    public void iExecuteRequestWithParam(String endpoint) {
+        LOGGER.info("---------- Execute with specific ID ----------");
+        apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
+        apiRequest.addPathParam(endpoint, response.getId());
+        ApiManager.execute(apiRequest, apiResponse);
+    }
+
+    @When("I execute {string} with wrong id {string} request")
+    public void iExecuteRequestWithParam(String endpoint, String wrongId) {
+        LOGGER.info("---------- Execute with specific ID ----------");
+        apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
+        apiRequest.addPathParam(endpoint, wrongId);
+        ApiManager.execute(apiRequest, apiResponse);
     }
 }
+
+
