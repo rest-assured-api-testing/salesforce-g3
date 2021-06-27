@@ -11,25 +11,24 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 
-public class CreateSteps {
+public class CreateWithInvalidValues {
     private Logger LOGGER = Logger.getLogger(getClass());
     private ApiRequest apiRequest;
     private ApiResponse apiResponse;
     private Response response;
 
-    public CreateSteps(ApiRequest apiRequest, ApiResponse apiResponse, Response response) {
+    public CreateWithInvalidValues(ApiRequest apiRequest, ApiResponse apiResponse, Response response) {
         this.apiRequest = apiRequest;
         this.apiResponse = apiResponse;
         this.response = response;
     }
 
-    @When("I execute create {string} request")
-    public void iExecuteCreateRequest(String endpoint, DataTable jsonData) throws JsonProcessingException {
+    @When("I execute create {string} request with invalid values")
+    public void iExecuteCreateRequestWithInvalidValues(String endpoint, DataTable jsonData) throws JsonProcessingException {
         LOGGER.info("------ Execute update with body ------");
         String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         apiRequest.endpoint(ApiFeature.valueOf(endpoint))
                 .body(body);
         ApiManager.execute(apiRequest, apiResponse);
-        response.setId(apiResponse.getPath("id"));
     }
 }
