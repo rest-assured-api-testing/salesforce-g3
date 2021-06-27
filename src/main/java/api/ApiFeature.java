@@ -20,7 +20,13 @@ public enum ApiFeature {
     INVALID_ACCOUNT("/sobjects/invalidAccount"),
     INVALID_PRODUCT2("/sobjects/invalidProduct2"),
     INVALID_CAMPAIGN("/sobjects/invalidCampaign"),
-    INVALID_PRICE_BOOK("/sobjects/invalidPriceBook2");
+    INVALID_PRICE_BOOK("/sobjects/invalidPriceBook2"),
+    INVALID_CASE_ENDPOINT("/sobjects/invalidCase/{INVALID_CASE_ENDPOINT}"),
+    INVALID_CONTACT_ENDPOINT("/sobjects/invalidContact/{INVALID_CONTACT_ENDPOINT}"),
+    INVALID_ACCOUNT_ENDPOINT("/sobjects/invalidAccount/{INVALID_ACCOUNT_ENDPOINT}"),
+    INVALID_PRODUCT2_ENDPOINT("/sobjects/invalidProduct2/{INVALID_PRODUCT2_ENDPOINT}"),
+    INVALID_CAMPAIGN_ENDPOINT("/sobjects/invalidCampaign/{INVALID_CAMPAIGN_ENDPOINT}"),
+    INVALID_PRICE_BOOK_ENDPOINT("/sobjects/invalidPriceBook2/{INVALID_PRICE_BOOK_ENDPOINT}");
 
     private String endpoint;
 

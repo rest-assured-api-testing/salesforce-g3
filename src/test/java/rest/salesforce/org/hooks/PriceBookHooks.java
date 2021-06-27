@@ -26,7 +26,7 @@ public class PriceBookHooks {
         this.response = response;
     }
 
-    @Before(value = "@UpdatePriceBook or @DeleteAPriceBook")
+    @Before(value = "@UpdatePriceBook or @DeleteAPriceBook or @GetPriceBook")
     public void createPriceBook() throws JsonProcessingException {
         LOGGER.info("------ Create a price book ------");
         PriceBook newPriceBook = new PriceBook();
@@ -38,7 +38,7 @@ public class PriceBookHooks {
         response.setId(apiResponse.getBody(Response.class).getId());
     }
 
-    @After(value = "@UpdatePriceBook or @CreateAPriceBook")
+    @After(value = "@UpdatePriceBook or @CreateAPriceBook or @GetPriceBook")
     public void deletePriceBook() {
         LOGGER.info("------ After delete created price book ------");
         apiRequest.clearPathParam();
