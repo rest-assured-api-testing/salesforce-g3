@@ -26,7 +26,7 @@ public class AccountHooks {
         this.response = response;
     }
 
-    @Before(value = "@CreateDeleteAccount or @CreateAccount or @DeleteAnAccount")
+    @Before(value = "@CreateDeleteAccount or @CreateAccount")
     public void create() throws JsonProcessingException {
         LOGGER.info("--> Before hook Create a account");
         Account account = new Account();
@@ -39,7 +39,7 @@ public class AccountHooks {
 
     }
 
-    @After(value = "@CreateDeleteAccount or @DeleteAccount or @CreateAnAccount")
+    @After(value = "@CreateDeleteAccount or @DeleteAccount")
     public void delete() {
         LOGGER.info("--> After delete account cucumber");
         apiRequest.clearPathParam();

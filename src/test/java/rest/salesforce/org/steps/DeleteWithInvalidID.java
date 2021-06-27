@@ -21,8 +21,6 @@ public class DeleteWithInvalidID {
     @When("I execute delete {string} with an {string} request")
     public void iExecuteDeleteWithAnRequest(String endpoint, String ID) {
         LOGGER.info("------ Execute Delete an object ------");
-        LOGGER.info("------ Es el endpoint  ------" +endpoint);
-        LOGGER.info("------ Es el ID ------"+ ID) ;
         apiRequest.endpoint(ApiFeature.valueOf(endpoint))
                 .addPathParam(endpoint, InvalidValuesEnum.valueOf(ID).value());
         ApiManager.execute(apiRequest, apiResponse);
