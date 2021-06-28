@@ -26,7 +26,7 @@ public class CaseHooks {
         this.apiResponse = apiResponse;
         this.response = response;
     }
-    @Before(value = "@UpdateCase")
+    @Before(value = "@UseCreatedCase")
     public void createCase() throws JsonProcessingException {
         LOGGER.info("------ Create a case ------");
         Case newCase = new Case();
@@ -38,7 +38,7 @@ public class CaseHooks {
         response.setId(apiResponse.getBody(Response.class).getId());
     }
 
-    @After(value = "@UpdateCase")
+    @After(value = "UseCreatedCase or @UseDeleteCase")
     public void deleteCase() {
         LOGGER.info("------ After delete created case ------");
         apiRequest.clearPathParam();
