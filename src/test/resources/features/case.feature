@@ -13,6 +13,19 @@ Feature: Scenario test for Case feature
     When I execute "CASE_ID" with correct request
     Then Status response of request should be "OK"
 
+  @UseDeleteCase
+  Scenario: Case can be created with letters and characters
+    Given I build "POST" request
+    When I execute create "CASE" request
+      | status | "#$%/ New status #$%/" |
+    Then Status response of request should be "CREATED"
+
+  @UseCreatedCase
+  Scenario: Case can be deleted
+    Given I build "DELETE" request
+    When I execute delete "CASE_ID" request
+    Then Status response of request should be "NO_CONTENT"
+
   @CantGetCaseWithCorrectIdButBlankSpaceBefore
   Scenario: Get a specific case with blank spaces before id
     Given I build "GET" request

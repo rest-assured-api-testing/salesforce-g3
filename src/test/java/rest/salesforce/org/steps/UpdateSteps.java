@@ -31,6 +31,7 @@ public class UpdateSteps {
                 .addPathParam(endpoint, response.getId())
                 .body(body);
         ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
     }
 
     @When("I execute update {string} request with specific id {string}")
