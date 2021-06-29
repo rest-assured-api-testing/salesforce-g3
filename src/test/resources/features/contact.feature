@@ -89,10 +89,8 @@ Feature: Scenario test for Contact feature
     Examples:
       | lastname                | email                   | salutation  |
       | Ramírez Peñaranda       | some.email@gmail.com    | Mr.         |
-      | Ramírez Peñaranda       | $email%trash!%          | Mr.         |
       | Ramírez Peñaranda       |                         | Mr.         |
-      | Ramírez Peñaranda       | " "                     | Mr.         |
-      | Ramírez Peñaranda       | ""                      | Mr.         |
+
 
   @DeleteContact
   Scenario Outline: A Contact can be created with more parameters
