@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2021 Fundacion Jala.
- *
+ * <p>
  * This software is the confidential and proprietary information of Fundacion Jala
  * ("Confidential Information"). You shall not disclose such Confidential
  * Information and shall use it only in accordance with the terms of the
@@ -10,7 +10,9 @@
  */
 package configuration;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -18,7 +20,16 @@ import java.util.Properties;
  * This class reads a properties file.
  */
 public class Env {
-    public static final Properties CONFIG = read();
+    public static Properties CONFIG = new Properties();
+
+    static {
+        try {
+            CONFIG = read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static final String CONFIG_PATH = "config.properties";
 
     /**
@@ -26,13 +37,27 @@ public class Env {
      *
      * @return the read properties.
      */
-    public static Properties read() {
+    public static Properties read() throws IOException {
         Properties properties = new Properties();
-        try (InputStream reading = new FileInputStream(CONFIG_PATH)) {
+        File file = new File(CONFIG_PATH); //here you make a filehandler - not a filesystem file.
+
+        if (!file.exists()) {
+            file.createNewFile(); // create your file on the file system
+        }
+        try (InputStream reading = new FileInputStream(file)) {
             properties.load(reading);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return properties;
+    }
+
+    public static String obtainEnvVariables(final String variables) {
+        if (CONFIG.getProperty(variables) != null) {
+            System.out.println("1");
+            return CONFIG.getProperty(variables);
+        }
+        System.out.println("2");
+        return System.getenv(variables);
     }
 }
