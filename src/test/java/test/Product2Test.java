@@ -30,7 +30,7 @@ public class Product2Test extends Product2Before {
     public void getProduct2() {
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiEndPoints.PRODUCT2_ID)
-                .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
+                .addPathParam("PRODUCT2_ID", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -56,7 +56,7 @@ public class Product2Test extends Product2Before {
     public void deleteProduct2() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.PRODUCT2_ID)
-                .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
+                .addPathParam("PRODUCT2_ID", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -70,7 +70,7 @@ public class Product2Test extends Product2Before {
         product2.setName("Product2 Updated");
         apiRequest.method(ApiMethod.PATCH)
                 .endpoint(ApiEndPoints.PRODUCT2_ID)
-                .addPathParam("product2Id", apiResponse.getBody(Response.class).getId())
+                .addPathParam("PRODUCT2_ID", apiResponse.getBody(Response.class).getId())
                 .body(new ObjectMapper().writeValueAsString(product2));
 
         ApiResponse apiResponse = new ApiResponse();
