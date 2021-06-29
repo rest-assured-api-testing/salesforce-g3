@@ -13,7 +13,7 @@ package api;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpHeaders;
-import static configuration.Env.CONFIG;
+import static configuration.Env.obtainEnvVariables;
 import static io.restassured.RestAssured.given;
 import static configuration.Authentication.token;
 
@@ -32,8 +32,8 @@ public class ApiManager {
         if (apiRequest.getBaseUri() == null) {
             apiRequest.setBaseUri("");
         }
-        return given().baseUri(token.getInstanceUrl() + CONFIG.getProperty("SERVICE")
-                + CONFIG.getProperty("VERSION") + apiRequest.getBaseUri())
+        return given().baseUri(token.getInstanceUrl() + obtainEnvVariables("SERVICE")
+                + obtainEnvVariables("VERSION") + apiRequest.getBaseUri())
                 .header(HttpHeaders.AUTHORIZATION, token.getTokenType() + " " + token.getAccessToken())
                 .headers(apiRequest.getHeaders())
                 .queryParams(apiRequest.getQueryParams())
