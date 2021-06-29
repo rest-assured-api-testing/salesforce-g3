@@ -4,7 +4,6 @@ import api.ApiRequest;
 import api.ApiResponse;
 import api.ApiManager;
 import api.ApiMethod;
-import entities.Contact;
 import salesforce.ApiEndPoints;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,7 +26,8 @@ public class CaseHooks {
         this.apiResponse = apiResponse;
         this.response = response;
     }
-    @Before(value = "@UseCreatedCase")
+
+    @Before(value = "@UseCreatedCase or @CreateCase")
     public void createCase() throws JsonProcessingException {
         LOGGER.info("------ Create a case ------");
         Case newCase = new Case();
@@ -39,9 +39,9 @@ public class CaseHooks {
         response.setId(apiResponse.getBody(Response.class).getId());
     }
 
-    @After(value = "@UseCreatedCase or @UseDeleteCase")
+    @After(value = "@UseCreatedCase or @DeleteCase")
     public void deleteCase() {
-        LOGGER.info("------ After delete created case ------");
+        LOGGER.info("------ Delete a case ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.CASE_ID)

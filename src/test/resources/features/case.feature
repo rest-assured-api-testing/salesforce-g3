@@ -1,131 +1,155 @@
 Feature: Scenario test for Case feature
   Tests Scenarios for Case
 
-  @GetAllCases
-  Scenario: Get all the Cases
+  @ShowAllCases
+  Scenario: Get all Cases
     Given I build "GET" request
     When I execute "CASE" request
     Then Status response of request should be "OK"
 
+  #@UseCreatedCase
+  #Scenario: Validate Schema of a Case
+  #  Given I build "POST" request
+  #  When I execute create "CASE" request
+  #    | status | Working |
+  #  Then "response" schema status response of request should be "CREATED"
+
+  #@UseCreatedCase
+  #Scenario: Validate Schema of specific Case
+  #  Given I build "GET" request
+  #  When I execute "CASE" request with param
+  #  Then "case" schema status response of request should be "OK"
+
+  #@UseCreatedCase
+  #Scenario: Response body is the same name for a created Case
+  #  Given I build "GET" request
+  #  When I execute "CASE" request with param
+  #  Then The Case response body name of the attribute is the same as the wait and request must be "OK"
+
+  @DeleteCase
+  Scenario: Response body to Success is true for a Case
+    Given I build "POST" request
+    When I execute create "CASE" request
+      | status | new |
+    Then Response body status request should be "CREATED"
+
   @UseCreatedCase
-  Scenario: Get a specific case by Id
+  Scenario: Get a specific Case
     Given I build "GET" request
-    When I execute "CASE_ID" with correct request
+    When I execute "CASE_ID" request with param
     Then Status response of request should be "OK"
 
-  @UseDeleteCase
-  Scenario: Case can be created with letters and characters
+  @CantShowACaseWithWrongId
+  Scenario Outline: Can't get a case with wrong or empty id
+    Given I build "GET" request
+    When I execute "CASE_ID" with <id>
+    Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id                    |
+      | " "                   |
+      | " 929300Xcbnd#$!#$"   |
+      | "929300Xcbnd#$!#$"    |
+
+  @DeleteCase
+  Scenario Outline: A Case can be created with status parameter only
     Given I build "POST" request
     When I execute create "CASE" request
-      | status | "#$%/ New status #$%/" |
+      | status | <status> |
     Then Status response of request should be "CREATED"
+    Examples:
+      | status              |
+      | New                 |
+      | Working             |
+      | text and 93843      |
+      | text and #$87¡!     |
+      | ""                  |
+      | "  "                |
+      | "  _"               |
+      |                     |
+
+  @DeleteCase
+  Scenario Outline: A Case can be created with status and case origin
+    Given I build "POST" request
+    When I execute create "CASE" request
+      | status | <status> |
+      | Origin  | <origin> |
+    Then Status response of request should be "CREATED"
+    Examples:
+      | status                | origin      |
+      | New                   | Phone       |
+      | Working               | email       |
+      | text and 93843        | Web         |
+      | text and #$87¡!       | text        |
+      | ""                    | 93985       |
+      | "  "                  | origin#45$  |
+      | "  _"                 | " "         |
+      | "  _"                 | ""          |
 
   @UseCreatedCase
-  Scenario: Case can be deleted
+  Scenario Outline: Case can be updated only with status
+    Given I build "PATCH" request
+    When I execute update "CASE_ID" request
+      | status | <status> |
+    Then Status response of request should be "NO_CONTENT"
+    Examples:
+    Examples:
+      | status              |
+      | New                 |
+      | Working             |
+      | text and 93843      |
+      | text and #$87¡!     |
+      | ""                  |
+      | "  "                |
+      | "  _"               |
+      |                     |
+
+  @UseCreatedCase
+  Scenario Outline: Case can be updated with status and origin
+    Given I build "PATCH" request
+    When I execute update "CASE_ID" request
+      | status      | <status>      |
+      | origin      | <origin>      |
+    Then Status response of request should be "NO_CONTENT"
+    Examples:
+      | status                | origin      |
+      | New                   | Phone       |
+      | Working               | email       |
+      | text and 93843        | Web         |
+      | text and #$87¡!       | text        |
+      | ""                    | 93985       |
+      | "  "                  | origin#45$  |
+      | "  _"                 | " "         |
+      | "  _"                 | ""          |
+      |                       |             |
+
+  @CantUpdateACaseWithWrongId
+  Scenario Outline: Case can't be updated with wrong or empty id
+    Given I build "PATCH" request
+    When I execute update "CASE_ID" request with specific <id>
+    Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id                      |
+      | "Mv234498cvXvmsj435"    |
+      | " Mv23498cvXvmsj435"    |
+
+  @CreateCase
+  Scenario: Delete a Case
     Given I build "DELETE" request
-    When I execute delete "CASE_ID" request
+    When I execute "CASE_ID" request with param
     Then Status response of request should be "NO_CONTENT"
 
-  @CantGetCaseWithCorrectIdButBlankSpaceBefore
-  Scenario: Get a specific case with blank spaces before id
-    Given I build "GET" request
-    When I execute "CASE_ID" with wrong id " 5005e000000xr4MAAQ" request
+  @CantDeleteCaseWithWrongId
+  Scenario Outline: Delete a Case
+    Given I build "DELETE" request
+    When I execute "CASE_ID" with <id>
     Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id                    |
+      | " Mv234498cvXvmsj435" |
+      | "Mv234498cvXvmsj435"  |
 
-  @CantGetCaseWithWrongId
-  Scenario: Can't get Case with wrong Id
-    Given I build "GET" request
-    When I execute "CASE_ID" with wrong id "9879987" request
-    Then Status response of request should be "NOT_FOUND"
-
-  @CantGetCaseWithEmptyId
-  Scenario: Can't get Case with empty
-    Given I build "GET" request
-    When I execute "CASE_ID" with wrong id " " request
-    Then Status response of request should be "NOT_FOUND"
-
-  @UseDeleteCase
-  Scenario: Case can be created with null data
-    Given I build "POST" request
-    When I execute create "CASE" request
-      | status |  |
-    Then Status response of request should be "CREATED"
-
-  @UseDeleteCase
-  Scenario: Case can be created with empty data
-    Given I build "POST" request
-    When I execute create "CASE" request
-      | status | " " |
-    Then Status response of request should be "CREATED"
-
-  @UseDeleteCase
-  Scenario: Case can be created with different letters and characters data
-    Given I build "POST" request
-    When I execute create "CASE" request
-      | status | Some created %$ Status $% |
-    Then Status response of request should be "CREATED"
-
-  @UseDeleteCase
-  Scenario: Case can be created with different letters and characters
-  with blank spaces before data
-    Given I build "POST" request
-    When I execute create "CASE" request
-      | status | "        Some created %$ Status $%" |
-    Then Status response of request should be "CREATED"
-
-  @UseCreatedCase
-  Scenario: Case can be updated with null data
-    Given I build "PATCH" request
-    When I execute update "CASE_ID" request
-      | status |  |
-    Then Status response of request should be "NO_CONTENT"
-
-  @UseCreatedCase
-  Scenario: Case can be updated with empty data
-    Given I build "PATCH" request
-    When I execute update "CASE_ID" request
-      | status | " " |
-    Then Status response of request should be "NO_CONTENT"
-
-  @UseCreatedCase
-  Scenario: Case can be updated with different letters and characters data
-    Given I build "PATCH" request
-    When I execute update "CASE_ID" request
-      | status | Some created %$ Status $% |
-    Then Status response of request should be "NO_CONTENT"
-
-  @UseCreatedCase
-  Scenario: Case can be updated with different letters and characters
-  with blank spaces before data
-    Given I build "PATCH" request
-    When I execute update "CASE_ID" request
-      | status | "        Some created %$ Status $%" |
-    Then Status response of request should be "NO_CONTENT"
-
-  @CantUpdatedWithEmptyId
-  Scenario: Case can't be updated with empty Id
-    Given I build "PATCH" request
-    When I execute update "CASE_ID" request with specific id " "
-      | status | " " |
-    Then Status response of request should be "NOT_FOUND"
-
-  @CantUpdatedWithNullId
-  Scenario: Case can't be updated with null Id
-    Given I build "PATCH" request
-    When I execute update "CASE_ID" request with specific id ""
-      | status | " " |
-    Then Status response of request should be "NOT_ALLOWED"
-
-  @CantUpdatedWithWrongId
-  Scenario: Case can't be updated with empty Id
-    Given I build "PATCH" request
-    When I execute update "CASE_ID" request with specific id "348934598"
-      | status | " " |
-    Then Status response of request should be "NOT_FOUND"
-
-  @CantUpdatedWithCorrectIdWithBlankSpaceBefore
-  Scenario: Case can't be updated with empty Id
-    Given I build "PATCH" request
-    When I execute update "CASE_ID" request with specific id "  5005e000000xr4MAAQ"
-      | status | " " |
-    Then Status response of request should be "NOT_FOUND"
+  #@UseCreatedCase
+  #Scenario: Attribute response body is kind Case for A Case Created
+  #  Given I build "GET" request
+  #  When I execute "CASE_ID" request with param
+  #  Then The Case response body kind of the attribute is the same as the wait and request must be "OK"
