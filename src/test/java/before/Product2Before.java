@@ -46,7 +46,7 @@ public class Product2Before extends SuitTestBefore {
     public void afterDeleteProduct2() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.PRODUCT2_ID)
-                .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
+                .addPathParam("PRODUCT2_ID", apiResponse.getBody(Response.class).getId());
 
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -58,7 +58,7 @@ public class Product2Before extends SuitTestBefore {
     public void JustDeleteProduct2() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.PRODUCT2_ID)
-                .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
+                .addPathParam("PRODUCT2_ID", apiResponse.getBody(Response.class).getId());
 
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);

@@ -28,7 +28,7 @@ public class CampaignTest extends BeforeCampaign {
     @Test
     public void shouldReturnNotFoundForUpdateWithInvalidCampaignID() {
         apiRequest.setEndpoint(ApiEndPoints.CAMPAIGN_ID);
-        apiRequest.addPathParam("campaignId", "7015e000000cngKAAQ");
+        apiRequest.addPathParam("CAMPAIGN_ID", "7015e000000cngKAAQ");
         apiRequest.setBody("{\"Name\":\"UpdatedName\"}");
         apiRequest.setMethod(ApiMethod.PATCH);
         ApiResponse apiResponse = new ApiResponse();
@@ -41,7 +41,7 @@ public class CampaignTest extends BeforeCampaign {
     @Test
     public void shouldReturnNotFoundForGetWithInvalidCampaignID() {
         apiRequest.setEndpoint(ApiEndPoints.CAMPAIGN_ID);
-        apiRequest.addPathParam("campaignId", "7015e000000cngKAAQ");
+        apiRequest.addPathParam("CAMPAIGN_ID", "7015e000000cngKAAQ");
         apiRequest.setMethod(ApiMethod.GET);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -53,7 +53,7 @@ public class CampaignTest extends BeforeCampaign {
     @Test
     public void shouldReturnNotFoundForDeleteWithInvalidCampaignID() {
         apiRequest.setEndpoint(ApiEndPoints.CAMPAIGN_ID);
-        apiRequest.addPathParam("campaignId", "7015e000000cngKAAQ");
+        apiRequest.addPathParam("CAMPAIGN_ID", "7015e000000cngKAAQ");
         apiRequest.setMethod(ApiMethod.DELETE);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);

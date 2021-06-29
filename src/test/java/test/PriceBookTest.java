@@ -28,7 +28,7 @@ public class PriceBookTest extends BeforePriceBook {
     @Test
     public void shouldReturnBadForUpdateWithInvalidPriceBookID() {
         apiRequest.setEndpoint(ApiEndPoints.PRICE_BOOK_ID);
-        apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
+        apiRequest.addPathParam("PRICE_BOOK_ID", "01s5e000007oCh5AAE");
         apiRequest.setBody("{\"Name\":\"UpdatedName\"}");
         apiRequest.setMethod(ApiMethod.PATCH);
         apiResponse = new ApiResponse();
@@ -41,7 +41,7 @@ public class PriceBookTest extends BeforePriceBook {
     @Test
     public void shouldReturnNotFoundForGetWithInvalidPriceBookID() {
         apiRequest.setEndpoint(ApiEndPoints.PRICE_BOOK_ID);
-        apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
+        apiRequest.addPathParam("PRICE_BOOK_ID", "01s5e000007oCh5AAE");
         apiRequest.setMethod(ApiMethod.GET);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -53,7 +53,7 @@ public class PriceBookTest extends BeforePriceBook {
     @Test
     public void shouldReturnNotFoundForDeleteInvalidPriceBookID() {
         apiRequest.setEndpoint(ApiEndPoints.PRICE_BOOK_ID);
-        apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
+        apiRequest.addPathParam("PRICE_BOOK_ID", "01s5e000007oCh5AAE");
         apiRequest.setMethod(ApiMethod.DELETE);
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);

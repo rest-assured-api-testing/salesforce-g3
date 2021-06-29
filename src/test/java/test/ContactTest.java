@@ -46,7 +46,7 @@ public class ContactTest extends SuitTestBefore {
     public void shouldGetAContactById() {
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiEndPoints.CONTACT_ID)
-                .addPathParam("contactId", contactCreated);
+                .addPathParam("CONTACT_ID", contactCreated);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
@@ -57,7 +57,7 @@ public class ContactTest extends SuitTestBefore {
     public void shouldValidateSchemaOfContactById() {
         apiRequest.method(ApiMethod.GET)
                 .endpoint(ApiEndPoints.CONTACT_ID)
-                .addPathParam("contactId", contactCreated);
+                .addPathParam("CONTACT_ID", contactCreated);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
@@ -72,7 +72,7 @@ public class ContactTest extends SuitTestBefore {
         contact.setEmail("UpdatedEmail@gmail.com");
         apiRequest.method(ApiMethod.PATCH)
                 .endpoint(ApiEndPoints.CONTACT_ID)
-                .addPathParam("contactId", contactCreated)
+                .addPathParam("CONTACT_ID", contactCreated)
                 .setBody(new ObjectMapper().writeValueAsString(contact));
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -84,7 +84,7 @@ public class ContactTest extends SuitTestBefore {
     public void shouldDeleteAContactById() {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.CONTACT_ID)
-                .addPathParam("contactId", contactCreated);
+                .addPathParam("CONTACT_ID", contactCreated);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
