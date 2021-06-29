@@ -1,7 +1,20 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ *
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ *
+ * @author Jorge Rodrigo Cáceres Velasco
+ */
 package entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+/**
+ * This class builds a Campaign json body.
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Campaign {
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -73,275 +86,615 @@ public class Campaign {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String CampaignMemberRecordTypeId;
 
+    /**
+     * Gets the attributes.
+     *
+     * @return the attributes.
+     */
     public Attributes getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Attributes attributes) {
+    /**
+     * Sets the attributes.
+     *
+     * @param attributes to be set.
+     */
+    public void setAttributes(final Attributes attributes) {
         this.attributes = attributes;
     }
 
+    /**
+     * Gets the Id.
+     *
+     * @return the Id.
+     */
     public String getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    /**
+     * Sets the id.
+     *
+     * @param id to be set.
+     */
+    public void setId(final String id) {
         Id = id;
     }
 
+    /**
+     * Gets the IsDeleted.
+     *
+     * @return the IsDeleted.
+     */
     public String isDeleted() {
         return IsDeleted;
     }
 
-    public void setDeleted(String deleted) {
+    /**
+     * Sets the deleted.
+     *
+     * @param deleted to be set.
+     */
+    public void setDeleted(final String deleted) {
         IsDeleted = deleted;
     }
 
+    /**
+     * Gets the Name.
+     *
+     * @return the Name.
+     */
     public String getName() {
         return Name;
     }
 
-    public void setName(String name) {
+    /**
+     * Sets the name.
+     *
+     * @param name to be set.
+     */
+    public void setName(final String name) {
         Name = name;
     }
 
+    /**
+     * Gets the ParentId.
+     *
+     * @return the ParentId.
+     */
     public String getParentId() {
         return ParentId;
     }
 
-    public void setParentId(String parentId) {
+    /**
+     * Sets the parentId.
+     *
+     * @param parentId to be set.
+     */
+    public void setParentId(final String parentId) {
         ParentId = parentId;
     }
 
+    /**
+     * Gets the Type.
+     *
+     * @return the Type.
+     */
     public String getType() {
         return Type;
     }
 
-    public void setType(String type) {
+    /**
+     * Sets the type.
+     *
+     * @param type to be set.
+     */
+    public void setType(final String type) {
         Type = type;
     }
 
+    /**
+     * Gets the Status.
+     *
+     * @return the Status.
+     */
     public String getStatus() {
         return Status;
     }
 
-    public void setStatus(String status) {
+    /**
+     * Sets the status.
+     *
+     * @param status to be set.
+     */
+    public void setStatus(final String status) {
         Status = status;
     }
 
+    /**
+     * Gets the StartDate.
+     *
+     * @return the StartDate.
+     */
     public String getStartDate() {
         return StartDate;
     }
 
-    public void setStartDate(String startDate) {
+    /**
+     * Sets the startDate.
+     *
+     * @param startDate to be set.
+     */
+    public void setStartDate(final String startDate) {
         StartDate = startDate;
     }
 
+    /**
+     * Gets the EndDate.
+     *
+     * @return the EndDate.
+     */
     public String getEndDate() {
         return EndDate;
     }
 
-    public void setEndDate(String endDate) {
+    /**
+     * Sets the endDate.
+     *
+     * @param endDate to be set.
+     */
+    public void setEndDate(final String endDate) {
         EndDate = endDate;
     }
 
+    /**
+     * Gets the ExpectedRevenue.
+     *
+     * @return the ExpectedRevenue.
+     */
     public String getExpectedRevenue() {
         return ExpectedRevenue;
     }
 
-    public void setExpectedRevenue(String expectedRevenue) {
+    /**
+     * Sets the expectedRevenue.
+     *
+     * @param expectedRevenue to be set.
+     */
+    public void setExpectedRevenue(final String expectedRevenue) {
         ExpectedRevenue = expectedRevenue;
     }
 
+    /**
+     * Gets the BudgetedCost.
+     *
+     * @return the BudgetedCost.
+     */
     public String getBudgetedCost() {
         return BudgetedCost;
     }
 
-    public void setBudgetedCost(String budgetedCost) {
+    /**
+     * Sets the budgetedCost.
+     *
+     * @param budgetedCost to be set.
+     */
+    public void setBudgetedCost(final String budgetedCost) {
         BudgetedCost = budgetedCost;
     }
 
+    /**
+     * Gets the ActualCost.
+     *
+     * @return the ActualCost.
+     */
     public String getActualCost() {
         return ActualCost;
     }
 
-    public void setActualCost(String actualCost) {
+    /**
+     * Sets the actualCost.
+     *
+     * @param actualCost to be set.
+     */
+    public void setActualCost(final String actualCost) {
         ActualCost = actualCost;
     }
 
+    /**
+     * Gets the ExpectedResponse.
+     *
+     * @return the ExpectedResponse.
+     */
     public String getExpectedResponse() {
         return ExpectedResponse;
     }
 
-    public void setExpectedResponse(String expectedResponse) {
+    /**
+     * Sets the expectedResponse.
+     *
+     * @param expectedResponse to be set.
+     */
+    public void setExpectedResponse(final String expectedResponse) {
         ExpectedResponse = expectedResponse;
     }
 
+    /**
+     * Gets the NumberSent.
+     *
+     * @return the NumberSent.
+     */
     public String getNumberSent() {
         return NumberSent;
     }
 
-    public void setNumberSent(String numberSent) {
+    /**
+     * Sets the numberSent.
+     *
+     * @param numberSent to be set.
+     */
+    public void setNumberSent(final String numberSent) {
         NumberSent = numberSent;
     }
 
+    /**
+     * Gets the IsActive.
+     *
+     * @return the IsActive.
+     */
     public String isActive() {
         return IsActive;
     }
 
-    public void setActive(String active) {
+    /**
+     * Sets the active.
+     *
+     * @param active to be set.
+     */
+    public void setActive(final String active) {
         IsActive = active;
     }
 
+    /**
+     * Gets the Description.
+     *
+     * @return the Description.
+     */
     public String getDescription() {
         return Description;
     }
 
-    public void setDescription(String description) {
+    /**
+     * Sets the description.
+     *
+     * @param description to be set.
+     */
+    public void setDescription(final String description) {
         Description = description;
     }
 
+    /**
+     * Gets the NumberOfLeads.
+     *
+     * @return the NumberOfLeads.
+     */
     public String getNumberOfLeads() {
         return NumberOfLeads;
     }
 
-    public void setNumberOfLeads(String numberOfLeads) {
+    /**
+     * Sets the numberOfLeads.
+     *
+     * @param numberOfLeads to be set.
+     */
+    public void setNumberOfLeads(final String numberOfLeads) {
         NumberOfLeads = numberOfLeads;
     }
 
+    /**
+     * Gets the NumberOfConvertedLeads.
+     *
+     * @return the NumberOfConvertedLeads.
+     */
     public String getNumberOfConvertedLeads() {
         return NumberOfConvertedLeads;
     }
 
-    public void setNumberOfConvertedLeads(String numberOfConvertedLeads) {
+    /**
+     * Sets the numberOfConvertedLeads.
+     *
+     * @param numberOfConvertedLeads to be set.
+     */
+    public void setNumberOfConvertedLeads(final String numberOfConvertedLeads) {
         NumberOfConvertedLeads = numberOfConvertedLeads;
     }
 
+    /**
+     * Gets the NumberOfContacts.
+     *
+     * @return the NumberOfContacts.
+     */
     public String getNumberOfContacts() {
         return NumberOfContacts;
     }
 
-    public void setNumberOfContacts(String numberOfContacts) {
+    /**
+     * Sets the numberOfContacts.
+     *
+     * @param numberOfContacts to be set.
+     */
+    public void setNumberOfContacts(final String numberOfContacts) {
         NumberOfContacts = numberOfContacts;
     }
 
+    /**
+     * Gets the NumberOfResponses.
+     *
+     * @return the NumberOfResponses.
+     */
     public String getNumberOfResponses() {
         return NumberOfResponses;
     }
 
-    public void setNumberOfResponses(String numberOfResponses) {
+    /**
+     * Sets the numberOfResponses.
+     *
+     * @param numberOfResponses to be set.
+     */
+    public void setNumberOfResponses(final String numberOfResponses) {
         NumberOfResponses = numberOfResponses;
     }
 
+    /**
+     * Gets the NumberOfOpportunities.
+     *
+     * @return the NumberOfOpportunities.
+     */
     public String getNumberOfOpportunities() {
         return NumberOfOpportunities;
     }
 
-    public void setNumberOfOpportunities(String numberOfOpportunities) {
+    /**
+     * Sets the numberOfOpportunities.
+     *
+     * @param numberOfOpportunities to be set.
+     */
+    public void setNumberOfOpportunities(final String numberOfOpportunities) {
         NumberOfOpportunities = numberOfOpportunities;
     }
 
+    /**
+     * Gets the NumberOfWonOpportunities.
+     *
+     * @return the NumberOfWonOpportunities.
+     */
     public String getNumberOfWonOpportunities() {
         return NumberOfWonOpportunities;
     }
 
-    public void setNumberOfWonOpportunities(String numberOfWonOpportunities) {
+    /**
+     * Sets the numberOfWonOpportunities.
+     *
+     * @param numberOfWonOpportunities to be set.
+     */
+    public void setNumberOfWonOpportunities(final String numberOfWonOpportunities) {
         NumberOfWonOpportunities = numberOfWonOpportunities;
     }
 
+    /**
+     * Gets the AmountAllOpportunities.
+     *
+     * @return the AmountAllOpportunities.
+     */
     public String getAmountAllOpportunities() {
         return AmountAllOpportunities;
     }
 
-    public void setAmountAllOpportunities(String amountAllOpportunities) {
+    /**
+     * Sets the amountAllOpportunities.
+     *
+     * @param amountAllOpportunities to be set.
+     */
+    public void setAmountAllOpportunities(final String amountAllOpportunities) {
         AmountAllOpportunities = amountAllOpportunities;
     }
 
+    /**
+     * Gets the AmountWonOpportunities.
+     *
+     * @return the AmountWonOpportunities.
+     */
     public String getAmountWonOpportunities() {
         return AmountWonOpportunities;
     }
 
-    public void setAmountWonOpportunities(String amountWonOpportunities) {
+    /**
+     * Sets the amountWonOpportunities.
+     *
+     * @param amountWonOpportunities to be set.
+     */
+    public void setAmountWonOpportunities(final String amountWonOpportunities) {
         AmountWonOpportunities = amountWonOpportunities;
     }
 
+    /**
+     * Gets the OwnerId.
+     *
+     * @return the OwnerId.
+     */
     public String getOwnerId() {
         return OwnerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    /**
+     * Sets the ownerId.
+     *
+     * @param ownerId to be set.
+     */
+    public void setOwnerId(final String ownerId) {
         OwnerId = ownerId;
     }
 
+    /**
+     * Gets the CreatedDate.
+     *
+     * @return the CreatedDate.
+     */
     public String getCreatedDate() {
         return CreatedDate;
     }
 
-    public void setCreatedDate(String createdDate) {
+    /**
+     * Sets the createdDate.
+     *
+     * @param createdDate to be set.
+     */
+    public void setCreatedDate(final String createdDate) {
         CreatedDate = createdDate;
     }
 
+    /**
+     * Gets the CreatedById.
+     *
+     * @return the CreatedById.
+     */
     public String getCreatedById() {
         return CreatedById;
     }
 
-    public void setCreatedById(String createdById) {
+    /**
+     * Sets the createdById.
+     *
+     * @param createdById to be set.
+     */
+    public void setCreatedById(final String createdById) {
         CreatedById = createdById;
     }
 
+    /**
+     * Gets the LastModifiedDate.
+     *
+     * @return the LastModifiedDate.
+     */
     public String getLastModifiedDate() {
         return LastModifiedDate;
     }
 
-    public void setLastModifiedDate(String lastModifiedDate) {
+    /**
+     * Sets the lastModifiedDate.
+     *
+     * @param lastModifiedDate to be set.
+     */
+    public void setLastModifiedDate(final String lastModifiedDate) {
         LastModifiedDate = lastModifiedDate;
     }
 
+    /**
+     * Gets the LastModifiedById.
+     *
+     * @return the LastModifiedById.
+     */
     public String getLastModifiedById() {
         return LastModifiedById;
     }
 
-    public void setLastModifiedById(String lastModifiedById) {
+    /**
+     * Sets the lastModifiedById.
+     *
+     * @param lastModifiedById to be set.
+     */
+    public void setLastModifiedById(final String lastModifiedById) {
         LastModifiedById = lastModifiedById;
     }
 
+    /**
+     * Gets the SystemModstamp.
+     *
+     * @return the SystemModstamp.
+     */
     public String getSystemModstamp() {
         return SystemModstamp;
     }
 
-    public void setSystemModstamp(String systemModstamp) {
+    /**
+     * Sets the systemModstamp.
+     *
+     * @param systemModstamp to be set.
+     */
+    public void setSystemModstamp(final String systemModstamp) {
         SystemModstamp = systemModstamp;
     }
 
+    /**
+     * Gets the LastActivityDate.
+     *
+     * @return the LastActivityDate.
+     */
     public String getLastActivityDate() {
         return LastActivityDate;
     }
 
-    public void setLastActivityDate(String lastActivityDate) {
+    /**
+     * Sets the lastActivityDate.
+     *
+     * @param lastActivityDate to be set.
+     */
+    public void setLastActivityDate(final String lastActivityDate) {
         LastActivityDate = lastActivityDate;
     }
 
+    /**
+     * Gets the LastViewedDate.
+     *
+     * @return the LastViewedDate.
+     */
     public String getLastViewedDate() {
         return LastViewedDate;
     }
 
-    public void setLastViewedDate(String lastViewedDate) {
+    /**
+     * Sets the lastViewedDate.
+     *
+     * @param lastViewedDate to be set.
+     */
+    public void setLastViewedDate(final String lastViewedDate) {
         LastViewedDate = lastViewedDate;
     }
 
+    /**
+     * Gets the LastReferencedDate.
+     *
+     * @return the LastReferencedDate.
+     */
     public String getLastReferencedDate() {
         return LastReferencedDate;
     }
 
-    public void setLastReferencedDate(String lastReferencedDate) {
+    /**
+     * Sets the lastReferencedDate.
+     *
+     * @param lastReferencedDate to be set.
+     */
+    public void setLastReferencedDate(final String lastReferencedDate) {
         LastReferencedDate = lastReferencedDate;
     }
 
+    /**
+     * Gets the CampaignMemberRecordTypeId.
+     *
+     * @return the CampaignMemberRecordTypeId.
+     */
     public String getCampaignMemberRecordTypeId() {
         return CampaignMemberRecordTypeId;
     }
 
-    public void setCampaignMemberRecordTypeId(String campaignMemberRecordTypeId) {
+    /**
+     * Sets the campaignMemberRecordTypeId.
+     *
+     * @param campaignMemberRecordTypeId to be set.
+     */
+    public void setCampaignMemberRecordTypeId(final String campaignMemberRecordTypeId) {
         CampaignMemberRecordTypeId = campaignMemberRecordTypeId;
     }
 }
