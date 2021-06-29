@@ -1,6 +1,9 @@
 package rest.salesforce.org.hooks;
 
-import api.*;
+import api.ApiRequest;
+import api.ApiResponse;
+import api.ApiManager;
+import api.ApiMethod;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Product2;
@@ -22,20 +25,10 @@ public class Product2Hooks {
         this.apiResponse = apiResponse;
         this.response = response;
     }
-    @Before(value = "@UpdateProduct2")
+
+    @Before(value = "@UseCreatedProduct2 or @CreateProduct2")
     public void createProduct2() throws JsonProcessingException {
         LOGGER.info("------ Create a product ------");
-        Product2 newProduct = new Product2();
-        newProduct.setName("New Product2");
-        apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiEndPoints.PRODUCT2)
-                .body(new ObjectMapper().writeValueAsString(newProduct));
-        ApiManager.execute(apiRequest, apiResponse);
-        response.setId(apiResponse.getBody(Response.class).getId());
-    }
-    @Before(value = "@CreateDeleteProduct2 or @CreateProduct2")
-    public void create() throws JsonProcessingException {
-        LOGGER.info("--> Before hook Create a product2");
         Product2 product2 = new Product2();
         product2.setName("Before create product2 cucumber");
         apiRequest.method(ApiMethod.POST)
@@ -43,11 +36,11 @@ public class Product2Hooks {
                 .body(new ObjectMapper().writeValueAsString(product2));
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
-
     }
-    @After(value = "@UpdateProduct2")
+
+    @After(value = "@UseCreatedProduct2 or @DeleteProduct2")
     public void deleteProduct2() {
-        LOGGER.info("------ After delete created product ------");
+        LOGGER.info("------ Delete a product ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.PRODUCT2_ID)

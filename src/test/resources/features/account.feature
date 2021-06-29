@@ -7,123 +7,121 @@ Feature: Request for account feature
     When I execute "ACCOUNT" request
     Then Status response of request should be "OK"
 
-  @CreateDeleteAccount
-  Scenario: Get a Account
-    Given I build "GET" request
-    When I execute for "ACCOUNT_ID" request with param
-    Then Status response of request should be "OK"
-
   @DeleteAccount
-  Scenario: Create a Account
+  Scenario: Validate Schema response of Account creation
     Given I build "POST" request
-    When I execute for "ACCOUNT" request with params
-      | name | account cucumber |
-    Then Status response of request should be "CREATED"
-
-  @CreateAccount
-  Scenario: Delete a Account
-    Given I build "DELETE" request
-    When I execute for "ACCOUNT_ID" request with param
-    Then Status response of request should be "NO_CONTENT"
-
-  @CreateDeleteAccount
-  Scenario: Update a Account
-    Given I build "PATCH" request
-    When I execute for "ACCOUNT_ID" request with updated name
-      | name | account cucumber updated |
-    Then Status response of request should be "CREATED"
-
-#    CREATE
-  @DeleteAccount
-  Scenario: Validate Schema of A Account
-    Given I build "POST" request
-    When I execute for "ACCOUNT" request with params
+    When I execute create "ACCOUNT" request
       | name | account cucumber |
     Then "response" schema status response of request should be "CREATED"
 
-  @DeleteAccount
-  Scenario: Response body to Success is true for A Account
-    Given I build "POST" request
-    When I execute for "ACCOUNT" request with params
-      | name | account cucumber |
-    Then Response body status request should be "CREATED"
-
-  @DeleteAccount
-  Scenario: Accept special characters A Account
-    Given I build "POST" request
-    When I execute for "ACCOUNT" request with params
-      | name | "@!"#$%(=)/)(/()/&&/%"$%!"$!%")" |
-    Then Status response of request should be "CREATED"
-
-  @DeleteAccount
-  Scenario: Create a Account with various params
-    Given I build "POST" request
-    When I execute for "ACCOUNT" request with params
-      | name  | account cucumber |
-      | phone | 123456789        |
-    Then Status response of request should be "CREATED"
-
-  @DeleteAccount
-  Scenario: Create a Account with letters in attribute phone
-    Given I build "POST" request
-    When I execute for "ACCOUNT" request with params
-      | name  | account cucumber      |
-      | phone | words and not numbers |
-    Then Status response of request should be "CREATED"
-
-#    PATCH
-  @CreateDeleteAccount
-  Scenario: Validate Schema of A Account Updated
-    Given I build "PATCH" request
-    When I execute for "ACCOUNT_ID" request with updated name
-      | name | account cucumber updated |
-    Then "response" schema status response of request should be "CREATED"
-
-  @CreateDeleteAccount
-  Scenario: Response body to Success is true for A Account Updated
-    Given I build "PATCH" request
-    When I execute for "ACCOUNT_ID" request with updated name
-      | name | account cucumber updated |
-    Then Response body status request should be "CREATED"
-
-  @CreateDeleteAccount
-  Scenario: Accept special characters A Account Updated
-    Given I build "PATCH" request
-    When I execute for "ACCOUNT_ID" request with updated name
-      | name | "@!"#$%(=)/)(/()/&&/%"$%!"$!%") updated" |
-    Then Status response of request should be "CREATED"
-
-  @CreateDeleteAccount
-  Scenario: Update a Account with various params
-    Given I build "PATCH" request
-    When I execute for "ACCOUNT_ID" request with updated name
-      | name  | account cucumber updated |
-      | phone | 123456789                |
-    Then Status response of request should be "CREATED"
-
-  @CreateDeleteAccount
-  Scenario: Update a Account with letters in attribute phone
-    Given I build "PATCH" request
-    When I execute for "ACCOUNT_ID" request with updated name
-      | name  | account cucumber updated |
-      | phone | words and not numbers    |
-    Then Status response of request should be "CREATED"
-
-#    GET
-  @CreateDeleteAccount
+  @UseCreatedAccount
   Scenario: Validate Schema of A Account Obtained
     Given I build "GET" request
-    When I execute for "ACCOUNT_ID" request with param
+    When I execute "ACCOUNT_ID" request with param
     Then "account" schema status response of request should be "OK"
 
-  @CreateDeleteAccount
+  @UseCreatedAccount
   Scenario: Response body is the same name for A Account Created
     Given I build "GET" request
-    When I execute for "ACCOUNT_ID" request with param
+    When I execute "ACCOUNT_ID" request with param
     Then The account response body name of the attribute is the same as the wait and request must be "OK"
 
-  @CreateDeleteAccount
+  @UseCreatedAccount
+  Scenario: Get an Account
+    Given I build "GET" request
+    When I execute "ACCOUNT_ID" request with param
+    Then Status response of request should be "OK"
+
+  @CantShowAccountWithWrongId
+  Scenario Outline: Can't get an account with wrong id
+    Given I build "GET" request
+    When I execute "ACCOUNT_ID" with <id>
+    Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id              |
+      | " "             |
+      | " 98494xMwe"    |
+      | "98494xMwe"     |
+
+  @DeleteAccount
+  Scenario Outline: An account can be created with name parameter only
+    Given I build "POST" request
+    When I execute create "ACCOUNT" request
+      | name | <name> |
+    Then Status response of request should be "CREATED"
+    Examples:
+      | name                    |
+      | "account cucumber"      |
+      | " "                     |
+      | " account cucumber"     |
+      | "@!"#%(=/%!"$!%")"      |
+      | "numbers 8975893"       |
+
+  @DeleteAccount
+  Scenario Outline: Account can be create with name and phone,
+  phone can have characters, numbers, letters
+    Given I build "POST" request
+    When I execute create "ACCOUNT" request
+      | name  | <name>  |
+      | phone | <phone> |
+    Then Status response of request should be "CREATED"
+    Examples:
+      | name                    | phone                 |
+      | "account cucumber"      | 7688987               |
+      | "account cucumber"      | +591 798898768 BO     |
+      | " "                     | " "                   |
+      | " account cucumber"     | "phone with letters"  |
+      | "@!"#%(=/%!"$!%")"      | "chars)&/$##%&%/"     |
+      | "account cucumber"      |                       |
+
+  @UseCreatedAccount
+  Scenario Outline: An Account can be updated with one parameter
+    Given I build "PATCH" request
+    When I update "ACCOUNT_ID" request
+      | name | <name> |
+    Then Status response of request should be <status>
+    Examples:
+      | name                  | status        |
+      | update with letters   | "NO_CONTENT"  |
+      | update numbers 84758  | "NO_CONTENT"  |
+      | update chars %/#%&%&  | "NO_CONTENT"  |
+      | " "                   | "NO_CONTENT"  |
+      |                       | "BAD_REQUEST" |
+
+  @UseCreatedAccount
+  Scenario Outline: An Account can be updated with more parameters
+    Given I build "PATCH" request
+    When I execute update "ACCOUNT_ID" request
+      | name  | <name>  |
+      | phone | <phone> |
+    Then Status response of request should be "NO_CONTENT"
+    Examples: Data with two parameters
+      | name                      | phone             |
+      | @!"#$%(=)%!"!%") updated  |                   |
+      | account cucumber updated  | 123456789         |
+      | account cucumber updated  | + 837 84737282848 |
+      | account cucumber updated  | + 837 8473728 UR  |
+      | account cucumber updated  | updated           |
+      | account cucumber updated  | " "               |
+
+  @UseCreatedAccount
+  Scenario: Delete an Account
+    Given I build "DELETE" request
+    When I execute "ACCOUNT_ID" request with param
+    Then Status response of request should be "NO_CONTENT"
+
+  Scenario Outline: Delete an Account
+    Given I build "DELETE" request
+    When I execute "ACCOUNT_ID" with <wrongId>
+    Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | wrongId                |
+      | "  "                   |
+      | " 95849586cxMnd"       |
+      | "95849586cxMnd"        |
+
+  @UseCreatedAccount
   Scenario: Attribute response body is kind account for A Account Created
     Given I build "GET" request
-    When I execute for "ACCOUNT_ID" request with param
+    When I execute "ACCOUNT_ID" request with param
     Then The account response body kind of the attribute is the same as the wait and request must be "OK"

@@ -34,13 +34,13 @@ public class UpdateSteps {
         apiResponse.getResponse().then().log().body();
     }
 
-    @When("I execute update {string} request with specific id {string}")
-    public void iExecuteRequestWithBodyAndParam(String endpoint, String specificID, DataTable jsonData) throws JsonProcessingException {
+    @When("I execute update {string} request with specific {string}")
+    public void iExecuteRequestWithBodyAndParam(String endpoint, String specificID) {
         LOGGER.info("------ Execute update with body ------");
-        String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
+        //String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         apiRequest.endpoint(ApiEndPoints.valueOf(endpoint))
-                .addPathParam(endpoint, specificID)
-                .body(body);
+                .addPathParam(endpoint, specificID);
+                //.body(body);
         ApiManager.execute(apiRequest, apiResponse);
     }
 }
