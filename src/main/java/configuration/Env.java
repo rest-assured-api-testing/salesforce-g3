@@ -57,7 +57,8 @@ public class Env {
             System.out.println("1");
             return CONFIG.getProperty(variables);
         }
-        System.out.println("2");
+        System.out.println("environment");
+        System.out.println(System.getenv(variables));
         return System.getenv(variables);
     }
 }
