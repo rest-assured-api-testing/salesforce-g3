@@ -1,48 +1,70 @@
 Feature: Scenario test for Contact feature
   Tests Scenarios for Contact
 
-  @GetAllContacts
-  Scenario: Get all the Contacts created
+  @ShowAllContacts
+  Scenario: Get all Contacts
     Given I build "GET" request
     When I execute "CONTACT" request
     Then Status response of request should be "OK"
 
-  @UseCreatedContact
-  Scenario: Get a specific contact by Id
-    Given I build "GET" request
-    When I execute "CONTACT_ID" with correct request
-    Then Status response of request should be "OK"
-
-  @UseDeleteContact
-  Scenario: Contact can be created with letters and characters
+  @DeleteContact
+  Scenario: Validate Schema of a Contact
     Given I build "POST" request
     When I execute create "CONTACT" request
-      | lastname | "#$%/ New lastname #$%/" |
-    Then Status response of request should be "CREATED"
+      | lastname | Ramirez Perez |
+    Then "response" schema status response of request should be "CREATED"
+
+  #@UseCreatedContact
+  #Scenario: Validate Schema of specific Contact
+  #  Given I build "GET" request
+  #  When I execute "CONTACT_ID" request with param
+  #  Then "contact" schema status response of request should be "OK"
+
+  #@UseCreatedCampaign
+  #Scenario: Response body is the same name for a created Case
+  #  Given I build "GET" request
+  #  When I execute "CAMPAIGN_ID" request with param
+  #  Then The campaign response body name of the attribute is the same as the wait and request must be "OK"
+
+  @DeleteContact
+  Scenario: Response body to Success is true for a specific Contact
+    Given I build "POST" request
+    When I execute create "CONTACT" request
+      | lastname | New contact created |
+    Then Response body status request should be "CREATED"
 
   @UseCreatedContact
-  Scenario: Contact can be deleted
-    Given I build "DELETE" request
-    When I execute delete "CONTACT_ID" request
-    Then Status response of request should be "NO_CONTENT"
 
-  @CantGetContactWithCorrectIdButBlankSpaceBefore
-  Scenario: Get a specific contact with blank spaces before id
+  Scenario: Get a specific Contact
     Given I build "GET" request
-    When I execute "CONTACT_ID" with wrong id " 5005e000000xr4MAAQ" request
-    Then Status response of request should be "NOT_FOUND"
+    When I execute "CONTACT_ID" request with param
+    Then Status response of request should be "OK"
 
-  @CantGetContactWithWrongId
-  Scenario: Can't get Contact with wrong Id
+  @CantShowAContactWithWrongId
+  Scenario Outline: Can't get a contact with wrong or empty id
     Given I build "GET" request
-    When I execute "CONTACT_ID" with wrong id "9879987" request
+    When I execute "CONTACT_ID" with <id>
     Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id                    |
+      | "   "                 |
+      | " 9384Xcdn34fmxV34534"|
+      | "9384Xcdn34fmxV34534" |
 
-  @CantGetContactWithEmptyId
-  Scenario: Can't get Contact with empty id
-    Given I build "GET" request
-    When I execute "CONTACT_ID" with wrong id " " request
-    Then Status response of request should be "NOT_FOUND"
+  @DeleteContact
+  Scenario Outline: A Contact can be created with lastname parameter only
+    Given I build "POST" request
+    When I execute create "CONTACT" request
+      | lastname | <lastname> |
+    Then Status response of request should be "CREATED"
+    Examples:
+      | lastname                  |
+      | Ramírez Huaylla           |
+      | Some lastname, text only  |
+      | 1324$%¡!#4                |
+      | ""                        |
+      | "  "                      |
+      | "  _"                     |
 
   @UseCreatedContact
   Scenario: Contact can't be created with null data
@@ -51,82 +73,115 @@ Feature: Scenario test for Contact feature
       | lastname |  |
     Then Status response of request should be "NOT_ALLOWED"
 
-  @UseDeleteContact
-  Scenario: Contact can be created with empty data
+  @DeleteContact
+  Scenario Outline: A Contact can be created with default and personal salutation
     Given I build "POST" request
     When I execute create "CONTACT" request
-      | lastname | " " |
+      | lastname      | <lastname>    |
+      | salutation    | <salutation>  |
     Then Status response of request should be "CREATED"
+    Examples:
+      | lastname                | salutation|
+      | Ortuño                  | Mr.       |
+      | Ortuño                  | Ms.       |
+      | Ortuño                  | Dr.       |
+      | Ortuño                  | Greetings |
+      | Ortuño                  | Welcome#32|
+      | Ortuño                  | ""        |
+      | Ortuño                  | " "       |
 
-
-  @UseDeleteContact
-  Scenario: Contact can be created with different letters and characters data
+  @DeleteContact
+  Scenario Outline: A Contact can be created with more parameters
     Given I build "POST" request
     When I execute create "CONTACT" request
-      | lastname | Some created %$ lastname $% |
+      | lastname    | <lastname>    |
+      | email       | <email>       |
+      | salutation  | <salutation>  |
     Then Status response of request should be "CREATED"
+    Examples:
+      | lastname                | email                   | salutation  |
+      | Ramírez Peñaranda       | some.email@gmail.com    | Mr.         |
+      | Ramírez Peñaranda       | $email%trash!%          | Mr.         |
+      | Ramírez Peñaranda       |                         | Mr.         |
+      | Ramírez Peñaranda       | " "                     | Mr.         |
+      | Ramírez Peñaranda       | ""                      | Mr.         |
 
-  @UseDeleteContact
-  Scenario: Contact can be created with different letters and characters
-  with blank spaces before data
+  @DeleteContact
+  Scenario Outline: A Contact can be created with more parameters
     Given I build "POST" request
     When I execute create "CONTACT" request
-      | lastname | "        Some created %$ Status $%" |
+      | lastname    | <lastname>    |
+      | HomePhone   | <HomePhone>   |
+      | salutation  | <salutation>  |
     Then Status response of request should be "CREATED"
+    Examples:
+      | lastname                | HomePhone               | salutation  |
+      | Ramírez Peñaranda       | 463757382               | Mr.         |
+      | Ramírez Peñaranda       | +46358 4948BO           | Mr.         |
+      | Ramírez Peñaranda       |                         | Mr.         |
+      | Ramírez Peñaranda       | " "                     | Mr.         |
+      | Ramírez Peñaranda       | ""                      | Mr.         |
 
   @UseCreatedContact
-  Scenario: Contact can't be updated with null data
+  Scenario Outline: Contact can be updated only with lastname
     Given I build "PATCH" request
     When I execute update "CONTACT_ID" request
-      | lastname |  |
-    Then Status response of request should be "BAD_REQUEST"
+      | lastname | <lastname> |
+    Then Status response of request should be <status>
+    Examples:
+    Examples:
+      | lastname        | status        |
+      | Pérez Araneda   | "NO_CONTENT"  |
+      | Marƒrens        | "NO_CONTENT"  |
+      | #3 - Rogelio    | "NO_CONTENT"  |
+      | ""              | "NO_CONTENT"  |
+      | "  "            | "NO_CONTENT"  |
+      | "  _"           | "NO_CONTENT"  |
+      |                 | "BAD_REQUEST" |
 
   @UseCreatedContact
-  Scenario: Contact can be updated with empty data
+  Scenario Outline: Campaign can  be updated with more parameters
     Given I build "PATCH" request
     When I execute update "CONTACT_ID" request
-      | lastname | " " |
+      | homephone       | <homephone>      |
+      | salutation      | <salutation>      |
+    Then Status response of request should be "NO_CONTENT"
+    Examples:
+      | homephone       | salutation|
+      | +46358 4948BO   | MR.       |
+      | 463757382       | MS.       |
+      |                 | Regards   |
+      | " "             | Dr.       |
+      | ""              | Dr.       |
+
+  @CantUpdateAContactWithWrongId
+  Scenario Outline: Campaign can't be updated with wrong or empty id
+    Given I build "PATCH" request
+    When I execute update "CONTACT_ID" request with specific <id>
+    Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id                      |
+      | "Mv234498cvXvmsj435"    |
+      | " Mv23498cvXvmsj435"    |
+
+  @CreateContact
+  Scenario: Delete a Contact
+    Given I build "DELETE" request
+    When I execute "CONTACT_ID" request with param
     Then Status response of request should be "NO_CONTENT"
 
-  @UseCreatedContact
-  Scenario: Contact can be updated with different letters and characters data
-    Given I build "PATCH" request
-    When I execute update "CONTACT_ID" request
-      | lastname | Some created %$ Status $% |
-    Then Status response of request should be "NO_CONTENT"
-
-  @UseCreatedContact
-  Scenario: Contact can be updated with different letters and characters
-  with blank spaces before data
-    Given I build "PATCH" request
-    When I execute update "CONTACT_ID" request
-      | lastname | "        Some created %$ lastname $%" |
-    Then Status response of request should be "NO_CONTENT"
-
-  @CantUpdatedWithEmptyId
-  Scenario: Contact can't be updated with empty Id
-    Given I build "PATCH" request
-    When I execute update "CONTACT_ID" request with specific id " "
-      | lastname | " " |
+  @CantDeleteContactWithWrongId
+  Scenario Outline: Delete a Contact
+    Given I build "DELETE" request
+    When I execute "CONTACT_ID" with <id>
     Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id                    |
+      | " Mv234498cvXvmsj435" |
+      | "Mv234498cvXvmsj435"  |
 
-  @CantUpdatedWithNullId
-  Scenario: Contact can't be updated with null Id
-    Given I build "PATCH" request
-    When I execute update "CONTACT_ID" request with specific id ""
-      | lastname | " " |
-    Then Status response of request should be "NOT_ALLOWED"
-
-  @CantUpdatedWithWrongId
-  Scenario: Contact can't be updated with empty Id
-    Given I build "PATCH" request
-    When I execute update "CONTACT_ID" request with specific id "348934598"
-      | lastname | " " |
-    Then Status response of request should be "NOT_FOUND"
-
-  @CantUpdatedWithCorrectIdWithBlankSpaceBefore
-  Scenario: Contact can't be updated with empty Id
-    Given I build "PATCH" request
-    When I execute update "CONTACT_ID" request with specific id "  5005e000000xr4MAAQ"
-      | lastname | " " |
-    Then Status response of request should be "NOT_FOUND"
+  #@UseCreatedCampaign
+  #Scenario: Attribute response body is kind campaign for A campaign Created
+  #  Given I build "GET" request
+  #  When I execute "CAMPAIGN_ID" request with param
+  #  Then The campaign response body kind of the attribute is the same as the wait and request must be "OK"
