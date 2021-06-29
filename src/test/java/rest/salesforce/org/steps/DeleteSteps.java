@@ -1,6 +1,6 @@
 package rest.salesforce.org.steps;
 
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import api.ApiManager;
 import api.ApiRequest;
 import api.ApiResponse;
@@ -23,7 +23,7 @@ public class DeleteSteps {
     @When("I execute delete {string} request")
     public void iExecuteDeleteRequest(String endpoint) {
         LOGGER.info("------ Execute Delete an object ------");
-        apiRequest.endpoint(ApiFeature.valueOf(endpoint))
+        apiRequest.endpoint(ApiEndPoints.valueOf(endpoint))
                 .addPathParam(endpoint, response.getId());
         ApiManager.execute(apiRequest, apiResponse);
     }

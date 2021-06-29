@@ -4,6 +4,7 @@ import api.*;
 import entities.Response;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
+import salesforce.ApiEndPoints;
 
 public class CaseSteps {
     private final Logger LOGGER = Logger.getLogger(getClass());
@@ -20,7 +21,7 @@ public class CaseSteps {
     @When("I execute {string} with correct request")
     public void iExecuteRequestWithParam(String endpoint) {
         LOGGER.info("---------- Execute with specific ID ----------");
-        apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
+        apiRequest.setEndpoint(ApiEndPoints.valueOf(endpoint));
         apiRequest.addPathParam(endpoint, response.getId());
         ApiManager.execute(apiRequest, apiResponse);
     }
@@ -28,7 +29,7 @@ public class CaseSteps {
     @When("I execute {string} with wrong id {string} request")
     public void iExecuteRequestWithParam(String endpoint, String wrongId) {
         LOGGER.info("---------- Execute with specific ID ----------");
-        apiRequest.setEndpoint(ApiFeature.valueOf(endpoint));
+        apiRequest.setEndpoint(ApiEndPoints.valueOf(endpoint));
         apiRequest.addPathParam(endpoint, wrongId);
         ApiManager.execute(apiRequest, apiResponse);
     }

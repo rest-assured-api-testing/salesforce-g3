@@ -4,7 +4,7 @@ import api.ApiManager;
 import api.ApiMethod;
 import api.ApiResponse;
 import before.BeforePriceBook;
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import entities.CreatedObject;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 public class PriceBookTest extends BeforePriceBook {
     @Test
     public void createAPriceBook() {
-        apiRequest.setEndpoint(ApiFeature.PRICE_BOOK);
+        apiRequest.setEndpoint(ApiEndPoints.PRICE_BOOK);
         apiRequest.setBody("{\"Name\":\"Test pricebook4\"}");
         apiRequest.setMethod(ApiMethod.POST);
         ApiResponse apiResponse = new ApiResponse();
@@ -27,7 +27,7 @@ public class PriceBookTest extends BeforePriceBook {
 
     @Test
     public void shouldReturnBadForUpdateWithInvalidPriceBookID() {
-        apiRequest.setEndpoint(ApiFeature.PRICE_BOOK_ID);
+        apiRequest.setEndpoint(ApiEndPoints.PRICE_BOOK_ID);
         apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
         apiRequest.setBody("{\"Name\":\"UpdatedName\"}");
         apiRequest.setMethod(ApiMethod.PATCH);
@@ -40,7 +40,7 @@ public class PriceBookTest extends BeforePriceBook {
 
     @Test
     public void shouldReturnNotFoundForGetWithInvalidPriceBookID() {
-        apiRequest.setEndpoint(ApiFeature.PRICE_BOOK_ID);
+        apiRequest.setEndpoint(ApiEndPoints.PRICE_BOOK_ID);
         apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
         apiRequest.setMethod(ApiMethod.GET);
         ApiResponse apiResponse = new ApiResponse();
@@ -52,7 +52,7 @@ public class PriceBookTest extends BeforePriceBook {
 
     @Test
     public void shouldReturnNotFoundForDeleteInvalidPriceBookID() {
-        apiRequest.setEndpoint(ApiFeature.PRICE_BOOK_ID);
+        apiRequest.setEndpoint(ApiEndPoints.PRICE_BOOK_ID);
         apiRequest.addPathParam("priceId", "01s5e000007oCh5AAE");
         apiRequest.setMethod(ApiMethod.DELETE);
         apiResponse = new ApiResponse();

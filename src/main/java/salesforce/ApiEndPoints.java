@@ -1,6 +1,19 @@
-package api;
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ *
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ *
+ * @author Edson Anawaya Rios
+ */
+package salesforce;
 
-public enum ApiFeature {
+/**
+ * This enum defines possible SalesForce Endpoints.
+ */
+public enum ApiEndPoints {
 
     TOKEN("/token"),
     CASE("/sobjects/Case"),
@@ -30,10 +43,14 @@ public enum ApiFeature {
 
     private String endpoint;
 
-    ApiFeature(String endpoint) {
+    ApiEndPoints(final String endpoint) {
         this.endpoint = endpoint;
     }
-
+    /**
+     * Gets the api end point command according to the Sales force feature.
+     *
+     * @return the end point.
+     */
     public String toEndpoint() {
         return endpoint;
     }

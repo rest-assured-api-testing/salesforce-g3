@@ -1,6 +1,6 @@
 package rest.salesforce.org.steps;
 
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import api.ApiManager;
 import api.ApiRequest;
 import api.ApiResponse;
@@ -23,7 +23,7 @@ public class GetSteps {
     @When("I execute for {string} request with param to get a object info")
     public void iExecuteForRequestWithParamToGetACampaignInfo(String endpoint) {
         LOGGER.info("------ Execute update with body ------");
-        apiRequest.endpoint(ApiFeature.valueOf(endpoint))
+        apiRequest.endpoint(ApiEndPoints.valueOf(endpoint))
                 .addPathParam(endpoint, response.getId());
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getPath("id"));

@@ -1,6 +1,6 @@
 package rest.salesforce.org.steps;
 
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import api.ApiManager;
 import api.ApiRequest;
 import api.ApiResponse;
@@ -27,7 +27,7 @@ public class CreateSteps {
     public void iExecuteCreateRequest(String endpoint, DataTable jsonData) throws JsonProcessingException {
         LOGGER.info("------ Execute update with body ------");
         String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
-        apiRequest.endpoint(ApiFeature.valueOf(endpoint))
+        apiRequest.endpoint(ApiEndPoints.valueOf(endpoint))
                 .body(body);
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());

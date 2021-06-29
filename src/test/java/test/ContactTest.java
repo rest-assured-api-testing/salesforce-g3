@@ -6,7 +6,7 @@ import api.ApiResponse;
 import before.SuitTestBefore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import entities.Contact;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -21,7 +21,7 @@ public class ContactTest extends SuitTestBefore {
         Contact newContact = new Contact();
         newContact.setLastName("Perez Pinto");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.CONTACT)
+                .endpoint(ApiEndPoints.CONTACT)
                 .body(new ObjectMapper().writeValueAsString(newContact));
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -35,7 +35,7 @@ public class ContactTest extends SuitTestBefore {
     public void shouldGetAllContacts() {
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.CONTACT);
+                .endpoint(ApiEndPoints.CONTACT);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
@@ -45,7 +45,7 @@ public class ContactTest extends SuitTestBefore {
     @Test
     public void shouldGetAContactById() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.CONTACT_ID)
+                .endpoint(ApiEndPoints.CONTACT_ID)
                 .addPathParam("contactId", contactCreated);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -56,7 +56,7 @@ public class ContactTest extends SuitTestBefore {
     @Test
     public void shouldValidateSchemaOfContactById() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.CONTACT_ID)
+                .endpoint(ApiEndPoints.CONTACT_ID)
                 .addPathParam("contactId", contactCreated);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -71,7 +71,7 @@ public class ContactTest extends SuitTestBefore {
         contact.setLastName("Updated LastName");
         contact.setEmail("UpdatedEmail@gmail.com");
         apiRequest.method(ApiMethod.PATCH)
-                .endpoint(ApiFeature.CONTACT_ID)
+                .endpoint(ApiEndPoints.CONTACT_ID)
                 .addPathParam("contactId", contactCreated)
                 .setBody(new ObjectMapper().writeValueAsString(contact));
         ApiResponse apiResponse = new ApiResponse();
@@ -83,7 +83,7 @@ public class ContactTest extends SuitTestBefore {
     @AfterClass
     public void shouldDeleteAContactById() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.CONTACT_ID)
+                .endpoint(ApiEndPoints.CONTACT_ID)
                 .addPathParam("contactId", contactCreated);
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);

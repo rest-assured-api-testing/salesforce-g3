@@ -5,7 +5,7 @@ import api.ApiMethod;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import entities.Product2;
 import entities.Response;
 import org.apache.http.HttpStatus;
@@ -19,7 +19,7 @@ public class Product2Before extends SuitTestBefore {
         Product2 product2 = new Product2();
         product2.setName("Before Product Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.PRODUCT2)
+                .endpoint(ApiEndPoints.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(product2));
 
         apiResponse = new ApiResponse();
@@ -33,7 +33,7 @@ public class Product2Before extends SuitTestBefore {
         Product2 product2 = new Product2();
         product2.setName("Before Product Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.PRODUCT2)
+                .endpoint(ApiEndPoints.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(product2));
 
         apiResponse = new ApiResponse();
@@ -45,7 +45,7 @@ public class Product2Before extends SuitTestBefore {
     @AfterMethod(onlyForGroups = {"CreateDeleteProduct2"})
     public void afterDeleteProduct2() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.PRODUCT2_ID)
+                .endpoint(ApiEndPoints.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
         apiResponse = new ApiResponse();
@@ -57,7 +57,7 @@ public class Product2Before extends SuitTestBefore {
     @AfterMethod(onlyForGroups = {"DeleteProduct2"})
     public void JustDeleteProduct2() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.PRODUCT2_ID)
+                .endpoint(ApiEndPoints.PRODUCT2_ID)
                 .addPathParam("product2Id", apiResponse.getBody(Response.class).getId());
 
         apiResponse = new ApiResponse();

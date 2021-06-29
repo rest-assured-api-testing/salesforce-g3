@@ -8,6 +8,7 @@ import entities.Response;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.log4j.Logger;
+import salesforce.ApiEndPoints;
 
 public class Product2Hooks {
     private Logger LOGGER = Logger.getLogger(getClass());
@@ -27,7 +28,7 @@ public class Product2Hooks {
         Product2 newProduct = new Product2();
         newProduct.setName("New Product2");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.PRODUCT2)
+                .endpoint(ApiEndPoints.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(newProduct));
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
@@ -38,7 +39,7 @@ public class Product2Hooks {
         Product2 product2 = new Product2();
         product2.setName("Before create product2 cucumber");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.PRODUCT2)
+                .endpoint(ApiEndPoints.PRODUCT2)
                 .body(new ObjectMapper().writeValueAsString(product2));
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
@@ -49,7 +50,7 @@ public class Product2Hooks {
         LOGGER.info("------ After delete created product ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.PRODUCT2_ID)
+                .endpoint(ApiEndPoints.PRODUCT2_ID)
                 .addPathParam("PRODUCT2_ID", response.getId());
         ApiManager.execute(apiRequest, apiResponse);
     }
