@@ -1,6 +1,6 @@
 package test;
 
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import api.ApiManager;
 import api.ApiMethod;
 import api.ApiResponse;
@@ -18,7 +18,7 @@ public class AccountTest extends AccountBefore {
     @Test
     public void getAllAccount() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.ACCOUNT);
+                .endpoint(ApiEndPoints.ACCOUNT);
 
         ApiResponse apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -29,7 +29,7 @@ public class AccountTest extends AccountBefore {
     @Test(groups = {"CreateDeleteAccount"})
     public void getAccount() {
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiFeature.ACCOUNT_ID)
+                .endpoint(ApiEndPoints.ACCOUNT_ID)
                 .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = new ApiResponse();
@@ -43,7 +43,7 @@ public class AccountTest extends AccountBefore {
         Account account = new Account();
         account.setName("Object Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.ACCOUNT)
+                .endpoint(ApiEndPoints.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
@@ -54,7 +54,7 @@ public class AccountTest extends AccountBefore {
     @Test(groups = {"CreateAccount"})
     public void deleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.ACCOUNT_ID)
+                .endpoint(ApiEndPoints.ACCOUNT_ID)
                 .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
         ApiResponse apiResponse = new ApiResponse();
@@ -68,7 +68,7 @@ public class AccountTest extends AccountBefore {
         Account account = new Account();
         account.setName("Object Updated");
         apiRequest.method(ApiMethod.PATCH)
-                .endpoint(ApiFeature.ACCOUNT_ID)
+                .endpoint(ApiEndPoints.ACCOUNT_ID)
                 .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId())
                 .body(new ObjectMapper().writeValueAsString(account));
 

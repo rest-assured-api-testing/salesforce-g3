@@ -6,7 +6,7 @@ import api.ApiRequest;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import entities.Account;
 import entities.Response;
 import io.cucumber.java.After;
@@ -32,7 +32,7 @@ public class AccountHooks {
         Account account = new Account();
         account.setName("Before create account cucumber");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.ACCOUNT)
+                .endpoint(ApiEndPoints.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
@@ -44,7 +44,7 @@ public class AccountHooks {
         LOGGER.info("--> After delete account cucumber");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.ACCOUNT_ID)
+                .endpoint(ApiEndPoints.ACCOUNT_ID)
                 .addPathParam("ACCOUNT_ID", response.getId());
         ApiManager.execute(apiRequest, apiResponse);
     }

@@ -4,7 +4,7 @@ import api.ApiRequest;
 import api.ApiResponse;
 import api.ApiManager;
 import api.ApiMethod;
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Contact;
@@ -31,7 +31,7 @@ public class ContactHooks {
         Contact newContact = new Contact();
         newContact.setLastName("New LastName");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.CONTACT)
+                .endpoint(ApiEndPoints.CONTACT)
                 .body(new ObjectMapper().writeValueAsString(newContact));
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
@@ -42,7 +42,7 @@ public class ContactHooks {
         LOGGER.info("------ After delete created case ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.CONTACT_ID)
+                .endpoint(ApiEndPoints.CONTACT_ID)
                 .addPathParam("CONTACT_ID", response.getId());
         ApiManager.execute(apiRequest, apiResponse);
     }

@@ -5,7 +5,7 @@ import api.ApiMethod;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import entities.Account;
 import entities.Response;
 import org.apache.http.HttpStatus;
@@ -20,7 +20,7 @@ public class AccountBefore extends SuitTestBefore {
         Account account = new Account();
         account.setName("Before Account Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.ACCOUNT)
+                .endpoint(ApiEndPoints.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
 
         ApiManager.execute(apiRequest, apiResponse);
@@ -33,7 +33,7 @@ public class AccountBefore extends SuitTestBefore {
         Account account = new Account();
         account.setName("Before Account Test");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.ACCOUNT)
+                .endpoint(ApiEndPoints.ACCOUNT)
                 .body(new ObjectMapper().writeValueAsString(account));
 
         apiResponse = new ApiResponse();
@@ -45,7 +45,7 @@ public class AccountBefore extends SuitTestBefore {
     @AfterMethod(onlyForGroups = {"CreateDeleteAccount"})
     public void afterDeleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.ACCOUNT_ID)
+                .endpoint(ApiEndPoints.ACCOUNT_ID)
                 .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
         apiResponse = new ApiResponse();
@@ -57,7 +57,7 @@ public class AccountBefore extends SuitTestBefore {
     @AfterMethod(onlyForGroups = {"DeleteAccount"})
     public void JustDeleteAccount() {
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.ACCOUNT_ID)
+                .endpoint(ApiEndPoints.ACCOUNT_ID)
                 .addPathParam("ACCOUNT_ID", apiResponse.getBody(Response.class).getId());
 
         apiResponse = new ApiResponse();

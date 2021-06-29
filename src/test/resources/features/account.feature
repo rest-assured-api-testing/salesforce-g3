@@ -31,7 +31,7 @@ Feature: Request for account feature
     Given I build "PATCH" request
     When I execute for "ACCOUNT_ID" request with updated name
       | name | account cucumber updated |
-    Then Status response of request should be "UPDATED"
+    Then Status response of request should be "CREATED"
 
 #    CREATE
   @DeleteAccount
@@ -77,21 +77,21 @@ Feature: Request for account feature
     Given I build "PATCH" request
     When I execute for "ACCOUNT_ID" request with updated name
       | name | account cucumber updated |
-    Then "response" schema status response of request should be "UPDATED"
+    Then "response" schema status response of request should be "CREATED"
 
   @CreateDeleteAccount
   Scenario: Response body to Success is true for A Account Updated
     Given I build "PATCH" request
     When I execute for "ACCOUNT_ID" request with updated name
       | name | account cucumber updated |
-    Then Response body status request should be "UPDATED"
+    Then Response body status request should be "CREATED"
 
   @CreateDeleteAccount
   Scenario: Accept special characters A Account Updated
     Given I build "PATCH" request
     When I execute for "ACCOUNT_ID" request with updated name
       | name | "@!"#$%(=)/)(/()/&&/%"$%!"$!%") updated" |
-    Then Status response of request should be "UPDATED"
+    Then Status response of request should be "CREATED"
 
   @CreateDeleteAccount
   Scenario: Update a Account with various params
@@ -99,7 +99,7 @@ Feature: Request for account feature
     When I execute for "ACCOUNT_ID" request with updated name
       | name  | account cucumber updated |
       | phone | 123456789                |
-    Then Status response of request should be "UPDATED"
+    Then Status response of request should be "CREATED"
 
   @CreateDeleteAccount
   Scenario: Update a Account with letters in attribute phone
@@ -107,7 +107,7 @@ Feature: Request for account feature
     When I execute for "ACCOUNT_ID" request with updated name
       | name  | account cucumber updated |
       | phone | words and not numbers    |
-    Then Status response of request should be "UPDATED"
+    Then Status response of request should be "CREATED"
 
 #    GET
   @CreateDeleteAccount

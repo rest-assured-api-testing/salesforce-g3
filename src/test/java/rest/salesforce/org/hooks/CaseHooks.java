@@ -4,7 +4,7 @@ import api.ApiRequest;
 import api.ApiResponse;
 import api.ApiManager;
 import api.ApiMethod;
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Case;
@@ -32,7 +32,7 @@ public class CaseHooks {
         Case newCase = new Case();
         newCase.setStatus(CaseEnum.NEW.toStatus());
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.CASE)
+                .endpoint(ApiEndPoints.CASE)
                 .body(new ObjectMapper().writeValueAsString(newCase));
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
@@ -43,7 +43,7 @@ public class CaseHooks {
         LOGGER.info("------ After delete created case ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.CASE_ID)
+                .endpoint(ApiEndPoints.CASE_ID)
                 .addPathParam("CASE_ID", response.getId());
         ApiManager.execute(apiRequest, apiResponse);
     }

@@ -4,7 +4,7 @@ import api.ApiRequest;
 import api.ApiResponse;
 import api.ApiManager;
 import api.ApiMethod;
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Campaign;
@@ -31,7 +31,7 @@ public class CampaignHooks {
         Campaign newCampaign = new Campaign();
         newCampaign.setName("New Campaign");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.CAMPAIGN)
+                .endpoint(ApiEndPoints.CAMPAIGN)
                 .body(new ObjectMapper().writeValueAsString(newCampaign));
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
@@ -42,7 +42,7 @@ public class CampaignHooks {
         LOGGER.info("------ After delete created campaign ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.CAMPAIGN_ID)
+                .endpoint(ApiEndPoints.CAMPAIGN_ID)
                 .addPathParam("CAMPAIGN_ID", response.getId());
         ApiManager.execute(apiRequest, apiResponse);
     }
