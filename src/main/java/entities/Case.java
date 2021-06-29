@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2021 Fundacion Jala.
- * <p>
+ *
  * This software is the confidential and proprietary information of Fundacion Jala
  * ("Confidential Information"). You shall not disclose such Confidential
  * Information and shall use it only in accordance with the terms of the
@@ -9,11 +9,12 @@
  * @author Paola Ximena Aguilar Quiñones
  */
 package entities;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * This class builds a Case json body.
  */
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Case {
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -90,6 +91,7 @@ public class Case {
     private String Product__c;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String PotentialLiability__c;
+
     /**
      * Gets the Id.
      *
@@ -98,6 +100,7 @@ public class Case {
     public String getId() {
         return Id;
     }
+
     /**
      * Sets the id.
      *
@@ -106,6 +109,7 @@ public class Case {
     public void setId(final String id) {
         Id = id;
     }
+
     /**
      * Gets the MasterRecordId.
      *
@@ -114,6 +118,7 @@ public class Case {
     public String getMasterRecordId() {
         return MasterRecordId;
     }
+
     /**
      * Sets the masterRecordId.
      *
@@ -123,283 +128,633 @@ public class Case {
         MasterRecordId = masterRecordId;
     }
 
+    /**
+     * Gets the CaseNumber.
+     *
+     * @return the CaseNumber.
+     */
     public String getCaseNumber() {
         return CaseNumber;
     }
 
-    public void setCaseNumber(String caseNumber) {
+    /**
+     * Sets the caseNumber.
+     *
+     * @param caseNumber to be set.
+     */
+    public void setCaseNumber(final String caseNumber) {
         CaseNumber = caseNumber;
     }
 
+    /**
+     * Gets the ContactId.
+     *
+     * @return the ContactId.
+     */
     public String getContactId() {
         return ContactId;
     }
 
-    public void setContactId(String contactId) {
+    /**
+     * Sets the contactId.
+     *
+     * @param contactId to be set.
+     */
+    public void setContactId(final String contactId) {
         ContactId = contactId;
     }
 
+    /**
+     * Gets the AccountId.
+     *
+     * @return the AccountId.
+     */
     public String getAccountId() {
         return AccountId;
     }
 
-    public void setAccountId(String accountId) {
+    /**
+     * Sets the accountId.
+     *
+     * @param accountId to be set.
+     */
+    public void setAccountId(final String accountId) {
         AccountId = accountId;
     }
 
+    /**
+     * Gets the AssetId.
+     *
+     * @return the AssetId.
+     */
     public String getAssetId() {
         return AssetId;
     }
 
-    public void setAssetId(String assetId) {
+    /**
+     * Sets the assetId.
+     *
+     * @param assetId to be set.
+     */
+    public void setAssetId(final String assetId) {
         AssetId = assetId;
     }
 
+    /**
+     * Gets the SourceId.
+     *
+     * @return the SourceId.
+     */
     public String getSourceId() {
         return SourceId;
     }
 
-    public void setSourceId(String sourceId) {
+    /**
+     * Sets the sourceId.
+     *
+     * @param sourceId to be set.
+     */
+    public void setSourceId(final String sourceId) {
         SourceId = sourceId;
     }
 
+    /**
+     * Gets the ParentId.
+     *
+     * @return the ParentId.
+     */
     public String getParentId() {
         return ParentId;
     }
 
-    public void setParentId(String parentId) {
+    /**
+     * Sets the parentId.
+     *
+     * @param parentId to be set.
+     */
+    public void setParentId(final String parentId) {
         ParentId = parentId;
     }
 
+    /**
+     * Gets the SuppliedName.
+     *
+     * @return the SuppliedName.
+     */
     public String getSuppliedName() {
         return SuppliedName;
     }
 
-    public void setSuppliedName(String suppliedName) {
+    /**
+     * Sets the suppliedName.
+     *
+     * @param suppliedName to be set.
+     */
+    public void setSuppliedName(final String suppliedName) {
         SuppliedName = suppliedName;
     }
 
+    /**
+     * Gets the SuppliedEmail.
+     *
+     * @return the SuppliedEmail.
+     */
     public String getSuppliedEmail() {
         return SuppliedEmail;
     }
 
-    public void setSuppliedEmail(String suppliedEmail) {
+    /**
+     * Sets the suppliedEmail.
+     *
+     * @param suppliedEmail to be set.
+     */
+    public void setSuppliedEmail(final String suppliedEmail) {
         SuppliedEmail = suppliedEmail;
     }
 
+    /**
+     * Gets the SuppliedPhone.
+     *
+     * @return the SuppliedPhone.
+     */
     public String getSuppliedPhone() {
         return SuppliedPhone;
     }
 
-    public void setSuppliedPhone(String suppliedPhone) {
+    /**
+     * Sets the suppliedPhone.
+     *
+     * @param suppliedPhone to be set.
+     */
+    public void setSuppliedPhone(final String suppliedPhone) {
         SuppliedPhone = suppliedPhone;
     }
 
+    /**
+     * Gets the SuppliedCompany.
+     *
+     * @return the SuppliedCompany.
+     */
     public String getSuppliedCompany() {
         return SuppliedCompany;
     }
 
-    public void setSuppliedCompany(String suppliedCompany) {
+    /**
+     * Sets the suppliedCompany.
+     *
+     * @param suppliedCompany to be set.
+     */
+    public void setSuppliedCompany(final String suppliedCompany) {
         SuppliedCompany = suppliedCompany;
     }
 
+    /**
+     * Gets the Type.
+     *
+     * @return the Type.
+     */
     public String getType() {
         return Type;
     }
 
-    public void setType(String type) {
+    /**
+     * Sets the type.
+     *
+     * @param type to be set.
+     */
+    public void setType(final String type) {
         Type = type;
     }
 
+    /**
+     * Gets the Status.
+     *
+     * @return the Status.
+     */
     public String getStatus() {
         return Status;
     }
 
-    public void setStatus(String status) {
+    /**
+     * Sets the Status.
+     *
+     * @param status to be set.
+     */
+    public void setStatus(final String status) {
         Status = status;
     }
 
+    /**
+     * Gets the Reason.
+     *
+     * @return the Reason.
+     */
     public String getReason() {
         return Reason;
     }
 
-    public void setReason(String reason) {
+    /**
+     * Sets the reason.
+     *
+     * @param reason to be set.
+     */
+    public void setReason(final String reason) {
         Reason = reason;
     }
 
+    /**
+     * Gets the Origin.
+     *
+     * @return the Origin.
+     */
     public String getOrigin() {
         return Origin;
     }
 
-    public void setOrigin(String origin) {
+    /**
+     * Sets the origin.
+     *
+     * @param origin to be set.
+     */
+    public void setOrigin(final String origin) {
         Origin = origin;
     }
 
+    /**
+     * Gets the Subject.
+     *
+     * @return the Subject.
+     */
     public String getSubject() {
         return Subject;
     }
 
-    public void setSubject(String subject) {
+    /**
+     * Sets the subject.
+     *
+     * @param subject to be set.
+     */
+    public void setSubject(final String subject) {
         Subject = subject;
     }
 
+    /**
+     * Gets the Priority.
+     *
+     * @return the Priority.
+     */
     public String getPriority() {
         return Priority;
     }
 
-    public void setPriority(String priority) {
+    /**
+     * Sets the priority.
+     *
+     * @param priority to be set.
+     */
+    public void setPriority(final String priority) {
         Priority = priority;
     }
 
+    /**
+     * Gets the Description.
+     *
+     * @return the Description.
+     */
     public String getDescription() {
         return Description;
     }
 
-    public void setDescription(String description) {
+    /**
+     * Sets the description.
+     *
+     * @param description to be set.
+     */
+    public void setDescription(final String description) {
         Description = description;
     }
 
+    /**
+     * Gets the ClosedDate.
+     *
+     * @return the ClosedDate.
+     */
     public String getClosedDate() {
         return ClosedDate;
     }
 
-    public void setClosedDate(String closedDate) {
+    /**
+     * Sets the closedDate.
+     *
+     * @param closedDate to be set.
+     */
+    public void setClosedDate(final String closedDate) {
         ClosedDate = closedDate;
     }
 
+    /**
+     * Gets the OwnerId.
+     *
+     * @return the OwnerId.
+     */
     public String getOwnerId() {
         return OwnerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    /**
+     * Sets the ownerId.
+     *
+     * @param ownerId to be set.
+     */
+    public void setOwnerId(final String ownerId) {
         OwnerId = ownerId;
     }
 
+    /**
+     * Gets the CreatedDate.
+     *
+     * @return the CreatedDate.
+     */
     public String getCreatedDate() {
         return CreatedDate;
     }
 
-    public void setCreatedDate(String createdDate) {
+    /**
+     * Sets the createdDate.
+     *
+     * @param createdDate to be set.
+     */
+    public void setCreatedDate(final String createdDate) {
         CreatedDate = createdDate;
     }
 
+    /**
+     * Gets the CreatedById.
+     *
+     * @return the CreatedById.
+     */
     public String getCreatedById() {
         return CreatedById;
     }
 
-    public void setCreatedById(String createdById) {
+    /**
+     * Sets the createdById.
+     *
+     * @param createdById to be set.
+     */
+    public void setCreatedById(final String createdById) {
         CreatedById = createdById;
     }
 
+    /**
+     * Gets the LastModifiedDate.
+     *
+     * @return the LastModifiedDate.
+     */
     public String getLastModifiedDate() {
         return LastModifiedDate;
     }
 
-    public void setLastModifiedDate(String lastModifiedDate) {
+    /**
+     * Sets the lastModifiedDate.
+     *
+     * @param lastModifiedDate to be set.
+     */
+    public void setLastModifiedDate(final String lastModifiedDate) {
         LastModifiedDate = lastModifiedDate;
     }
 
+    /**
+     * Gets the LastModifiedById.
+     *
+     * @return the LastModifiedById.
+     */
     public String getLastModifiedById() {
         return LastModifiedById;
     }
 
-    public void setLastModifiedById(String lastModifiedById) {
+    /**
+     * Sets the lastModifiedById.
+     *
+     * @param lastModifiedById to be set.
+     */
+    public void setLastModifiedById(final String lastModifiedById) {
         LastModifiedById = lastModifiedById;
     }
 
+    /**
+     * Gets the SystemModstamp.
+     *
+     * @return the SystemModstamp.
+     */
     public String getSystemModstamp() {
         return SystemModstamp;
     }
 
-    public void setSystemModstamp(String systemModstamp) {
+    /**
+     * Sets the systemModstamp.
+     *
+     * @param systemModstamp to be set.
+     */
+    public void setSystemModstamp(final String systemModstamp) {
         SystemModstamp = systemModstamp;
     }
 
+    /**
+     * Gets the ContactPhone.
+     *
+     * @return the ContactPhone.
+     */
     public String getContactPhone() {
         return ContactPhone;
     }
 
-    public void setContactPhone(String contactPhone) {
+    /**
+     * Sets the contactPhone.
+     *
+     * @param contactPhone to be set.
+     */
+    public void setContactPhone(final String contactPhone) {
         ContactPhone = contactPhone;
     }
 
+    /**
+     * Gets the ContactMobile.
+     *
+     * @return the ContactMobile.
+     */
     public String getContactMobile() {
         return ContactMobile;
     }
 
-    public void setContactMobile(String contactMobile) {
+    /**
+     * Sets the contactPhone.
+     *
+     * @param contactMobile to be set.
+     */
+    public void setContactMobile(final String contactMobile) {
         ContactMobile = contactMobile;
     }
 
+    /**
+     * Gets the ContactEmail.
+     *
+     * @return the ContactEmail.
+     */
     public String getContactEmail() {
         return ContactEmail;
     }
 
-    public void setContactEmail(String contactEmail) {
+    /**
+     * Sets the contactEmail.
+     *
+     * @param contactEmail to be set.
+     */
+    public void setContactEmail(final String contactEmail) {
         ContactEmail = contactEmail;
     }
 
+    /**
+     * Gets the ContactFax.
+     *
+     * @return the ContactFax.
+     */
     public String getContactFax() {
         return ContactFax;
     }
 
-    public void setContactFax(String contactFax) {
+    /**
+     * Sets the contactFax.
+     *
+     * @param contactFax to be set.
+     */
+    public void setContactFax(final String contactFax) {
         ContactFax = contactFax;
     }
 
+    /**
+     * Gets the Comments.
+     *
+     * @return the Comments.
+     */
     public String getComments() {
         return Comments;
     }
 
-    public void setComments(String comments) {
+    /**
+     * Sets the comments.
+     *
+     * @param comments to be set.
+     */
+    public void setComments(final String comments) {
         Comments = comments;
     }
 
+    /**
+     * Gets the LastViewedDate.
+     *
+     * @return the LastViewedDate.
+     */
     public String getLastViewedDate() {
         return LastViewedDate;
     }
 
-    public void setLastViewedDate(String lastViewedDate) {
+    /**
+     * Sets the lastViewedDate.
+     *
+     * @param lastViewedDate to be set.
+     */
+    public void setLastViewedDate(final String lastViewedDate) {
         LastViewedDate = lastViewedDate;
     }
 
+    /**
+     * Gets the LastReferencedDate.
+     *
+     * @return the LastReferencedDate.
+     */
     public String getLastReferencedDate() {
         return LastReferencedDate;
     }
 
-    public void setLastReferencedDate(String lastReferencedDate) {
+    /**
+     * Sets the lastReferencedDate.
+     *
+     * @param lastReferencedDate to be set.
+     */
+    public void setLastReferencedDate(final String lastReferencedDate) {
         LastReferencedDate = lastReferencedDate;
     }
 
+    /**
+     * Gets the EngineeringReqNumber__c.
+     *
+     * @return the EngineeringReqNumber__c.
+     */
     public String getEngineeringReqNumber__c() {
         return EngineeringReqNumber__c;
     }
 
-    public void setEngineeringReqNumber__c(String engineeringReqNumber__c) {
+    /**
+     * Sets the engineeringReqNumber__c.
+     *
+     * @param engineeringReqNumber__c to be set.
+     */
+    public void setEngineeringReqNumber__c(final String engineeringReqNumber__c) {
         EngineeringReqNumber__c = engineeringReqNumber__c;
     }
 
+    /**
+     * Gets the SLAViolation__c.
+     *
+     * @return the SLAViolation__c.
+     */
     public String getSLAViolation__c() {
         return SLAViolation__c;
     }
 
-    public void setSLAViolation__c(String SLAViolation__c) {
+    /**
+     * Sets the SLAViolation__c.
+     *
+     * @param SLAViolation__c to be set.
+     */
+    public void setSLAViolation__c(final String SLAViolation__c) {
         this.SLAViolation__c = SLAViolation__c;
     }
 
+    /**
+     * Gets the Product__c.
+     *
+     * @return the Product__c.
+     */
     public String getProduct__c() {
         return Product__c;
     }
 
-    public void setProduct__c(String product__c) {
+    /**
+     * Sets the product__c.
+     *
+     * @param product__c to be set.
+     */
+    public void setProduct__c(final String product__c) {
         Product__c = product__c;
     }
 
+    /**
+     * Gets the PotentialLiability__c.
+     *
+     * @return the PotentialLiability__c.
+     */
     public String getPotentialLiability__c() {
         return PotentialLiability__c;
     }
 
-    public void setPotentialLiability__c(String potentialLiability__c) {
+    /**
+     * Sets the potentialLiability__c.
+     *
+     * @param potentialLiability__c to be set.
+     */
+    public void setPotentialLiability__c(final String potentialLiability__c) {
         PotentialLiability__c = potentialLiability__c;
     }
 }
