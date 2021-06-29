@@ -1,122 +1,143 @@
 Feature: Request for PriceBook feature
 
-  @CreateAPriceBook
-  Scenario: Create a priceBook
-    Given I build "POST" request
-    When I execute create "PRICE_BOOK" request
-      | name | Created PriceBook |
-    Then Status response of request should be "CREATED"
-
-  @CreateAPriceBook
-  Scenario: Create a priceBook with one character
-    Given I build "POST" request
-    When I execute create "PRICE_BOOK" request
-      | name | A |
-    Then Status response of request should be "CREATED"
-
-  @CreateAPriceBook
-  Scenario: Create a priceBook with special characters
-    Given I build "POST" request
-    When I execute create "PRICE_BOOK" request
-      | name | "@!"#$%(=)/)(/()/&&/%"$%!"$!%")" |
-    Then Status response of request should be "CREATED"
-
-  @CreateAPriceBook
-  Scenario: Create a priceBook with mora than one parameters
-    Given I build "POST" request
-    When I execute create "PRICE_BOOK" request
-      | Name | Parameter PriceBook|
-      | Description | PriceBook Description |
-    Then Status response of request should be "CREATED"
-
-  #CreateAPriceBook
-  Scenario: Create a priceBook with invalid body
-    Given I build "POST" request
-    When I execute create "PRICE_BOOK" request with invalid values
-      | nombre | Created PriceBook |
-    Then Status response of request should be "BAD_REQUEST"
-
-  #CreateAPriceBook
-  Scenario: Create a priceBook with invalid endpoint
-    Given I build "POST" request
-    When I execute create "INVALID_PRICE_BOOK" request with invalid values
-      | name | Created PriceBook |
-    Then Status response of request should be "NOT_FOUND"
-
-  @DeleteAPriceBook
-  Scenario: Delete a priceBook
-    Given I build "DELETE" request
-    When I execute delete "PRICE_BOOK_ID" request
-    Then Status response of request should be "NO_CONTENT"
-
-  #DeleteAPriceBook
-  Scenario: Delete a priceBook with invalid ID
-    Given I build "DELETE" request
-    When I execute delete "PRICE_BOOK_ID" with an "INVALID_PRICE_BOOK_ID" request
-    Then Status response of request should be "NOT_FOUND"
-
-  #DeleteAPriceBook
-  Scenario: Delete a priceBook with invalid EndPoint and ID
-    Given I build "DELETE" request
-    When I execute delete "INVALID_PRICE_BOOK_ENDPOINT" with an "INVALID_PRICE_BOOK_ID" request
-    Then Status response of request should be "NOT_FOUND"
-
-  @UpdatePriceBook
-  Scenario: Update an already created pricebook
-    Given I build "PATCH" request
-    When I execute patch "PRICE_BOOK_ID" request
-      | name | Update PriceBook name |
-    Then Status response of request should be "NO_CONTENT"
-
-  @UpdatePriceBook
-  Scenario: Update an already created with special Characters
-    Given I build "PATCH" request
-    When I execute patch "PRICE_BOOK_ID" request
-      | name | "@!"#$%(=)/)(/()/&&/%"$%!"$!%")" |
-    Then Status response of request should be "NO_CONTENT"
-
-  @UpdatePriceBook
-  Scenario: Update an already created with a single Characters
-    Given I build "PATCH" request
-    When I execute patch "PRICE_BOOK_ID" request
-      | name | A |
-    Then Status response of request should be "NO_CONTENT"
-
-  @UpdatePriceBook
-  Scenario: Update an already created pricebook with invalid body
-    Given I build "PATCH" request
-    When I execute patch "PRICE_BOOK_ID" request
-      | nombre | Update PriceBook name |
-    Then Status response of request should be "BAD_REQUEST"
-
-  #UpdatePriceBook
-  Scenario: Update an already created pricebook with invalid params
-    Given I build "PATCH" request
-    When I execute patch "INVALID_PRICE_BOOK_ENDPOINT" with an "INVALID_PRICE_BOOK_ID" request
-      | name | Updated campaign name |
-    Then Status response of request should be "NOT_FOUND"
-
-  #UpdatePriceBook
-  Scenario: Update an already created pricebook with invalid ID
-    Given I build "PATCH" request
-    When I execute patch "PRICE_BOOK_ID" with an "INVALID_PRICE_BOOK_ID" request
-      | name | Updated campaign name |
-    Then Status response of request should be "NOT_FOUND"
-
-  @GetPriceBook
-  Scenario: Validate Schema of a Campaign Obtained
+  @ShowAllPriceBooks
+  Scenario: Get all Price books
     Given I build "GET" request
-    When I execute for "PRICE_BOOK_ID" request with param to get a object info
+    When I execute "PRICE_BOOK" request
     Then Status response of request should be "OK"
 
-  #GetPriceBook
-  Scenario: Get a Campaign with an invalid EndPoint and ID
-    Given I build "GET" request
-    When I execute get "INVALID_PRICE_BOOK_ENDPOINT" with an "INVALID_PRICE_BOOK_ID" request
-    Then Status response of request should be "NOT_FOUND"
+  @DeletePrice
+  Scenario: Validate Schema of a Contact
+    Given I build "POST" request
+    When I execute create "PRICE_BOOK" request
+      | name | Price name book |
+    Then "response" schema status response of request should be "CREATED"
 
-  #GetPriceBook
-  Scenario: Get a Campaign with an invalid ID
+  @DeletePrice
+  Scenario: Response body to Success is true for a specific Price book
+    Given I build "POST" request
+    When I execute create "PRICE_BOOK" request
+      | name | Price book name new |
+    Then Response body status request should be "CREATED"
+
+  @UseCreatedPrice
+  Scenario: Get a specific Price book
     Given I build "GET" request
-    When I execute get "PRICE_BOOK_ID" with an "INVALID_CAMPAIGN_ID" request
+    When I execute "PRICE_BOOK_ID" request with param
+    Then Status response of request should be "OK"
+
+  @CantShowAPriceBookWithWrongId
+  Scenario Outline: Can't get a price book with wrong or empty id
+    Given I build "GET" request
+    When I execute "PRICE_BOOK_ID" with <id>
     Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id                    |
+      | "   "                 |
+      | " 9384Xcdn34fmxV34534"|
+      | "9384Xcdn34fmxV34534" |
+
+  @DeletePrice
+  Scenario Outline: A Pricebook can be created with name parameter only
+    Given I build "POST" request
+    When I execute create "PRICE_BOOK" request
+      | name | <name> |
+    Then Status response of request should be "CREATED"
+    Examples:
+      | name                      |
+      | PriceBook name            |
+      | Price name, text only     |
+      | 1324$%¡!#4                |
+      | ""                        |
+      | "  "                      |
+      | "  _"                     |
+
+  @UseCreatedPrice
+  Scenario: Price book can't be created with null data
+    Given I build "POST" request
+    When I execute update "PRICE_BOOK_ID" request
+      | name |  |
+    Then Status response of request should be "NOT_ALLOWED"
+
+  @DeletePrice
+  Scenario Outline: A Price book can be created with name and description
+    Given I build "POST" request
+    When I execute create "PRICE_BOOK" request
+      | name          | <name>    |
+      | description   | <description>  |
+    Then Status response of request should be "CREATED"
+    Examples:
+      | name                | description|
+      | PriceBook1          | Some text descrip.          |
+      | new Price           | Numbers, letters 345        |
+      | (*&/%)              | Description number# 56- IED |
+      | 24324324            | ""                          |
+      | 24324324            | " "                         |
+      | 24324324            |                             |
+
+  @DeletePrice
+  Scenario Outline: A Price book status can be set when create
+    Given I build "POST" request
+    When I execute create "PRICE_BOOK" request
+      | name        | <name>    |
+      | isactive    | <active>  |
+    Then Status response of request should be "CREATED"
+    Examples:
+      | name                    | active         |
+      | Price book name         | true           |
+      | Price book name         | false          |
+
+  @UseCreatedPrice
+  Scenario Outline: Price book can be updated only with name
+    Given I build "PATCH" request
+    When I execute update "PRICE_BOOK_ID" request
+      | name | <name> |
+    Then Status response of request should be <status>
+    Examples:
+    Examples:
+      | name            | status        |
+      | PriceStore      | "NO_CONTENT"  |
+      | price update    | "NO_CONTENT"  |
+      | pricebok#45 -56$| "NO_CONTENT"  |
+      | ""              | "NO_CONTENT"  |
+      | "  "            | "NO_CONTENT"  |
+      | "  _"           | "NO_CONTENT"  |
+      |                 | "BAD_REQUEST" |
+
+  @UseCreatedPrice
+  Scenario Outline: A Price book status can be updated
+    Given I build "PATCH" request
+    When I execute update "PRICE_BOOK_ID" request
+      | name        | <name>    |
+      | isactive    | <active>  |
+    Then Status response of request should be "NO_CONTENT"
+    Examples:
+      | name                    | active         |
+      | Price book name         | true           |
+      | Price book name         | false          |
+
+  @CantUpdateAPriceBookWithWrongId
+  Scenario Outline: Price book can't be updated with wrong or empty id
+    Given I build "PATCH" request
+    When I execute update "PRICE_BOOK_ID" request with specific <id>
+    Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id                      |
+      | "Mv234498cvXvmsj435"    |
+      | " Mv23498cvXvmsj435"    |
+
+  @CreatePrice
+  Scenario: Delete a Price book
+    Given I build "DELETE" request
+    When I execute "PRICE_BOOK_ID" request with param
+    Then Status response of request should be "NO_CONTENT"
+
+  @CantDeletePriceWithWrongId
+  Scenario Outline: Delete a Contact
+    Given I build "DELETE" request
+    When I execute "PRICE_BOOK_ID" with <id>
+    Then Status response of request should be "NOT_FOUND"
+    Examples:
+      | id                    |
+      | " Mv234498cvXvmsj435" |
+      | "Mv234498cvXvmsj435"  |

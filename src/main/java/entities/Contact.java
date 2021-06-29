@@ -1,9 +1,21 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ *
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ *
+ * @author Paola Ximena Aguilar Quiñones
+ */
 package entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.util.Date;
 
+/**
+ * This class defines a Contact.
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Contact {
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -79,291 +91,580 @@ public class Contact {
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private Date LastModifiedById;
 
+    /**
+     * Gets the Id.
+     *
+     * @return the Id.
+     */
     public String getId() {
         return this.Id;
     }
-
-    public void setId(String id) {
+    /**
+     * Sets the id.
+     *
+     * @param id to be set.
+     */
+    public void setId(final String id) {
         this.Id = id;
     }
-
+    /**
+     * Gets the MasterRecordId.
+     *
+     * @return the MasterRecordId.
+     */
     public String getMasterRecordId() {
         return this.MasterRecordId;
     }
-
-    public void setMasterRecordId(String masterRecordId) {
+    /**
+     * Sets the masterRecordId.
+     *
+     * @param masterRecordId to be set.
+     */
+    public void setMasterRecordId(final String masterRecordId) {
         this.MasterRecordId = masterRecordId;
     }
-
+    /**
+     * Gets the AccountId.
+     *
+     * @return the AccountId.
+     */
     public String getAccountId() {
         return this.AccountId;
     }
-
-    public void setAccountId(String accountId) {
+    /**
+     * Sets the accountId.
+     *
+     * @param accountId to be set.
+     */
+    public void setAccountId(final String accountId) {
         this.AccountId = accountId;
     }
-
+    /**
+     * Gets the LastName.
+     *
+     * @return the LastName.
+     */
     public String getLastName() {
         return this.LastName;
     }
-
-    public void setLastName(String lastName) {
+    /**
+     * Sets the lastName.
+     *
+     * @param lastName to be set.
+     */
+    public void setLastName(final String lastName) {
         this.LastName = lastName;
     }
-
+    /**
+     * Gets the FirstName.
+     *
+     * @return the FirstName.
+     */
     public String getFirstName() {
         return FirstName;
     }
-
-    public void setFirstName(String firstName) {
+    /**
+     * Sets the firstName.
+     *
+     * @param firstName to be set.
+     */
+    public void setFirstName(final String firstName) {
         FirstName = firstName;
     }
-
+    /**
+     * Gets the Name.
+     *
+     * @return the Name.
+     */
     public String getName() {
         return Name;
     }
-
-    public void setName(String name) {
+    /**
+     * Sets the name.
+     *
+     * @param name to be set.
+     */
+    public void setName(final String name) {
         Name = name;
     }
-
+    /**
+     * Gets the Name.
+     *
+     * @return the Name.
+     */
     public String getOtherStreet() {
         return OtherStreet;
     }
-
-    public void setOtherStreet(String otherStreet) {
+    /**
+     * Sets the otherStreet.
+     *
+     * @param otherStreet to be set.
+     */
+    public void setOtherStreet(final String otherStreet) {
         OtherStreet = otherStreet;
     }
-
+    /**
+     * Gets the OtherCity.
+     *
+     * @return the OtherCity.
+     */
     public String getOtherCity() {
         return OtherCity;
     }
-
-    public void setOtherCity(String otherCity) {
+    /**
+     * Sets the otherCity.
+     *
+     * @param otherCity to be set.
+     */
+    public void setOtherCity(final String otherCity) {
         OtherCity = otherCity;
     }
-
+    /**
+     * Gets the OtherState.
+     *
+     * @return the OtherState.
+     */
     public String getOtherState() {
         return OtherState;
     }
-
-    public void setOtherState(String otherState) {
+    /**
+     * Sets the otherState.
+     *
+     * @param otherState to be set.
+     */
+    public void setOtherState(final String otherState) {
         OtherState = otherState;
     }
-
+    /**
+     * Gets the OtherPostalCode.
+     *
+     * @return the OtherPostalCode.
+     */
     public String getOtherPostalCode() {
         return OtherPostalCode;
     }
-
-    public void setOtherPostalCode(String otherPostalCode) {
+    /**
+     * Sets the otherPostalCode.
+     *
+     * @param otherPostalCode to be set.
+     */
+    public void setOtherPostalCode(final String otherPostalCode) {
         OtherPostalCode = otherPostalCode;
     }
-
+    /**
+     * Gets the OtherCountry.
+     *
+     * @return the OtherCountry.
+     */
     public String getOtherCountry() {
         return OtherCountry;
     }
-
-    public void setOtherCountry(String otherCountry) {
+    /**
+     * Sets the otherCountry.
+     *
+     * @param otherCountry to be set.
+     */
+    public void setOtherCountry(final String otherCountry) {
         OtherCountry = otherCountry;
     }
-
+    /**
+     * Gets the OtherLatitude.
+     *
+     * @return the OtherLatitude.
+     */
     public String getOtherLatitude() {
         return OtherLatitude;
     }
-
-    public void setOtherLatitude(String otherLatitude) {
+    /**
+     * Sets the otherLatitude.
+     *
+     * @param otherLatitude to be set.
+     */
+    public void setOtherLatitude(final String otherLatitude) {
         OtherLatitude = otherLatitude;
     }
-
+    /**
+     * Gets the OtherLongitude.
+     *
+     * @return the OtherLongitude.
+     */
     public String getOtherLongitude() {
         return OtherLongitude;
     }
-
-    public void setOtherLongitude(String otherLongitude) {
+    /**
+     * Sets the otherLongitude.
+     *
+     * @param otherLongitude to be set.
+     */
+    public void setOtherLongitude(final String otherLongitude) {
         OtherLongitude = otherLongitude;
     }
-
+    /**
+     * Gets the OtherGeocodeAccuracy.
+     *
+     * @return the OtherGeocodeAccuracy.
+     */
     public String getOtherGeocodeAccuracy() {
         return OtherGeocodeAccuracy;
     }
-
-    public void setOtherGeocodeAccuracy(String otherGeocodeAccuracy) {
+    /**
+     * Sets the otherGeocodeAccuracy.
+     *
+     * @param otherGeocodeAccuracy to be set.
+     */
+    public void setOtherGeocodeAccuracy(final String otherGeocodeAccuracy) {
         OtherGeocodeAccuracy = otherGeocodeAccuracy;
     }
-
+    /**
+     * Gets the OtherAddress.
+     *
+     * @return the OtherAddress.
+     */
     public String getOtherAddress() {
         return OtherAddress;
     }
-
-    public void setOtherAddress(String otherAddress) {
+    /**
+     * Sets the otherAddress.
+     *
+     * @param otherAddress to be set.
+     */
+    public void setOtherAddress(final String otherAddress) {
         OtherAddress = otherAddress;
     }
-
+    /**
+     * Gets the MailingCity.
+     *
+     * @return the MailingCity.
+     */
     public String getMailingCity() {
         return MailingCity;
     }
-
-    public void setMailingCity(String mailingCity) {
+    /**
+     * Sets the mailingCity.
+     *
+     * @param mailingCity to be set.
+     */
+    public void setMailingCity(final String mailingCity) {
         MailingCity = mailingCity;
     }
-
+    /**
+     * Gets the MailingState.
+     *
+     * @return the MailingState.
+     */
     public String getMailingState() {
         return MailingState;
     }
-
-    public void setMailingState(String mailingState) {
+    /**
+     * Sets the mailingState.
+     *
+     * @param mailingState to be set.
+     */
+    public void setMailingState(final String mailingState) {
         MailingState = mailingState;
     }
-
+    /**
+     * Gets the MailingPostalCode.
+     *
+     * @return the MailingPostalCode.
+     */
     public String getMailingPostalCode() {
         return MailingPostalCode;
     }
-
-    public void setMailingPostalCode(String mailingPostalCode) {
+    /**
+     * Sets the mailingPostalCode.
+     *
+     * @param mailingPostalCode to be set.
+     */
+    public void setMailingPostalCode(final String mailingPostalCode) {
         MailingPostalCode = mailingPostalCode;
     }
-
+    /**
+     * Gets the Phone.
+     *
+     * @return the Phone.
+     */
     public Integer getPhone() {
         return Phone;
     }
-
-    public void setPhone(Integer phone) {
+    /**
+     * Sets the phone.
+     *
+     * @param phone to be set.
+     */
+    public void setPhone(final Integer phone) {
         Phone = phone;
     }
-
+    /**
+     * Gets the Fax.
+     *
+     * @return the Fax.
+     */
     public Integer getFax() {
         return Fax;
     }
-
-    public void setFax(Integer fax) {
+    /**
+     * Sets the fax.
+     *
+     * @param fax to be set.
+     */
+    public void setFax(final Integer fax) {
         Fax = fax;
     }
-
+    /**
+     * Gets the MobilePhone.
+     *
+     * @return the MobilePhone.
+     */
     public Integer getMobilePhone() {
         return MobilePhone;
     }
-
-    public void setMobilePhone(Integer mobilePhone) {
+    /**
+     * Sets the mobilePhone.
+     *
+     * @param mobilePhone to be set.
+     */
+    public void setMobilePhone(final Integer mobilePhone) {
         MobilePhone = mobilePhone;
     }
-
+    /**
+     * Gets the HomePhone.
+     *
+     * @return the HomePhone.
+     */
     public Integer getHomePhone() {
         return HomePhone;
     }
-
-    public void setHomePhone(Integer homePhone) {
+    /**
+     * Sets the homePhone.
+     *
+     * @param homePhone to be set.
+     */
+    public void setHomePhone(final Integer homePhone) {
         HomePhone = homePhone;
     }
-
+    /**
+     * Gets the OtherPhone.
+     *
+     * @return the OtherPhone.
+     */
     public Integer getOtherPhone() {
         return OtherPhone;
     }
-
-    public void setOtherPhone(Integer otherPhone) {
+    /**
+     * Sets the otherPhone.
+     *
+     * @param otherPhone to be set.
+     */
+    public void setOtherPhone(final Integer otherPhone) {
         OtherPhone = otherPhone;
     }
-
+    /**
+     * Gets the AssistantPhone.
+     *
+     * @return the AssistantPhone.
+     */
     public Integer getAssistantPhone() {
         return AssistantPhone;
     }
-
-    public void setAssistantPhone(Integer assistantPhone) {
+    /**
+     * Sets the assistantPhone.
+     *
+     * @param assistantPhone to be set.
+     */
+    public void setAssistantPhone(final Integer assistantPhone) {
         AssistantPhone = assistantPhone;
     }
-
+    /**
+     * Gets the ReportsToId.
+     *
+     * @return the ReportsToId.
+     */
     public String getReportsToId() {
         return ReportsToId;
     }
-
-    public void setReportsToId(String reportsToId) {
+    /**
+     * Sets the reportsToId.
+     *
+     * @param reportsToId to be set.
+     */
+    public void setReportsToId(final String reportsToId) {
         ReportsToId = reportsToId;
     }
-
+    /**
+     * Gets the Email.
+     *
+     * @return the Email.
+     */
     public String getEmail() {
         return Email;
     }
-
-    public void setEmail(String email) {
+    /**
+     * Sets the email.
+     *
+     * @param email to be set.
+     */
+    public void setEmail(final String email) {
         Email = email;
     }
-
+    /**
+     * Gets the Title.
+     *
+     * @return the Title.
+     */
     public String getTitle() {
         return Title;
     }
-
-    public void setTitle(String title) {
+    /**
+     * Sets the title.
+     *
+     * @param title to be set.
+     */
+    public void setTitle(final String title) {
         Title = title;
     }
-
+    /**
+     * Gets the Department.
+     *
+     * @return the Department.
+     */
     public String getDepartment() {
         return Department;
     }
-
-    public void setDepartment(String department) {
+    /**
+     * Sets the department.
+     *
+     * @param department to be set.
+     */
+    public void setDepartment(final String department) {
         Department = department;
     }
-
+    /**
+     * Gets the AssistantName.
+     *
+     * @return the AssistantName.
+     */
     public String getAssistantName() {
         return AssistantName;
     }
-
-    public void setAssistantName(String assistantName) {
+    /**
+     * Sets the assistantName.
+     *
+     * @param assistantName to be set.
+     */
+    public void setAssistantName(final String assistantName) {
         AssistantName = assistantName;
     }
-
+    /**
+     * Gets the Birthdate.
+     *
+     * @return the Birthdate.
+     */
     public Date getBirthdate() {
         return Birthdate;
     }
-
-    public void setBirthdate(Date birthdate) {
+    /**
+     * Sets the birthdate.
+     *
+     * @param birthdate to be set.
+     */
+    public void setBirthdate(final Date birthdate) {
         Birthdate = birthdate;
     }
-
+    /**
+     * Gets the Description.
+     *
+     * @return the Description.
+     */
     public String getDescription() {
         return Description;
     }
-
-    public void setDescription(String description) {
+    /**
+     * Sets the description.
+     *
+     * @param description to be set.
+     */
+    public void setDescription(final String description) {
         Description = description;
     }
-
+    /**
+     * Gets the OwnerId.
+     *
+     * @return the OwnerId.
+     */
     public String getOwnerId() {
         return OwnerId;
     }
-
-    public void setOwnerId(String ownerId) {
+    /**
+     * Sets the ownerId.
+     *
+     * @param ownerId to be set.
+     */
+    public void setOwnerId(final String ownerId) {
         OwnerId = ownerId;
     }
-
+    /**
+     * Gets the CreatedDate.
+     *
+     * @return the CreatedDate.
+     */
     public Date getCreatedDate() {
         return CreatedDate;
     }
-
-    public void setCreatedDate(Date createdDate) {
+    /**
+     * Sets the createdDate.
+     *
+     * @param createdDate to be set.
+     */
+    public void setCreatedDate(final Date createdDate) {
         CreatedDate = createdDate;
     }
-
+    /**
+     * Gets the CreatedById.
+     *
+     * @return the CreatedById.
+     */
     public Date getCreatedById() {
         return CreatedById;
     }
-
-    public void setCreatedById(Date createdById) {
+    /**
+     * Sets the createdById.
+     *
+     * @param createdById to be set.
+     */
+    public void setCreatedById(final Date createdById) {
         CreatedById = createdById;
     }
-
+    /**
+     * Gets the LastModifiedDate.
+     *
+     * @return the LastModifiedDate.
+     */
     public Date getLastModifiedDate() {
         return LastModifiedDate;
     }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    /**
+     * Sets the lastModifiedDate.
+     *
+     * @param lastModifiedDate to be set.
+     */
+    public void setLastModifiedDate(final Date lastModifiedDate) {
         LastModifiedDate = lastModifiedDate;
     }
-
+    /**
+     * Gets the LastModifiedById.
+     *
+     * @return the LastModifiedById.
+     */
     public Date getLastModifiedById() {
         return LastModifiedById;
     }
-
-    public void setLastModifiedById(Date lastModifiedById) {
+    /**
+     * Sets the lastModifiedById.
+     *
+     * @param lastModifiedById to be set.
+     */
+    public void setLastModifiedById(final Date lastModifiedById) {
         LastModifiedById = lastModifiedById;
     }
 }

@@ -4,6 +4,7 @@ import api.ApiRequest;
 import api.ApiResponse;
 import configuration.ApiStatusCode;
 import entities.Account;
+import entities.Campaign;
 import entities.Product2;
 import entities.Response;
 import io.cucumber.java.en.Then;
@@ -49,8 +50,6 @@ public class BodyResponseSteps {
         apiResponse.getResponse().then().log().body();
     }
 
-
-
     @Then("The product2 response body name of the attribute is the same as the wait and request must be {string}")
     public void theBodyResponseIsSameNameExpectedProduct(String statusCode) {
         LOGGER.info("Then product2 response status");
@@ -66,6 +65,15 @@ public class BodyResponseSteps {
         Assert.assertEquals(apiResponse.getStatusCode(), ApiStatusCode.valueOf(statusCode).value());
         Product2 account = apiResponse.getBody(Product2.class);
         Assert.assertEquals(account.getAttributes().getType(), "Product2");
+        apiResponse.getResponse().then().log().body();
+    }
+
+    @Then("The campaign response body name of the attribute is the same as the wait and request must be {string}")
+    public void theBodyResponseIsSameNameExpectedCampaign(String statusCode) {
+        LOGGER.info("Then product2 response status");
+        Assert.assertEquals(apiResponse.getStatusCode(), ApiStatusCode.valueOf(statusCode).value());
+        Campaign account = apiResponse.getBody(Campaign.class);
+        Assert.assertEquals(account.getName(), "New Campaign");
         apiResponse.getResponse().then().log().body();
     }
 }
