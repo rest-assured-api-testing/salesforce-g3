@@ -39,10 +39,10 @@ public class Env {
      */
     public static Properties read() throws IOException {
         Properties properties = new Properties();
-        File file = new File(CONFIG_PATH); //here you make a filehandler - not a filesystem file.
+        File file = new File(CONFIG_PATH);
 
         if (!file.exists()) {
-            file.createNewFile(); // create your file on the file system
+            file.createNewFile();
         }
         try (InputStream reading = new FileInputStream(file)) {
             properties.load(reading);
@@ -54,11 +54,8 @@ public class Env {
 
     public static String obtainEnvVariables(final String variables) {
         if (CONFIG.getProperty(variables) != null) {
-            System.out.println("1");
             return CONFIG.getProperty(variables);
         }
-        System.out.println("environment");
-        System.out.println(System.getenv(variables));
         return System.getenv(variables);
     }
 }

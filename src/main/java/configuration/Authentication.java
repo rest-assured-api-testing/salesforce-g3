@@ -11,7 +11,6 @@
 package configuration;
 
 import entities.Token;
-
 import static configuration.Env.obtainEnvVariables;
 import static io.restassured.RestAssured.given;
 
@@ -26,13 +25,6 @@ public class Authentication {
      * Sets the salesforce token.
      */
     public void getAuth() {
-//        System.out.println(obtainEnvVariables("USER"));
-//        System.out.println(System.getProperty("user.name"));
-//        System.out.println(System.getenv("USERNAME"));
-//        System.out.println(System.getProperty("VERSION"));
-//
-//        System.out.println(System.getenv("VERSION"));
-
         token = given().urlEncodingEnabled(true)
                 .param("username", obtainEnvVariables("USER"))
                 .param("password", obtainEnvVariables("PASSWORD"))
