@@ -25,7 +25,7 @@ public class ContactHooks {
         this.apiResponse = apiResponse;
         this.response = response;
     }
-    @Before(value = "@UseCreatedContact")
+    @Before(value = "@UseCreatedContact or @UseCreateAccount")
     public void createContact() throws JsonProcessingException {
         LOGGER.info("------ Create a contact ------");
         Contact newContact = new Contact();
