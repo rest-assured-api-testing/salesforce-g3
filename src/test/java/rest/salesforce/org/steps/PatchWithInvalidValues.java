@@ -1,12 +1,12 @@
 package rest.salesforce.org.steps;
 
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import api.ApiManager;
 import api.ApiRequest;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import configuration.InvalidValuesEnum;
+import salesforce.InvalidIDs;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
@@ -25,8 +25,8 @@ public class PatchWithInvalidValues {
     public void iExecutePatchWithAnRequest(String endpoint, String ID, DataTable jsonData) throws JsonProcessingException {
         LOGGER.info("------ Execute Delete an object ------");
         String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
-        apiRequest.endpoint(ApiFeature.valueOf(endpoint))
-                .addPathParam(endpoint, InvalidValuesEnum.valueOf(ID).value())
+        apiRequest.endpoint(ApiEndPoints.valueOf(endpoint))
+                .addPathParam(endpoint, InvalidIDs.valueOf(ID).value())
                 .body(body);
         ApiManager.execute(apiRequest, apiResponse);
     }

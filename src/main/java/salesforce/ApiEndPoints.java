@@ -8,12 +8,12 @@
  *
  * @author Edson Anawaya Rios
  */
-package api;
+package salesforce;
 
 /**
  * This enum defines possible SalesForce Endpoints.
  */
-public enum ApiFeature {
+public enum ApiEndPoints {
 
     TOKEN("/token"),
     CASE("/sobjects/Case"),
@@ -43,7 +43,7 @@ public enum ApiFeature {
 
     private String endpoint;
 
-    ApiFeature(final String endpoint) {
+    ApiEndPoints(final String endpoint) {
         this.endpoint = endpoint;
     }
     /**

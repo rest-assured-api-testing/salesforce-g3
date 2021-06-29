@@ -13,7 +13,7 @@ package api;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpHeaders;
-import static configuration.env.CONFIG;
+import static configuration.Env.CONFIG;
 import static io.restassured.RestAssured.given;
 import static configuration.Authentication.token;
 

@@ -31,7 +31,7 @@ Feature: Request for product2 feature
     Given I build "PATCH" request
     When I execute for "PRODUCT2_ID" request with updated name
       | name | product2 cucumber updated |
-    Then Status response of request should be "UPDATED"
+    Then Status response of request should be "CREATED"
 
     #    CREATE
   @DeleteProduct2
@@ -77,21 +77,21 @@ Feature: Request for product2 feature
     Given I build "PATCH" request
     When I execute for "PRODUCT2_ID" request with updated name
       | name | product2 cucumber updated |
-    Then "response" schema status response of request should be "UPDATED"
+    Then "response" schema status response of request should be "CREATED"
 
   @CreateDeleteProduct2
   Scenario: Response body to Success is true for A Product2 Updated
     Given I build "PATCH" request
     When I execute for "PRODUCT2_ID" request with updated name
       | name | product2 cucumber updated |
-    Then Response body status request should be "UPDATED"
+    Then Response body status request should be "CREATED"
 
   @CreateDeleteProduct2
   Scenario: Accept special characters A Product2 Updated
     Given I build "PATCH" request
     When I execute for "PRODUCT2_ID" request with updated name
       | name | "@!"#$%(=)/)(/()/&&/%"$%!"$!%") updated" |
-    Then Status response of request should be "UPDATED"
+    Then Status response of request should be "CREATED"
 
     #BUG
   @CreateDeleteProduct2
@@ -100,7 +100,7 @@ Feature: Request for product2 feature
     When I execute for "PRODUCT2_ID" request with updated name
       | name        | product2 cucumber updated   |
       | description | product updated by cucumber |
-    Then Status response of request should be "UPDATED"
+    Then Status response of request should be "CREATED"
 
   @CreateDeleteProduct2
   Scenario: Update a Product2 with attribute IsActive to true
@@ -108,7 +108,7 @@ Feature: Request for product2 feature
     When I execute for "PRODUCT2_ID" request with updated name
       | name     | product2 cucumber updated |
       | IsActive | true                      |
-    Then Status response of request should be "UPDATED"
+    Then Status response of request should be "CREATED"
 
 #    GET
   @CreateDeleteProduct2

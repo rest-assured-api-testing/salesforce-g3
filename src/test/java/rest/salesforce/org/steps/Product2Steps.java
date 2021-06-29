@@ -1,17 +1,11 @@
 package rest.salesforce.org.steps;
 
-import api.ApiManager;
 import api.ApiRequest;
 import api.ApiResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import api.ApiFeature;
-import configuration.ResponseEnum;
+import configuration.ApiStatusCode;
 import entities.Product2;
 import entities.Response;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 
@@ -30,7 +24,7 @@ public class Product2Steps {
     @Then("The product2 response body name of the attribute is the same as the wait and request must be {string}")
     public void theBodyResponseIsSameNameExpected(String statusCode) {
         LOGGER.info("Then product2 response status");
-        Assert.assertEquals(apiResponse.getStatusCode(), ResponseEnum.valueOf(statusCode).value());
+        Assert.assertEquals(apiResponse.getStatusCode(), ApiStatusCode.valueOf(statusCode).value());
         Product2 account = apiResponse.getBody(Product2.class);
         Assert.assertEquals(account.getName(), "Before create product2 cucumber");
         apiResponse.getResponse().then().log().body();
@@ -39,7 +33,7 @@ public class Product2Steps {
     @Then("The product2 response body kind of the attribute is the same as the wait and request must be {string}")
     public void theBodyResponseIsKindProduct2(String statusCode) {
         LOGGER.info("Then product2 response status");
-        Assert.assertEquals(apiResponse.getStatusCode(), ResponseEnum.valueOf(statusCode).value());
+        Assert.assertEquals(apiResponse.getStatusCode(), ApiStatusCode.valueOf(statusCode).value());
         Product2 account = apiResponse.getBody(Product2.class);
         Assert.assertEquals(account.getAttributes().getType(), "Product2");
         apiResponse.getResponse().then().log().body();

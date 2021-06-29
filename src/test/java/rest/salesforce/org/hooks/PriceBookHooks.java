@@ -4,7 +4,7 @@ import api.ApiRequest;
 import api.ApiResponse;
 import api.ApiManager;
 import api.ApiMethod;
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.PriceBook;
@@ -32,7 +32,7 @@ public class PriceBookHooks {
         PriceBook newPriceBook = new PriceBook();
         newPriceBook.setName("New PriceBook name");
         apiRequest.method(ApiMethod.POST)
-                .endpoint(ApiFeature.PRICE_BOOK)
+                .endpoint(ApiEndPoints.PRICE_BOOK)
                 .body(new ObjectMapper().writeValueAsString(newPriceBook));
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
@@ -43,7 +43,7 @@ public class PriceBookHooks {
         LOGGER.info("------ After delete created price book ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiFeature.PRICE_BOOK_ID)
+                .endpoint(ApiEndPoints.PRICE_BOOK_ID)
                 .addPathParam("PRICE_BOOK_ID", response.getId());
         ApiManager.execute(apiRequest, apiResponse);
     }

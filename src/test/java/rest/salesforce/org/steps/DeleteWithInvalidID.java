@@ -1,10 +1,10 @@
 package rest.salesforce.org.steps;
 
-import api.ApiFeature;
+import salesforce.ApiEndPoints;
 import api.ApiManager;
 import api.ApiRequest;
 import api.ApiResponse;
-import configuration.InvalidValuesEnum;
+import salesforce.InvalidIDs;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 
@@ -21,8 +21,8 @@ public class DeleteWithInvalidID {
     @When("I execute delete {string} with an {string} request")
     public void iExecuteDeleteWithAnRequest(String endpoint, String ID) {
         LOGGER.info("------ Execute Delete an object ------");
-        apiRequest.endpoint(ApiFeature.valueOf(endpoint))
-                .addPathParam(endpoint, InvalidValuesEnum.valueOf(ID).value());
+        apiRequest.endpoint(ApiEndPoints.valueOf(endpoint))
+                .addPathParam(endpoint, InvalidIDs.valueOf(ID).value());
         ApiManager.execute(apiRequest, apiResponse);
     }
 }

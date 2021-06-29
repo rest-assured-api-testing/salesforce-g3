@@ -12,6 +12,8 @@ package api;
 
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
+import salesforce.ApiEndPoints;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,7 +69,7 @@ public class ApiRequest {
      *
      * @param endpoint to be set.
      */
-    public void setEndpoint(final ApiFeature endpoint) {
+    public void setEndpoint(final ApiEndPoints endpoint) {
         this.endpoint = endpoint.toEndpoint();
     }
     /**
@@ -220,7 +222,7 @@ public class ApiRequest {
      * @param  endpoint to be set.
      * @return tha apiRequest end point.
      */
-    public ApiRequest endpoint(final ApiFeature endpoint) {
+    public ApiRequest endpoint(final ApiEndPoints endpoint) {
         this.setEndpoint(endpoint);
         return this;
     }
