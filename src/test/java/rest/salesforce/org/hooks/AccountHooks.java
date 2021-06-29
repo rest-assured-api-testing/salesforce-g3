@@ -20,15 +20,15 @@ public class AccountHooks {
     private Response response;
 
     public AccountHooks(ApiRequest apiRequest, ApiResponse apiResponse, Response response) {
-        LOGGER.info("--> account hook constructor");
+        LOGGER.info("------ Account hook constructor ------");
         this.apiRequest = apiRequest;
         this.apiResponse = apiResponse;
         this.response = response;
     }
 
-    @Before(value = "@CreateDeleteAccount or @CreateAccount")
-    public void create() throws JsonProcessingException {
-        LOGGER.info("--> Before hook Create a account");
+    @Before(value = "@UseCreatedAccount or @CreateAccount")
+    public void createAccount() throws JsonProcessingException {
+        LOGGER.info("------ Create an account ------");
         Account account = new Account();
         account.setName("Before create account cucumber");
         apiRequest.method(ApiMethod.POST)
@@ -36,12 +36,11 @@ public class AccountHooks {
                 .body(new ObjectMapper().writeValueAsString(account));
         ApiManager.execute(apiRequest, apiResponse);
         response.setId(apiResponse.getBody(Response.class).getId());
-
     }
 
-    @After(value = "@CreateDeleteAccount or @DeleteAccount")
-    public void delete() {
-        LOGGER.info("--> After delete account cucumber");
+    @After(value = "@UseCreatedAccount or @DeleteAccount")
+    public void deleteAccount() {
+        LOGGER.info("------ Delete an account ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.ACCOUNT_ID)

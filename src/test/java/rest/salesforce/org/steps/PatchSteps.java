@@ -22,7 +22,7 @@ public class PatchSteps {
         this.apiResponse = apiResponse;
         this.response = response;
     }
-    @When("I execute patch {string} request")
+    @When("I update {string} request")
     public void iExecutePatchRequest(String endpoint, DataTable jsonData) throws JsonProcessingException {
         LOGGER.info("------ Execute update with body ------");
         String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
