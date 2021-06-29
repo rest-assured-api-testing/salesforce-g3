@@ -25,7 +25,7 @@ public class ContactHooks {
         this.apiResponse = apiResponse;
         this.response = response;
     }
-    @Before(value = "@UseCreatedContact or @UseCreateAccount")
+    @Before(value = "@UseCreatedContact or @CreateContact")
     public void createContact() throws JsonProcessingException {
         LOGGER.info("------ Create a contact ------");
         Contact newContact = new Contact();
@@ -37,9 +37,9 @@ public class ContactHooks {
         response.setId(apiResponse.getBody(Response.class).getId());
     }
 
-    @After(value = "@UseCreatedContact or @UseDeleteContact")
+    @After(value = "@UseCreatedContact or @DeleteContact")
     public void deleteContact() {
-        LOGGER.info("------ After delete created case ------");
+        LOGGER.info("------ Delete a contact ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.CONTACT_ID)

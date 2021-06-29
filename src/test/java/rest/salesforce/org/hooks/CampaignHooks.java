@@ -25,7 +25,8 @@ public class CampaignHooks {
         this.apiResponse = apiResponse;
         this.response = response;
     }
-    @Before(value = "@UpdateCampaign or @DeleteACampaign or @GetCampaign")
+
+    @Before(value = "@UseCreatedCampaign or @CreateCampaign")
     public void createCampaign() throws JsonProcessingException {
         LOGGER.info("------ Create a campaign ------");
         Campaign newCampaign = new Campaign();
@@ -37,9 +38,9 @@ public class CampaignHooks {
         response.setId(apiResponse.getBody(Response.class).getId());
     }
 
-    @After(value = "@UpdateCampaign or @CreateACampaign or @GetCampaign")
+    @After(value = "@UseCreatedCampaign or @DeleteCampaign")
     public void deleteCampaign() {
-        LOGGER.info("------ After delete created campaign ------");
+        LOGGER.info("------ Delete a campaign ------");
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.CAMPAIGN_ID)
