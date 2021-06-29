@@ -1,5 +1,17 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * <p>
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ *
+ * @author Paola Ximena Aguilar Quiñones
+ */
 package entities;
-
+/**
+ * This class builds a Case json body.
+ */
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -78,20 +90,36 @@ public class Case {
     private String Product__c;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String PotentialLiability__c;
-
+    /**
+     * Gets the Id.
+     *
+     * @return the Id.
+     */
     public String getId() {
         return Id;
     }
-
-    public void setId(String id) {
+    /**
+     * Sets the id.
+     *
+     * @param id to be set.
+     */
+    public void setId(final String id) {
         Id = id;
     }
-
+    /**
+     * Gets the MasterRecordId.
+     *
+     * @return the MasterRecordId.
+     */
     public String getMasterRecordId() {
         return MasterRecordId;
     }
-
-    public void setMasterRecordId(String masterRecordId) {
+    /**
+     * Sets the masterRecordId.
+     *
+     * @param masterRecordId to be set.
+     */
+    public void setMasterRecordId(final String masterRecordId) {
         MasterRecordId = masterRecordId;
     }
 
