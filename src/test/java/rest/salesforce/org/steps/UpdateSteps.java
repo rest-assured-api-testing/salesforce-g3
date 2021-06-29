@@ -37,10 +37,8 @@ public class UpdateSteps {
     @When("I execute update {string} request with specific {string}")
     public void iExecuteRequestWithBodyAndParam(String endpoint, String specificID) {
         LOGGER.info("------ Execute update with body ------");
-        //String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         apiRequest.endpoint(ApiEndPoints.valueOf(endpoint))
                 .addPathParam(endpoint, specificID);
-                //.body(body);
         ApiManager.execute(apiRequest, apiResponse);
     }
 }

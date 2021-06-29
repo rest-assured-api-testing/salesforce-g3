@@ -6,24 +6,18 @@ Feature: Request for Campaign feature
     When I execute "CAMPAIGN" request
     Then Status response of request should be "OK"
 
-  #@UseCreatedCampaign
-  #Scenario: Validate Schema of a Case
-  #  Given I build "POST" request
-  #  When I execute create "CASE" request
-  #    | status | Working |
-  #  Then "response" schema status response of request should be "CREATED"
+  @UseCreatedCampaign
+  Scenario: Validate Schema of a Case
+    Given I build "POST" request
+    When I execute create "CASE" request
+      | status | Working |
+    Then "response" schema status response of request should be "CREATED"
 
-  #@UseCreatedCampaign
-  #Scenario: Validate Schema of specific Case
-  #  Given I build "GET" request
-  #  When I execute "CASE" request with param
-  #  Then "case" schema status response of request should be "OK"
-
-  #@UseCreatedCampaign
-  #Scenario: Response body is the same name for a created Case
-  #  Given I build "GET" request
-  #  When I execute "CASE" request with param
-  #  Then The campaign response body name of the attribute is the same as the wait and request must be "OK"
+  @UseCreatedCampaign
+  Scenario: Validate Schema of specific Case
+    Given I build "GET" request
+    When I execute "CAMPAIGN_ID" request with param
+    Then "campaign" schema status response of request should be "OK"
 
   @DeleteCampaign
   Scenario: Response body to Success is true for a specific Campaign
@@ -160,9 +154,3 @@ Feature: Request for Campaign feature
       | id                    |
       | " Mv234498cvXvmsj435" |
       | "Mv234498cvXvmsj435"  |
-
-  #@UseCreatedCampaign
-  #Scenario: Attribute response body is kind campaign for A campaign Created
-  #  Given I build "GET" request
-  #  When I execute "CAMPAIGN_ID" request with param
-  #  Then The campaign response body kind of the attribute is the same as the wait and request must be "OK"
