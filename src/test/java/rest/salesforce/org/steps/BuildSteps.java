@@ -9,7 +9,6 @@ public class BuildSteps {
     private Logger LOGGER = Logger.getLogger(getClass());
     ApiRequest apiRequest;
 
-
     public BuildSteps(ApiRequest apiRequest) {
         this.apiRequest = apiRequest;
     }

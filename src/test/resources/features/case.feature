@@ -7,25 +7,6 @@ Feature: Scenario test for Case feature
     When I execute "CASE" request
     Then Status response of request should be "OK"
 
-  #@UseCreatedCase
-  #Scenario: Validate Schema of a Case
-  #  Given I build "POST" request
-  #  When I execute create "CASE" request
-  #    | status | Working |
-  #  Then "response" schema status response of request should be "CREATED"
-
-  #@UseCreatedCase
-  #Scenario: Validate Schema of specific Case
-  #  Given I build "GET" request
-  #  When I execute "CASE" request with param
-  #  Then "case" schema status response of request should be "OK"
-
-  #@UseCreatedCase
-  #Scenario: Response body is the same name for a created Case
-  #  Given I build "GET" request
-  #  When I execute "CASE" request with param
-  #  Then The Case response body name of the attribute is the same as the wait and request must be "OK"
-
   @DeleteCase
   Scenario: Response body to Success is true for a Case
     Given I build "POST" request
@@ -147,9 +128,3 @@ Feature: Scenario test for Case feature
       | id                    |
       | " Mv234498cvXvmsj435" |
       | "Mv234498cvXvmsj435"  |
-
-  #@UseCreatedCase
-  #Scenario: Attribute response body is kind Case for A Case Created
-  #  Given I build "GET" request
-  #  When I execute "CASE_ID" request with param
-  #  Then The Case response body kind of the attribute is the same as the wait and request must be "OK"

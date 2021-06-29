@@ -13,18 +13,6 @@ Feature: Request for PriceBook feature
       | name | Price name book |
     Then "response" schema status response of request should be "CREATED"
 
-  #@UseCreatedContact
-  #Scenario: Validate Schema of specific Contact
-  #  Given I build "GET" request
-  #  When I execute "CONTACT_ID" request with param
-  #  Then "contact" schema status response of request should be "OK"
-
-  #@UseCreatedCampaign
-  #Scenario: Response body is the same name for a created Case
-  #  Given I build "GET" request
-  #  When I execute "CAMPAIGN_ID" request with param
-  #  Then The campaign response body name of the attribute is the same as the wait and request must be "OK"
-
   @DeletePrice
   Scenario: Response body to Success is true for a specific Price book
     Given I build "POST" request

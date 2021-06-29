@@ -14,18 +14,6 @@ Feature: Scenario test for Contact feature
       | lastname | Ramirez Perez |
     Then "response" schema status response of request should be "CREATED"
 
-  #@UseCreatedContact
-  #Scenario: Validate Schema of specific Contact
-  #  Given I build "GET" request
-  #  When I execute "CONTACT_ID" request with param
-  #  Then "contact" schema status response of request should be "OK"
-
-  #@UseCreatedCampaign
-  #Scenario: Response body is the same name for a created Case
-  #  Given I build "GET" request
-  #  When I execute "CAMPAIGN_ID" request with param
-  #  Then The campaign response body name of the attribute is the same as the wait and request must be "OK"
-
   @DeleteContact
   Scenario: Response body to Success is true for a specific Contact
     Given I build "POST" request
@@ -179,9 +167,3 @@ Feature: Scenario test for Contact feature
       | id                    |
       | " Mv234498cvXvmsj435" |
       | "Mv234498cvXvmsj435"  |
-
-  #@UseCreatedCampaign
-  #Scenario: Attribute response body is kind campaign for A campaign Created
-  #  Given I build "GET" request
-  #  When I execute "CAMPAIGN_ID" request with param
-  #  Then The campaign response body kind of the attribute is the same as the wait and request must be "OK"

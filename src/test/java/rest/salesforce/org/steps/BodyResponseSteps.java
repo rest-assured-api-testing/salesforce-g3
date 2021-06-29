@@ -50,8 +50,6 @@ public class BodyResponseSteps {
         apiResponse.getResponse().then().log().body();
     }
 
-
-
     @Then("The product2 response body name of the attribute is the same as the wait and request must be {string}")
     public void theBodyResponseIsSameNameExpectedProduct(String statusCode) {
         LOGGER.info("Then product2 response status");
