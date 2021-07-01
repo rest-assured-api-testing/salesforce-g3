@@ -23,8 +23,7 @@ Feature: Scenario test for Contact feature
     Then Response body status request should be "CREATED"
 
   @UseCreatedContact
-
-  Scenario: Get a specific Contact
+  Scenario: Get a specific Contact with Id
     Given I build "GET" request
     When I execute "CONTACT_ID" request with param
     Then Response status should be "OK"
@@ -96,7 +95,6 @@ Feature: Scenario test for Contact feature
       | Ramírez Peñaranda       | some.email@gmail.com    | Mr.         |
       | Ramírez Peñaranda       |                         | Mr.         |
 
-
   @DeleteContact
   Scenario Outline: A Contact can be created with more parameters
     Given I build "POST" request
@@ -119,20 +117,25 @@ Feature: Scenario test for Contact feature
     Given I build "PATCH" request
     When I execute update "CONTACT_ID" request
       | lastname | <lastname> |
-    Then Response status should be <status>
+    Then Response status should be "NO_CONTENT"
     Examples:
-    Examples:
-      | lastname        | status        |
-      | Pérez Araneda   | "NO_CONTENT"  |
-      | Marƒrens        | "NO_CONTENT"  |
-      | #3 - Rogelio    | "NO_CONTENT"  |
-      | ""              | "NO_CONTENT"  |
-      | "  "            | "NO_CONTENT"  |
-      | "  _"           | "NO_CONTENT"  |
-      |                 | "BAD_REQUEST" |
+      | lastname        |
+      | Pérez Araneda   |
+      | Marƒrens        |
+      | #3 - Rogelio    |
+      | ""              |
+      | "  "            |
+      | "  _"           |
 
   @UseCreatedContact
-  Scenario Outline: Campaign can  be updated with more parameters
+  Scenario: Contact can't be updated with null lastname
+    Given I build "PATCH" request
+    When I execute update "CONTACT_ID" request
+      | lastname |  |
+    Then Response status should be "BAD_REQUEST"
+
+  @UseCreatedContact
+  Scenario Outline: Contact can be updated with more parameters
     Given I build "PATCH" request
     When I execute update "CONTACT_ID" request
       | homephone       | <homephone>      |
@@ -147,7 +150,7 @@ Feature: Scenario test for Contact feature
       | ""              | Dr.       |
 
   @CantUpdateAContactWithWrongId
-  Scenario Outline: Campaign can't be updated with wrong or empty id
+  Scenario Outline: Contact can't be updated with wrong or empty id
     Given I build "PATCH" request
     When I execute update "CONTACT_ID" request with specific <id>
     Then Response status should be "NOT_FOUND"
@@ -157,13 +160,13 @@ Feature: Scenario test for Contact feature
       | " Mv23498cvXvmsj435"    |
 
   @CreateContact
-  Scenario: Delete a Contact
+  Scenario: Delete a Contact with correct Id
     Given I build "DELETE" request
     When I execute "CONTACT_ID" request with param
     Then Response status should be "NO_CONTENT"
 
   @CantDeleteContactWithWrongId
-  Scenario Outline: Delete a Contact
+  Scenario Outline: A contact can't be deleted with wrong or empty Id
     Given I build "DELETE" request
     When I execute "CONTACT_ID" with <id>
     Then Response status should be "NOT_FOUND"
