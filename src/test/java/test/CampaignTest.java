@@ -5,7 +5,7 @@ import api.ApiMethod;
 import api.ApiResponse;
 import before.BeforeCampaign;
 import salesforce.ApiEndPoints;
-import entities.CreatedObject;
+import salesforce.entities.CreatedObject;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;

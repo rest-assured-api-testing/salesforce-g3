@@ -7,7 +7,7 @@ import before.SuitTestBefore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import salesforce.ApiEndPoints;
-import entities.Contact;
+import salesforce.entities.Contact;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;

@@ -2,7 +2,7 @@ package rest.salesforce.org.steps;
 
 import api.ApiRequest;
 import api.ApiResponse;
-import configuration.ApiStatusCode;
+import api.ApiStatusCode;
 import io.cucumber.java.en.Then;
 import org.apache.log4j.Logger;
 import org.testng.Assert;

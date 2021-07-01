@@ -2,11 +2,9 @@ package rest.salesforce.org.steps;
 
 import api.ApiRequest;
 import api.ApiResponse;
-import configuration.ApiStatusCode;
-import entities.Account;
-import entities.Campaign;
-import entities.Product2;
-import entities.Response;
+import api.ApiStatusCode;
+import salesforce.entities.Campaign;
+import salesforce.entities.Response;
 import io.cucumber.java.en.Then;
 import org.apache.log4j.Logger;
 import org.testng.Assert;

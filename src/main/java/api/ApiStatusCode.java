@@ -8,7 +8,7 @@
  *
  * @author Edson Anawaya Rios
  */
-package configuration;
+package api;
 
 /**
  * This enum defines Invalid IDs for salesforce Endopints.
