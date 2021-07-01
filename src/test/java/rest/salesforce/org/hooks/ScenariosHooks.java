@@ -3,7 +3,7 @@ package rest.salesforce.org.hooks;
 import api.ApiRequest;
 import api.ApiResponse;
 import configuration.Authentication;
-import entities.Response;
+import salesforce.entities.Response;
 import io.cucumber.java.Before;
 import org.apache.http.HttpHeaders;
 import org.apache.log4j.Logger;

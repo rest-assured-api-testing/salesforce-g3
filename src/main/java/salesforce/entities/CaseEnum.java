@@ -8,7 +8,7 @@
  *
  * @author Paola Ximena Aguilar Quiñones
  */
-package entities;
+package salesforce.entities;
 
 /**
  * This enum defines valid status for a Case.

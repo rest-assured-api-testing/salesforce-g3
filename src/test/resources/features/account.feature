@@ -5,38 +5,28 @@ Feature: Request for account feature
   Scenario: Get all Account
     Given I build "GET" request
     When I execute "ACCOUNT" request
-    Then Status response of request should be "OK"
-
-  @DeleteAccount
-  Scenario: Validate Schema response of Account creation
-    Given I build "POST" request
-    When I execute create "ACCOUNT" request
-      | name | account cucumber |
-    Then "response" schema status response of request should be "CREATED"
+    Then Response status should be "OK"
 
   @UseCreatedAccount
   Scenario: Validate Schema of A Account Obtained
     Given I build "GET" request
     When I execute "ACCOUNT_ID" request with param
-    Then "account" schema status response of request should be "OK"
-
-  @UseCreatedAccount
-  Scenario: Response body is the same name for A Account Created
-    Given I build "GET" request
-    When I execute "ACCOUNT_ID" request with param
-    Then The account response body name of the attribute is the same as the wait and request must be "OK"
+    Then "account" schema status should be "OK"
+    And  Response status should be "OK"
 
   @UseCreatedAccount
   Scenario: Get an Account
     Given I build "GET" request
     When I execute "ACCOUNT_ID" request with param
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
+    And "account" schema status should be "OK"
+
 
   @CantShowAccountWithWrongId
   Scenario Outline: Can't get an account with wrong id
     Given I build "GET" request
     When I execute "ACCOUNT_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id              |
       | " "             |
@@ -48,7 +38,8 @@ Feature: Request for account feature
     Given I build "POST" request
     When I execute create "ACCOUNT" request
       | name | <name> |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | name                    |
       | "account cucumber"      |
@@ -64,7 +55,8 @@ Feature: Request for account feature
     When I execute create "ACCOUNT" request
       | name  | <name>  |
       | phone | <phone> |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | name                    | phone                 |
       | "account cucumber"      | 7688987               |
@@ -79,7 +71,7 @@ Feature: Request for account feature
     Given I build "PATCH" request
     When I update "ACCOUNT_ID" request
       | name | <name> |
-    Then Status response of request should be <status>
+    Then Response status should be <status>
     Examples:
       | name                  | status        |
       | update with letters   | "NO_CONTENT"  |
@@ -94,7 +86,7 @@ Feature: Request for account feature
     When I execute update "ACCOUNT_ID" request
       | name  | <name>  |
       | phone | <phone> |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples: Data with two parameters
       | name                      | phone             |
       | @!"#$%(=)%!"!%") updated  |                   |
@@ -108,20 +100,14 @@ Feature: Request for account feature
   Scenario: Delete an Account
     Given I build "DELETE" request
     When I execute "ACCOUNT_ID" request with param
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
 
   Scenario Outline: Delete an Account
     Given I build "DELETE" request
     When I execute "ACCOUNT_ID" with <wrongId>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | wrongId                |
       | "  "                   |
       | " 95849586cxMnd"       |
       | "95849586cxMnd"        |
-
-  @UseCreatedAccount
-  Scenario: Attribute response body is kind account for A Account Created
-    Given I build "GET" request
-    When I execute "ACCOUNT_ID" request with param
-    Then The account response body kind of the attribute is the same as the wait and request must be "OK"

@@ -5,7 +5,7 @@ Feature: Scenario test for Case feature
   Scenario: Get all Cases
     Given I build "GET" request
     When I execute "CASE" request
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
 
   @DeleteCase
   Scenario: Response body to Success is true for a Case
@@ -13,18 +13,20 @@ Feature: Scenario test for Case feature
     When I execute create "CASE" request
       | status | new |
     Then Response body status request should be "CREATED"
+    And "response" schema status should be "CREATED"
 
   @UseCreatedCase
   Scenario: Get a specific Case
     Given I build "GET" request
     When I execute "CASE_ID" request with param
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
+    And "case" schema status should be "OK"
 
   @CantShowACaseWithWrongId
   Scenario Outline: Can't get a case with wrong or empty id
     Given I build "GET" request
     When I execute "CASE_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | " "                   |
@@ -36,7 +38,8 @@ Feature: Scenario test for Case feature
     Given I build "POST" request
     When I execute create "CASE" request
       | status | <status> |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | status              |
       | New                 |
@@ -54,7 +57,8 @@ Feature: Scenario test for Case feature
     When I execute create "CASE" request
       | status | <status> |
       | Origin  | <origin> |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | status                | origin      |
       | New                   | Phone       |
@@ -71,7 +75,7 @@ Feature: Scenario test for Case feature
     Given I build "PATCH" request
     When I execute update "CASE_ID" request
       | status | <status> |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples:
     Examples:
       | status              |
@@ -90,7 +94,7 @@ Feature: Scenario test for Case feature
     When I execute update "CASE_ID" request
       | status      | <status>      |
       | origin      | <origin>      |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples:
       | status                | origin      |
       | New                   | Phone       |
@@ -107,7 +111,7 @@ Feature: Scenario test for Case feature
   Scenario Outline: Case can't be updated with wrong or empty id
     Given I build "PATCH" request
     When I execute update "CASE_ID" request with specific <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                      |
       | "Mv234498cvXvmsj435"    |
@@ -117,13 +121,13 @@ Feature: Scenario test for Case feature
   Scenario: Delete a Case
     Given I build "DELETE" request
     When I execute "CASE_ID" request with param
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
 
   @CantDeleteCaseWithWrongId
   Scenario Outline: Delete a Case
     Given I build "DELETE" request
     When I execute "CASE_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | " Mv234498cvXvmsj435" |

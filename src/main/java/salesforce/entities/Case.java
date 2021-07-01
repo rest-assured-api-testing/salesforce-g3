@@ -8,7 +8,7 @@
  *
  * @author Paola Ximena Aguilar Quiñones
  */
-package entities;
+package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
