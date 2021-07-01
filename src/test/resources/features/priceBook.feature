@@ -110,7 +110,7 @@ Feature: Request for PriceBook feature
       |                 | "BAD_REQUEST" |
 
   @UseCreatedPrice
-  Scenario : Price book can not be updated with null name
+  Scenario: Campaign can not be updated with null name
     Given I build "PATCH" request
     When I execute update "PRICE_BOOK_ID" request
       | name |  |
