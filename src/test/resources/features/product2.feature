@@ -8,7 +8,7 @@ Feature: Request for product2 feature
     Then Response status should be "OK"
 
   @UseCreatedProduct2
-  Scenario: Validate Schema of A Product2 Updated
+  Scenario: Obtain a Product2 Updated and validate schema
     Given I build "POST" request
     When I execute create "PRODUCT2" request
       | name | product2 cucumber updated |
@@ -16,7 +16,7 @@ Feature: Request for product2 feature
     And "response" schema status should be "CREATED"
 
   @UseCreatedProduct2
-  Scenario: Validate Schema of A Product2 Obtained
+  Scenario: Obtain Product2 and Validate Schema
     Given I build "GET" request
     When I execute "PRODUCT2_ID" request with param
     Then Response status should be "OK"
@@ -38,7 +38,7 @@ Feature: Request for product2 feature
     And "product2" schema status should be "OK"
 
   @CantShowAccountWithWrongId
-  Scenario Outline: Can't get an account with wrong id
+  Scenario Outline: Can't get an product2 with wrong id
     Given I build "GET" request
     When I execute "PRODUCT2_ID" with <id>
     Then Response status should be "NOT_FOUND"
@@ -146,13 +146,13 @@ Feature: Request for product2 feature
       | " 94548498cvXvmsj435"   |
 
   @CreateProduct2
-  Scenario: Delete an Account
+  Scenario: Delete an Product2
     Given I build "DELETE" request
     When I execute "PRODUCT2_ID" request with param
     Then Response status should be "NO_CONTENT"
 
   @CreateProduct2
-  Scenario Outline: Delete an Account
+  Scenario Outline: Delete various Product2 with wrong Ids
     Given I build "DELETE" request
     When I execute "PRODUCT2_ID" with <id>
     Then Response status should be "NOT_FOUND"
