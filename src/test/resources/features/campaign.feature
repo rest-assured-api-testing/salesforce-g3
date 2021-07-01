@@ -4,20 +4,14 @@ Feature: Request for Campaign feature
   Scenario: Get all Campaigns
     Given I build "GET" request
     When I execute "CAMPAIGN" request
-    Then Status response of request should be "OK"
-
-  @UseCreatedCampaign
-  Scenario: Validate Schema of a Case
-    Given I build "POST" request
-    When I execute create "CASE" request
-      | status | Working |
-    Then "response" schema status response of request should be "CREATED"
+    Then Response status should be "OK"
 
   @UseCreatedCampaign
   Scenario: Validate Schema of specific Case
     Given I build "GET" request
     When I execute "CAMPAIGN_ID" request with param
-    Then "campaign" schema status response of request should be "OK"
+    Then "campaign" schema status should be "OK"
+    And  Response status should be "OK"
 
   @DeleteCampaign
   Scenario: Response body to Success is true for a specific Campaign
@@ -25,18 +19,20 @@ Feature: Request for Campaign feature
     When I execute create "CAMPAIGN" request
       | name | New campaign created |
     Then Response body status request should be "CREATED"
+    And "response" schema status should be "CREATED"
 
   @UseCreatedCampaign
   Scenario: Get a specific Campaign
     Given I build "GET" request
     When I execute "CAMPAIGN_ID" request with param
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
+    And "campaign" schema status should be "OK"
 
   @CantShowACaseWithWrongId
   Scenario Outline: Can't get a case with wrong or empty id
     Given I build "GET" request
     When I execute "CAMPAIGN_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | "   "                 |
@@ -48,7 +44,8 @@ Feature: Request for Campaign feature
     Given I build "POST" request
     When I execute create "CAMPAIGN" request
       | name | <name> |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | name                    |
       | Campaign text name      |
@@ -63,7 +60,8 @@ Feature: Request for Campaign feature
     When I execute create "CAMPAIGN" request
       | name      | <name>    |
       | isactive  | <active>  |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | name                | active      |
       | New Campaign name   | true        |
@@ -75,7 +73,8 @@ Feature: Request for Campaign feature
     When I execute create "CAMPAIGN" request
       | name          | <name> |
       | description   | <description> |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | name                | description                         |
       | New Campaign name   | Some description                    |
@@ -89,8 +88,7 @@ Feature: Request for Campaign feature
     Given I build "PATCH" request
     When I execute update "CAMPAIGN_ID" request
       | name | <name> |
-    Then Status response of request should be <status>
-    Examples:
+    Then Response status should be <status>
     Examples:
       | name                    | status        |
       | Parameter Campaign      | "NO_CONTENT"  |
@@ -99,7 +97,14 @@ Feature: Request for Campaign feature
       | ""                      | "NO_CONTENT"  |
       | "  "                    | "NO_CONTENT"  |
       | "  _"                   | "NO_CONTENT"  |
-      |                         | "BAD_REQUEST" |
+
+  @UseCreatedCampaign
+  Scenario: Campaign can not be updated with null name
+    Given I build "PATCH" request
+    When I execute update "CAMPAIGN_ID" request
+      | name |  |
+    Then Response status should be "BAD_REQUEST"
+
 
   @UseCreatedCampaign
   Scenario Outline: Campaign state active can be updated
@@ -107,7 +112,7 @@ Feature: Request for Campaign feature
     When I execute update "CAMPAIGN_ID" request
       | description     | <description>      |
       | isactive        | <active>      |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples:
       | description           | active    |
       | description  #1       | true      |
@@ -119,7 +124,7 @@ Feature: Request for Campaign feature
     When I execute update "CAMPAIGN_ID" request
       | description   | <description>      |
       | status        | <status>      |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples:
       | description           | status        |
       | description  #1       | Completed     |
@@ -133,7 +138,7 @@ Feature: Request for Campaign feature
   Scenario Outline: Campaign can't be updated with wrong or empty id
     Given I build "PATCH" request
     When I execute update "CAMPAIGN_ID" request with specific <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                      |
       | "Mv234498cvXvmsj435"    |
@@ -143,13 +148,13 @@ Feature: Request for Campaign feature
   Scenario: Delete a Campaign
     Given I build "DELETE" request
     When I execute "CAMPAIGN_ID" request with param
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
 
   @CantDeleteCaseWithWrongId
   Scenario Outline: Delete a Campaign
     Given I build "DELETE" request
     When I execute "CAMPAIGN_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | " Mv234498cvXvmsj435" |

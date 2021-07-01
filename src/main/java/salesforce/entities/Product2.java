@@ -8,7 +8,7 @@
  *
  * @author Edson Añawaya Rios
  */
-package entities;
+package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

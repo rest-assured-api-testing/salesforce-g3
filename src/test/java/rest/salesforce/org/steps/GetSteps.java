@@ -4,7 +4,7 @@ import salesforce.ApiEndPoints;
 import api.ApiManager;
 import api.ApiRequest;
 import api.ApiResponse;
-import entities.Response;
+import salesforce.entities.Response;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 

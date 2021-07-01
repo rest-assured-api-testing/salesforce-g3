@@ -6,7 +6,7 @@ import api.ApiRequest;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.Response;
+import salesforce.entities.Response;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;

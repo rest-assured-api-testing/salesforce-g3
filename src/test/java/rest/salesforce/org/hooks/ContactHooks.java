@@ -7,8 +7,8 @@ import api.ApiMethod;
 import salesforce.ApiEndPoints;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.Contact;
-import entities.Response;
+import salesforce.entities.Contact;
+import salesforce.entities.Response;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.log4j.Logger;
@@ -30,6 +30,7 @@ public class ContactHooks {
         LOGGER.info("------ Create a contact ------");
         Contact newContact = new Contact();
         newContact.setLastName("New LastName");
+        newContact.setEmail("paopao@jala.com");
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiEndPoints.CONTACT)
                 .body(new ObjectMapper().writeValueAsString(newContact));

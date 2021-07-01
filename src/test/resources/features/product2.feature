@@ -5,26 +5,22 @@ Feature: Request for product2 feature
   Scenario: Get all Product2
     Given I build "GET" request
     When I execute "PRODUCT2" request
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
 
   @UseCreatedProduct2
   Scenario: Validate Schema of A Product2 Updated
     Given I build "POST" request
     When I execute create "PRODUCT2" request
       | name | product2 cucumber updated |
-    Then "response" schema status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
 
   @UseCreatedProduct2
   Scenario: Validate Schema of A Product2 Obtained
     Given I build "GET" request
     When I execute "PRODUCT2_ID" request with param
-    Then "product2" schema status response of request should be "OK"
-
-  @UseCreatedProduct2
-  Scenario: Response body is the same name for A Product2 Created
-    Given I build "GET" request
-    When I execute "PRODUCT2_ID" request with param
-    Then The product2 response body name of the attribute is the same as the wait and request must be "OK"
+    Then Response status should be "OK"
+    And "product2" schema status should be "OK"
 
   @DeleteProduct2
   Scenario: Response body to Success is true for A Product2
@@ -32,18 +28,20 @@ Feature: Request for product2 feature
     When I execute create "PRODUCT2" request
       | name | product2 cucumber |
     Then Response body status request should be "CREATED"
+    And "response" schema status should be "CREATED"
 
   @UseCreatedProduct2
   Scenario: Get a Product2
     Given I build "GET" request
     When I execute "PRODUCT2_ID" request with param
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
+    And "product2" schema status should be "OK"
 
   @CantShowAccountWithWrongId
   Scenario Outline: Can't get an account with wrong id
     Given I build "GET" request
     When I execute "PRODUCT2_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | " "                   |
@@ -55,7 +53,8 @@ Feature: Request for product2 feature
     Given I build "POST" request
     When I execute create "PRODUCT2" request
       | name | <name> |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
     | name                  |
     | Product #45 - BD      |
@@ -74,7 +73,8 @@ Feature: Request for product2 feature
     When I execute create "PRODUCT2" request
       | name     | <name>       |
       | IsActive | <active>     |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
     | name                  | active          |
     | Some product name:45  | true            |
@@ -86,7 +86,8 @@ Feature: Request for product2 feature
     When I execute create "PRODUCT2" request
       | name        | <name>       |
       | ProductCode | <code>     |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | name                  | code           |
       | Product #3: Cucumber  | Code +456BO/SN |
@@ -100,7 +101,7 @@ Feature: Request for product2 feature
     Given I build "PATCH" request
     When I execute update "PRODUCT2_ID" request
       | name | <name> |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples:
     | name                      |
     | only letters              |
@@ -114,7 +115,7 @@ Feature: Request for product2 feature
     When I execute update "PRODUCT2_ID" request
       | name        | <name>        |
       | description | <description> |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples:
     | name                  | description                               |
     | ProductName updated   | Description with letters and 847383/%#$%  |
@@ -128,7 +129,7 @@ Feature: Request for product2 feature
     When I execute update "PRODUCT2_ID" request
       | name     | <name>       |
       | IsActive | <active>     |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples:
       | name                  | active  |
       | ProductName updated   | true    |
@@ -138,7 +139,7 @@ Feature: Request for product2 feature
   Scenario Outline: Product2 can' be updated with wrong Id
     Given I build "PATCH" request
     When I execute update "PRODUCT2_ID" request with specific <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                      |
       | "94548498cvXvmsj435"    |
@@ -148,20 +149,14 @@ Feature: Request for product2 feature
   Scenario: Delete an Account
     Given I build "DELETE" request
     When I execute "PRODUCT2_ID" request with param
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
 
   @CreateProduct2
   Scenario Outline: Delete an Account
     Given I build "DELETE" request
     When I execute "PRODUCT2_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | " 94548498cvXvmsj435" |
       | "94548498cvXvmsj435"  |
-
-  @UseCreatedProduct2
-  Scenario: Attribute response body is kind product2 for A Product2 Created
-    Given I build "GET" request
-    When I execute "PRODUCT2_ID" request with param
-    Then The product2 response body kind of the attribute is the same as the wait and request must be "OK"

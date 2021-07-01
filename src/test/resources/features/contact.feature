@@ -5,14 +5,15 @@ Feature: Scenario test for Contact feature
   Scenario: Get all Contacts
     Given I build "GET" request
     When I execute "CONTACT" request
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
 
   @DeleteContact
   Scenario: Validate Schema of a Contact
     Given I build "POST" request
     When I execute create "CONTACT" request
       | lastname | Ramirez Perez |
-    Then "response" schema status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
 
   @DeleteContact
   Scenario: Response body to Success is true for a specific Contact
@@ -26,13 +27,14 @@ Feature: Scenario test for Contact feature
   Scenario: Get a specific Contact
     Given I build "GET" request
     When I execute "CONTACT_ID" request with param
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
+    And "contact" schema status should be "OK"
 
   @CantShowAContactWithWrongId
   Scenario Outline: Can't get a contact with wrong or empty id
     Given I build "GET" request
     When I execute "CONTACT_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | "   "                 |
@@ -44,7 +46,8 @@ Feature: Scenario test for Contact feature
     Given I build "POST" request
     When I execute create "CONTACT" request
       | lastname | <lastname> |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | lastname                  |
       | Ramírez Huaylla           |
@@ -59,7 +62,7 @@ Feature: Scenario test for Contact feature
     Given I build "POST" request
     When I execute update "CONTACT_ID" request
       | lastname |  |
-    Then Status response of request should be "NOT_ALLOWED"
+    Then Response status should be "NOT_ALLOWED"
 
   @DeleteContact
   Scenario Outline: A Contact can be created with default and personal salutation
@@ -67,7 +70,8 @@ Feature: Scenario test for Contact feature
     When I execute create "CONTACT" request
       | lastname      | <lastname>    |
       | salutation    | <salutation>  |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | lastname                | salutation|
       | Ortuño                  | Mr.       |
@@ -85,7 +89,8 @@ Feature: Scenario test for Contact feature
       | lastname    | <lastname>    |
       | email       | <email>       |
       | salutation  | <salutation>  |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | lastname                | email                   | salutation  |
       | Ramírez Peñaranda       | some.email@gmail.com    | Mr.         |
@@ -99,7 +104,8 @@ Feature: Scenario test for Contact feature
       | lastname    | <lastname>    |
       | HomePhone   | <HomePhone>   |
       | salutation  | <salutation>  |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | lastname                | HomePhone               | salutation  |
       | Ramírez Peñaranda       | 463757382               | Mr.         |
@@ -113,7 +119,7 @@ Feature: Scenario test for Contact feature
     Given I build "PATCH" request
     When I execute update "CONTACT_ID" request
       | lastname | <lastname> |
-    Then Status response of request should be <status>
+    Then Response status should be <status>
     Examples:
     Examples:
       | lastname        | status        |
@@ -131,7 +137,7 @@ Feature: Scenario test for Contact feature
     When I execute update "CONTACT_ID" request
       | homephone       | <homephone>      |
       | salutation      | <salutation>      |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples:
       | homephone       | salutation|
       | +46358 4948BO   | MR.       |
@@ -144,7 +150,7 @@ Feature: Scenario test for Contact feature
   Scenario Outline: Campaign can't be updated with wrong or empty id
     Given I build "PATCH" request
     When I execute update "CONTACT_ID" request with specific <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                      |
       | "Mv234498cvXvmsj435"    |
@@ -154,13 +160,13 @@ Feature: Scenario test for Contact feature
   Scenario: Delete a Contact
     Given I build "DELETE" request
     When I execute "CONTACT_ID" request with param
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
 
   @CantDeleteContactWithWrongId
   Scenario Outline: Delete a Contact
     Given I build "DELETE" request
     When I execute "CONTACT_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | " Mv234498cvXvmsj435" |

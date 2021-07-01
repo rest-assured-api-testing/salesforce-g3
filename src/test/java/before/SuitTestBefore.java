@@ -3,7 +3,7 @@ package before;
 import api.ApiRequest;
 import api.ApiResponse;
 import configuration.Authentication;
-import entities.CreatedObject;
+import salesforce.entities.CreatedObject;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;

@@ -2,8 +2,8 @@ package rest.salesforce.org.steps;
 
 import api.ApiRequest;
 import api.ApiResponse;
-import configuration.ApiStatusCode;
-import entities.Response;
+import api.ApiStatusCode;
+import salesforce.entities.Response;
 import io.cucumber.java.en.Then;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -20,7 +20,7 @@ public class SchemaSteps {
         this.response = response;
     }
 
-    @Then("{string} schema status response of request should be {string}")
+    @Then("{string} schema status should be {string}")
     public void theSchemaShouldBeOK(String schema, String statusCode) {
         LOGGER.info("Then response status");
         Assert.assertEquals(apiResponse.getStatusCode(), ApiStatusCode.valueOf(statusCode).value());

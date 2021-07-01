@@ -10,7 +10,7 @@
  */
 package configuration;
 
-import entities.Token;
+import salesforce.entities.Token;
 import static configuration.Env.obtainEnvVariables;
 import static io.restassured.RestAssured.given;
 
