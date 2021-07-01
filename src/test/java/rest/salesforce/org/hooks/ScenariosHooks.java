@@ -2,13 +2,13 @@ package rest.salesforce.org.hooks;
 
 import api.ApiRequest;
 import api.ApiResponse;
-import configuration.Authentication;
+import salesforce.Authentication;
 import salesforce.entities.Response;
 import io.cucumber.java.Before;
 import org.apache.http.HttpHeaders;
 import org.apache.log4j.Logger;
 
-import static configuration.Authentication.token;
+import static salesforce.Authentication.token;
 import static configuration.EnvironmentValues.obtainEnvVariables;
 
 public class ScenariosHooks {

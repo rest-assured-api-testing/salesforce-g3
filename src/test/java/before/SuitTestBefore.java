@@ -2,14 +2,14 @@ package before;
 
 import api.ApiRequest;
 import api.ApiResponse;
-import configuration.Authentication;
+import salesforce.Authentication;
 import org.apache.http.HttpHeaders;
 import salesforce.entities.CreatedObject;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
-import static configuration.Authentication.token;
+import static salesforce.Authentication.token;
 import static configuration.EnvironmentValues.obtainEnvVariables;
 
 public class SuitTestBefore {

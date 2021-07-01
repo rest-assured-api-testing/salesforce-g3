@@ -8,7 +8,7 @@
  *
  * @author Edson Anawaya Rios
  */
-package configuration;
+package salesforce;
 
 import salesforce.entities.Token;
 import static configuration.EnvironmentValues.obtainEnvVariables;
