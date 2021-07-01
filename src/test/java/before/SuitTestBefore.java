@@ -2,12 +2,15 @@ package before;
 
 import api.ApiRequest;
 import api.ApiResponse;
-import configuration.Authentication;
+import salesforce.Authentication;
+import org.apache.http.HttpHeaders;
 import salesforce.entities.CreatedObject;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
+import static salesforce.Authentication.token;
+import static configuration.EnvironmentValues.obtainEnvVariables;
 
 public class SuitTestBefore {
     public CreatedObject createdObject;
@@ -22,9 +25,11 @@ public class SuitTestBefore {
 
     @BeforeMethod
     public void BeforeRequest() {
-        apiRequest = new ApiRequest()
-                .addHeader("Content-Type", "application/json");
-        apiRequest.clearPathParam();
+        apiRequest = new ApiRequest();
+        apiRequest.addHeader("Content-Type", "application/json")
+                .addHeader(HttpHeaders.AUTHORIZATION, token.getTokenType() + " " + token.getAccessToken())
+                .setBaseUri(token.getInstanceUrl() + obtainEnvVariables("SERVICE")
+                        + obtainEnvVariables("VERSION"));
     }
 
     @AfterClass
