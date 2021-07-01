@@ -15,7 +15,6 @@ package salesforce;
  */
 public enum ApiEndPoints {
 
-    TOKEN("/token"),
     CASE("/sobjects/Case"),
     CASE_ID("/sobjects/Case/{CASE_ID}"),
     CONTACT("/sobjects/Contact"),

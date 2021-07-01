@@ -11,7 +11,7 @@
 package configuration;
 
 import entities.Token;
-import static configuration.Env.obtainEnvVariables;
+import static configuration.EnvironmentValues.obtainEnvVariables;
 import static io.restassured.RestAssured.given;
 
 /**

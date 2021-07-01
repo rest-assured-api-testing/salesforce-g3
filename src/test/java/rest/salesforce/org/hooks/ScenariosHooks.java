@@ -5,7 +5,11 @@ import api.ApiResponse;
 import configuration.Authentication;
 import entities.Response;
 import io.cucumber.java.Before;
+import org.apache.http.HttpHeaders;
 import org.apache.log4j.Logger;
+
+import static configuration.Authentication.token;
+import static configuration.EnvironmentValues.obtainEnvVariables;
 
 public class ScenariosHooks {
     private Logger LOGGER = Logger.getLogger(getClass());
@@ -24,6 +28,9 @@ public class ScenariosHooks {
     public void loginAndSetup() {
         LOGGER.info("Login Scenarios hook");
         authentication.getAuth();
-        apiRequest.addHeader("Content-Type", "application/json");
+        apiRequest.addHeader("Content-Type", "application/json")
+                .addHeader(HttpHeaders.AUTHORIZATION, token.getTokenType() + " " + token.getAccessToken())
+                .setBaseUri(token.getInstanceUrl() + obtainEnvVariables("SERVICE")
+                        + obtainEnvVariables("VERSION"));
     }
 }

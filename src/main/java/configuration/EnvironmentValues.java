@@ -19,7 +19,7 @@ import java.util.Properties;
 /**
  * This class reads a properties file.
  */
-public class Env {
+public class EnvironmentValues {
     public static Properties CONFIG = new Properties();
 
     static {
@@ -52,6 +52,12 @@ public class Env {
         return properties;
     }
 
+    /**
+     * Gets each value of the environment value from a configuration file or from the system environment variable.
+     *
+     * @param variables is the value to be obtained from the environment variables
+     * @return the environment value
+     */
     public static String obtainEnvVariables(final String variables) {
         if (CONFIG.getProperty(variables) != null) {
             return CONFIG.getProperty(variables);
