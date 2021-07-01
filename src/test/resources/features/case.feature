@@ -8,7 +8,7 @@ Feature: Scenario test for Case feature
     Then Response status should be "OK"
 
   @DeleteCase
-  Scenario: Response body to Success is true for a Case
+  Scenario: Created response of new Case body should match schema response
     Given I build "POST" request
     When I execute create "CASE" request
       | status | new |
@@ -16,7 +16,7 @@ Feature: Scenario test for Case feature
     And "response" schema status should be "CREATED"
 
   @UseCreatedCase
-  Scenario: Get a specific Case
+  Scenario: Get a specific Case with id
     Given I build "GET" request
     When I execute "CASE_ID" request with param
     Then Response status should be "OK"
@@ -77,7 +77,6 @@ Feature: Scenario test for Case feature
       | status | <status> |
     Then Response status should be "NO_CONTENT"
     Examples:
-    Examples:
       | status              |
       | New                 |
       | Working             |
@@ -118,13 +117,13 @@ Feature: Scenario test for Case feature
       | " Mv23498cvXvmsj435"    |
 
   @CreateCase
-  Scenario: Delete a Case
+  Scenario: A created case can be deleted with correct Id
     Given I build "DELETE" request
     When I execute "CASE_ID" request with param
     Then Response status should be "NO_CONTENT"
 
   @CantDeleteCaseWithWrongId
-  Scenario Outline: Delete a Case
+  Scenario Outline: Case can't be deleted with wrong or empty id
     Given I build "DELETE" request
     When I execute "CASE_ID" with <id>
     Then Response status should be "NOT_FOUND"
@@ -132,3 +131,4 @@ Feature: Scenario test for Case feature
       | id                    |
       | " Mv234498cvXvmsj435" |
       | "Mv234498cvXvmsj435"  |
+      | " "                   |
