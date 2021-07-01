@@ -11,7 +11,6 @@
 package entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.Date;
 
 /**
  * This class defines a Contact.
@@ -55,17 +54,17 @@ public class Contact {
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String MailingPostalCode;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Integer Phone;
+    private String Phone;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Integer Fax;
+    private String Fax;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Integer MobilePhone;
+    private String MobilePhone;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Integer HomePhone;
+    private String HomePhone;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Integer OtherPhone;
+    private String OtherPhone;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Integer AssistantPhone;
+    private String AssistantPhone;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String ReportsToId;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -77,19 +76,19 @@ public class Contact {
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String AssistantName;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Date Birthdate;
+    private String Birthdate;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String Description;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String OwnerId;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Date CreatedDate;
+    private String CreatedDate;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Date CreatedById;
+    private String CreatedById;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Date LastModifiedDate;
+    private String LastModifiedDate;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-    private Date LastModifiedById;
+    private String LastModifiedById;
 
     /**
      * Gets the Id.
@@ -384,7 +383,7 @@ public class Contact {
      *
      * @return the Phone.
      */
-    public Integer getPhone() {
+    public String getPhone() {
         return Phone;
     }
     /**
@@ -392,7 +391,7 @@ public class Contact {
      *
      * @param phone to be set.
      */
-    public void setPhone(final Integer phone) {
+    public void setPhone(final String phone) {
         Phone = phone;
     }
     /**
@@ -400,7 +399,7 @@ public class Contact {
      *
      * @return the Fax.
      */
-    public Integer getFax() {
+    public String getFax() {
         return Fax;
     }
     /**
@@ -408,7 +407,7 @@ public class Contact {
      *
      * @param fax to be set.
      */
-    public void setFax(final Integer fax) {
+    public void setFax(final String fax) {
         Fax = fax;
     }
     /**
@@ -416,7 +415,7 @@ public class Contact {
      *
      * @return the MobilePhone.
      */
-    public Integer getMobilePhone() {
+    public String getMobilePhone() {
         return MobilePhone;
     }
     /**
@@ -424,7 +423,7 @@ public class Contact {
      *
      * @param mobilePhone to be set.
      */
-    public void setMobilePhone(final Integer mobilePhone) {
+    public void setMobilePhone(final String mobilePhone) {
         MobilePhone = mobilePhone;
     }
     /**
@@ -432,7 +431,7 @@ public class Contact {
      *
      * @return the HomePhone.
      */
-    public Integer getHomePhone() {
+    public String getHomePhone() {
         return HomePhone;
     }
     /**
@@ -440,7 +439,7 @@ public class Contact {
      *
      * @param homePhone to be set.
      */
-    public void setHomePhone(final Integer homePhone) {
+    public void setHomePhone(final String homePhone) {
         HomePhone = homePhone;
     }
     /**
@@ -448,7 +447,7 @@ public class Contact {
      *
      * @return the OtherPhone.
      */
-    public Integer getOtherPhone() {
+    public String getOtherPhone() {
         return OtherPhone;
     }
     /**
@@ -456,7 +455,7 @@ public class Contact {
      *
      * @param otherPhone to be set.
      */
-    public void setOtherPhone(final Integer otherPhone) {
+    public void setOtherPhone(final String otherPhone) {
         OtherPhone = otherPhone;
     }
     /**
@@ -464,7 +463,7 @@ public class Contact {
      *
      * @return the AssistantPhone.
      */
-    public Integer getAssistantPhone() {
+    public String getAssistantPhone() {
         return AssistantPhone;
     }
     /**
@@ -472,7 +471,7 @@ public class Contact {
      *
      * @param assistantPhone to be set.
      */
-    public void setAssistantPhone(final Integer assistantPhone) {
+    public void setAssistantPhone(final String assistantPhone) {
         AssistantPhone = assistantPhone;
     }
     /**
@@ -560,7 +559,7 @@ public class Contact {
      *
      * @return the Birthdate.
      */
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return Birthdate;
     }
     /**
@@ -568,7 +567,7 @@ public class Contact {
      *
      * @param birthdate to be set.
      */
-    public void setBirthdate(final Date birthdate) {
+    public void setBirthdate(final String birthdate) {
         Birthdate = birthdate;
     }
     /**
@@ -608,7 +607,7 @@ public class Contact {
      *
      * @return the CreatedDate.
      */
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return CreatedDate;
     }
     /**
@@ -616,7 +615,7 @@ public class Contact {
      *
      * @param createdDate to be set.
      */
-    public void setCreatedDate(final Date createdDate) {
+    public void setCreatedDate(final String createdDate) {
         CreatedDate = createdDate;
     }
     /**
@@ -624,7 +623,7 @@ public class Contact {
      *
      * @return the CreatedById.
      */
-    public Date getCreatedById() {
+    public String getCreatedById() {
         return CreatedById;
     }
     /**
@@ -632,7 +631,7 @@ public class Contact {
      *
      * @param createdById to be set.
      */
-    public void setCreatedById(final Date createdById) {
+    public void setCreatedById(final String createdById) {
         CreatedById = createdById;
     }
     /**
@@ -640,7 +639,7 @@ public class Contact {
      *
      * @return the LastModifiedDate.
      */
-    public Date getLastModifiedDate() {
+    public String getLastModifiedDate() {
         return LastModifiedDate;
     }
     /**
@@ -648,7 +647,7 @@ public class Contact {
      *
      * @param lastModifiedDate to be set.
      */
-    public void setLastModifiedDate(final Date lastModifiedDate) {
+    public void setLastModifiedDate(final String lastModifiedDate) {
         LastModifiedDate = lastModifiedDate;
     }
     /**
@@ -656,7 +655,7 @@ public class Contact {
      *
      * @return the LastModifiedById.
      */
-    public Date getLastModifiedById() {
+    public String getLastModifiedById() {
         return LastModifiedById;
     }
     /**
@@ -664,7 +663,7 @@ public class Contact {
      *
      * @param lastModifiedById to be set.
      */
-    public void setLastModifiedById(final Date lastModifiedById) {
+    public void setLastModifiedById(final String lastModifiedById) {
         LastModifiedById = lastModifiedById;
     }
 }

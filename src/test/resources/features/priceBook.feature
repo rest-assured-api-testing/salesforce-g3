@@ -4,33 +4,36 @@ Feature: Request for PriceBook feature
   Scenario: Get all Price books
     Given I build "GET" request
     When I execute "PRICE_BOOK" request
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
 
   @DeletePrice
   Scenario: Validate Schema of a Contact
     Given I build "POST" request
     When I execute create "PRICE_BOOK" request
       | name | Price name book |
-    Then "response" schema status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
 
   @DeletePrice
   Scenario: Response body to Success is true for a specific Price book
     Given I build "POST" request
     When I execute create "PRICE_BOOK" request
       | name | Price book name new |
-    Then Response body status request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
 
   @UseCreatedPrice
   Scenario: Get a specific Price book
     Given I build "GET" request
     When I execute "PRICE_BOOK_ID" request with param
-    Then Status response of request should be "OK"
+    Then Response status should be "OK"
+    And "pricebook2" schema status should be "OK"
 
   @CantShowAPriceBookWithWrongId
   Scenario Outline: Can't get a price book with wrong or empty id
     Given I build "GET" request
     When I execute "PRICE_BOOK_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | "   "                 |
@@ -42,7 +45,8 @@ Feature: Request for PriceBook feature
     Given I build "POST" request
     When I execute create "PRICE_BOOK" request
       | name | <name> |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | name                      |
       | PriceBook name            |
@@ -57,7 +61,7 @@ Feature: Request for PriceBook feature
     Given I build "POST" request
     When I execute update "PRICE_BOOK_ID" request
       | name |  |
-    Then Status response of request should be "NOT_ALLOWED"
+    Then Response status should be "NOT_ALLOWED"
 
   @DeletePrice
   Scenario Outline: A Price book can be created with name and description
@@ -65,7 +69,8 @@ Feature: Request for PriceBook feature
     When I execute create "PRICE_BOOK" request
       | name          | <name>    |
       | description   | <description>  |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | name                | description|
       | PriceBook1          | Some text descrip.          |
@@ -81,7 +86,8 @@ Feature: Request for PriceBook feature
     When I execute create "PRICE_BOOK" request
       | name        | <name>    |
       | isactive    | <active>  |
-    Then Status response of request should be "CREATED"
+    Then Response status should be "CREATED"
+    And "response" schema status should be "CREATED"
     Examples:
       | name                    | active         |
       | Price book name         | true           |
@@ -92,7 +98,7 @@ Feature: Request for PriceBook feature
     Given I build "PATCH" request
     When I execute update "PRICE_BOOK_ID" request
       | name | <name> |
-    Then Status response of request should be <status>
+    Then Response status should be <status>
     Examples:
     Examples:
       | name            | status        |
@@ -110,7 +116,7 @@ Feature: Request for PriceBook feature
     When I execute update "PRICE_BOOK_ID" request
       | name        | <name>    |
       | isactive    | <active>  |
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
     Examples:
       | name                    | active         |
       | Price book name         | true           |
@@ -120,7 +126,7 @@ Feature: Request for PriceBook feature
   Scenario Outline: Price book can't be updated with wrong or empty id
     Given I build "PATCH" request
     When I execute update "PRICE_BOOK_ID" request with specific <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                      |
       | "Mv234498cvXvmsj435"    |
@@ -130,13 +136,13 @@ Feature: Request for PriceBook feature
   Scenario: Delete a Price book
     Given I build "DELETE" request
     When I execute "PRICE_BOOK_ID" request with param
-    Then Status response of request should be "NO_CONTENT"
+    Then Response status should be "NO_CONTENT"
 
   @CantDeletePriceWithWrongId
   Scenario Outline: Delete a Contact
     Given I build "DELETE" request
     When I execute "PRICE_BOOK_ID" with <id>
-    Then Status response of request should be "NOT_FOUND"
+    Then Response status should be "NOT_FOUND"
     Examples:
       | id                    |
       | " Mv234498cvXvmsj435" |

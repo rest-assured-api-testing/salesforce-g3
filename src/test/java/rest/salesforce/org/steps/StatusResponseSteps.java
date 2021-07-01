@@ -18,7 +18,7 @@ public class StatusResponseSteps {
         this.apiResponse = apiResponse;
     }
 
-    @Then("Status response of request should be {string}")
+    @Then("Response status should be {string}")
     public void theResponseStatusShouldBeOK(String statusCode) {
         LOGGER.info("Then response status");
         Assert.assertEquals(apiResponse.getStatusCode(), ApiStatusCode.valueOf(statusCode).value());

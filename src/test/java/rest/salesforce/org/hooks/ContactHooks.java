@@ -30,6 +30,7 @@ public class ContactHooks {
         LOGGER.info("------ Create a contact ------");
         Contact newContact = new Contact();
         newContact.setLastName("New LastName");
+        newContact.setEmail("paopao@jala.com");
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiEndPoints.CONTACT)
                 .body(new ObjectMapper().writeValueAsString(newContact));
